@@ -35,7 +35,7 @@ public class PlatformGenerator : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        if (player.position.z > platPosition.z - spawnDistance && platformCount < maximumPlatformCount)//Time.time > lastSpawnTime + spawnRate && platformCount < maximumPlatformCount)
+        if (player.transform.position.z > platPosition.z - spawnDistance && platformCount < maximumPlatformCount)//Time.time > lastSpawnTime + spawnRate && platformCount < maximumPlatformCount)
         {
             // Set position of platform
             platform = ObjectPooler.Instance.SpawnFromPool(Pool.PLATFORM, platPosition, Quaternion.identity);

@@ -106,4 +106,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2023f334e6501499efb830991726e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 5
+  spawnDistance: 200
+  player: {fileID: 5537373567197875062, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}

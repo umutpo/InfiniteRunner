@@ -3,30 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformController : MonoBehaviour, IPooledObject
-{
+{    
     [SerializeField]
-    public float lifeTime = 5;
-    private float startTime;
+    private GameObject player;
 
     public delegate void PlatformDelegate();
     public PlatformDelegate onRemovePlatform;
-
-    
-
+  
     public virtual void OnObjectSpawn() {
-        startTime = Time.time;
     }
 
-    protected virtual void Start(){
-
+    protected virtual void Start() {
+        player = GameObject.Find("Player");
     }
 
     protected virtual void Update() {
-        // if (transform.position.z < camera.transform.position.z - 10) {
-        //     Remove();
-        // }
-        // TODO: Remove once out of camera view
-        if (Time.time > startTime + lifeTime)
+        // Remove once out of camera view
+        if (player.transform.position.z > transform.position.z + transform.localScale.z)
             Remove();
     }
 
