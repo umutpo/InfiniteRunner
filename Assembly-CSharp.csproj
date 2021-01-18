@@ -36,11 +36,12 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\PlatformController.cs" />
-     <Compile Include="Assets\Scripts\PlatformGenerator.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Tools\Data.cs" />
      <Compile Include="Assets\Scripts\Tools\IPooledObject.cs" />
      <Compile Include="Assets\Scripts\Tools\ObjectPooler.cs" />
+     <Compile Include="Assets\Scripts\Tools\PlatformController.cs" />
+     <Compile Include="Assets\Scripts\Tools\PlatformGenerator.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
