@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Button))]
 public class SceneSwitcher : MonoBehaviour
 {
+    // When new scenes are added, add their name to the enum list below verbatim
     private enum SceneType {
         MainMenu,
         Settings,
