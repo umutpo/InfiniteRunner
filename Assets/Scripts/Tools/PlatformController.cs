@@ -24,7 +24,10 @@ public class PlatformController : MonoBehaviour, IPooledObject
     }
 
     public virtual void Remove() {
-        onRemovePlatform?.Invoke();
+        if (onRemovePlatform != null)
+        {
+            onRemovePlatform.Invoke();
+        }
         onRemovePlatform = null;
         gameObject.SetActive(false);
     }

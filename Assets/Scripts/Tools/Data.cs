@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-public struct Tags  {
+public struct Tags
+{
     public static readonly string PLAYER = "Player";
 }
 
