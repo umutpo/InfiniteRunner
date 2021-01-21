@@ -11,7 +11,7 @@ public class SceneSwitchOnclick : MonoBehaviour
     #region Scene Enumerations
     private enum SceneType {
         Settings,
-        Game,
+        GameplayScene,
         MainMenu
     }
     #endregion

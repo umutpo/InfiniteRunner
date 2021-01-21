@@ -36,7 +36,14 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Scene Switching\SceneSwitchOnclick.cs" />
+     <Compile Include="Assets\Scripts\Score\ScoreController.cs" />
+     <Compile Include="Assets\Scripts\Tools\Data.cs" />
+     <Compile Include="Assets\Scripts\Tools\IPooledObject.cs" />
+     <Compile Include="Assets\Scripts\Tools\ObjectPooler.cs" />
+     <Compile Include="Assets\Scripts\Tools\PlatformController.cs" />
+     <Compile Include="Assets\Scripts\Tools\PlatformGenerator.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
