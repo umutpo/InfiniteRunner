@@ -24,11 +24,7 @@ public class ObjectPooler : MonoBehaviour {
         Instance = this;
     }
     #endregion Singleton
-
     
-
-
-	// Use this for initialization
 	void Start () {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
@@ -49,7 +45,7 @@ public class ObjectPooler : MonoBehaviour {
 
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
-        if (!poolDictionary.ContainsKey(tag))
+        if (poolDictionary == null || !poolDictionary.ContainsKey(tag))
         {
             Debug.LogWarning(tag + " does not exist");
             return null;
