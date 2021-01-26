@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class PlatformGenerator : MonoBehaviour
 {
-    // [SerializeField]
-    // protected float initialSpawnRate = 1;
-    // protected float spawnRate;
-    // protected float lastSpawnTime;
-
     private int platformCount;
     [SerializeField]
     private int maximumPlatformCount = 8;
@@ -24,7 +19,6 @@ public class PlatformGenerator : MonoBehaviour
 
     protected void Start()
     {
-        // spawnRate = initialSpawnRate;
         platformCount = 0;
         platPosition = transform.position;
         platform = ObjectPooler.Instance.SpawnFromPool(Pool.PLATFORM, platPosition, Quaternion.identity);
@@ -47,7 +41,6 @@ public class PlatformGenerator : MonoBehaviour
             platformComponent.onRemovePlatform += RemoveOne;
 
             platformCount++;
-            // lastSpawnTime = Time.time;
         }
     }
 
