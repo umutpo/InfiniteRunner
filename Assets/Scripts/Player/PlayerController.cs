@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
     // Player Variables
     private Rigidbody _body;
     private float jumpHeight = 2f;
-    public float speed = 4f;
+    [SerializeField]
+    private float speed;
     private int currentLane = 2;
 
     float movementTimeCount;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        speed = 20f;
         _body = gameObject.GetComponent<Rigidbody>();
         starting_elevation = _body.position.y;
     }
@@ -127,6 +129,11 @@ public class PlayerController : MonoBehaviour
     bool getIsNotJumpingOrSliding()
     {
         return (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
+    }
+
+    public void SlowDown(float reduction) {
+        speed -= reduction;
+        // Debug.Log("slowing: " + speed);
     }
 }
 

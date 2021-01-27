@@ -6,6 +6,9 @@ public class ObstacleController : MonoBehaviour, IPooledObject
 {    
     [SerializeField]
     private GameObject player;
+    private PlayerController playerScript;
+    [SerializeField]
+    protected float speedReduction = 1f;
 
     public delegate void ObstacleDelegate();
     public ObstacleDelegate onRemoveObstacle;
@@ -15,14 +18,21 @@ public class ObstacleController : MonoBehaviour, IPooledObject
 
     protected virtual void Start() {
         player = GameObject.Find("Player");
+        playerScript = player.GetComponent<PlayerController>();
     }
 
     protected virtual void Update() {
-        if (false) {
-            // Remove and slow down player if collided
-        } else if (player.transform.position.z > transform.position.z + transform.localScale.z)
+        if (player.transform.position.z > transform.position.z + transform.localScale.z)
             // Remove once out of camera view
             Remove();
+    }
+
+    protected virtual void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "Player") {
+            // Slow down player speed
+            playerScript.SlowDown(speedReduction);
+            Remove();
+        }
     }
 
     public virtual void Remove() {
