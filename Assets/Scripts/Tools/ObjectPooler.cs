@@ -25,7 +25,7 @@ public class ObjectPooler : MonoBehaviour {
     }
     #endregion Singleton
     
-	void Start () {
+	private void OnEnable () {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach(Pool pool in pools)
