@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +11,12 @@ public class PlayerController : MonoBehaviour
     const float SLIDE_TIME = 2f;
 
     const float EPS = 0.01f;
+
+    // Input Variables
+    public InputAction jumpAction;
+    public InputAction slideAction;
+    public InputAction moveLeftAction;
+    public InputAction moveRightAction;
 
     // Player Variables
     private Rigidbody _body;
@@ -31,6 +35,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        jumpAction.performed += ctx => Jump();
+        slideAction.performed += ctx => Slide();
+        moveLeftAction.performed += ctx => MoveLeft();
+        moveRightAction.performed += ctx => MoveRight();
+
         _body = gameObject.GetComponent<Rigidbody>();
         starting_elevation = _body.position.y;
     }
@@ -40,19 +49,13 @@ public class PlayerController : MonoBehaviour
     {
         if (inMovement == false && getIsNotJumpingOrSliding())
         {
-            if (Input.GetButtonDown("Up")) {
-                Jump();
-            }
-            if (Input.GetButtonDown("Down")) {
-                Slide();
-            }
-            if (Input.GetButtonDown("Left")) {
-                MoveLeft();
-            }
-            if (Input.GetButtonDown("Right")) {
-                MoveRight();
-            }
+            enableInputActions();
         }
+        else
+        {
+            disableInputActions();
+        }
+
         MoveForward();
         GoToDestination();
     }
@@ -127,6 +130,22 @@ public class PlayerController : MonoBehaviour
     bool getIsNotJumpingOrSliding()
     {
         return (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
+    }
+
+    void enableInputActions()
+    {
+        jumpAction.Enable();
+        slideAction.Enable();
+        moveLeftAction.Enable();
+        moveRightAction.Enable();
+    }
+
+    void disableInputActions()
+    {
+        jumpAction.Disable();
+        slideAction.Disable();
+        moveLeftAction.Disable();
+        moveRightAction.Disable();
     }
 }
 
