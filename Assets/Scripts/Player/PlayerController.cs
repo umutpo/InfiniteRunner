@@ -18,7 +18,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _body;
     private float jumpHeight = 2f;
     [SerializeField]
-    private float speed;
+    private float initialSpeed = 20f;
+    private float currentSpeed;
+    [SerializeField]
+    private float failSpeed = 10f;      // Speed lower limit
     private int currentLane = 2;
 
     float movementTimeCount;
@@ -30,9 +33,18 @@ public class PlayerController : MonoBehaviour
     float starting_elevation;
     Vector3 shift;
 
+    // Related to obstacle collisions
+    private float speedReduction = 0f;
+    private float collisionTime;
+    [SerializeField]
+    private float recoveryTime = 2f;    // Seconds after which player returns to previous speed
+    private bool isInvincible = false;
+    [SerializeField]
+    private float invincibilityDuration = 0.5f;     // Seconds after which player is invincible against collisions
+
     void Start()
     {
-        speed = 20f;
+        currentSpeed = initialSpeed;
         _body = gameObject.GetComponent<Rigidbody>();
         starting_elevation = _body.position.y;
     }
@@ -40,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        UpdateSpeed();
         if (inMovement == false && getIsNotJumpingOrSliding())
         {
             if (Input.GetButtonDown("Up")) {
@@ -78,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
     void MoveForward()
     {
-        _body.MovePosition(_body.position + (Time.deltaTime * new Vector3(0, 0, speed)));
+        _body.MovePosition(_body.position + (Time.deltaTime * new Vector3(0, 0, currentSpeed)));
     }
 
     void MoveLeft()
@@ -126,14 +139,44 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void UpdateSpeed()
+    {
+        if (speedReduction != 0f) {
+            currentSpeed -= speedReduction;
+            speedReduction = 0f;
+            Debug.Log("collision");
+        }
+
+
+
+        if (currentSpeed < failSpeed) {
+            // TODO: handle death
+            Debug.Log("Too slow, should die.");
+        }
+    }
+
+    private IEnumerator BecomeInvincible()
+    {
+        isInvincible = true;
+
+        for (float i = 0; i < invincibilityDuration; i += Time.deltaTime) {          
+            // TODO: Can add visual cues for invincibility  
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        isInvincible = false;
+    }
+
     bool getIsNotJumpingOrSliding()
     {
         return (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
     }
 
     public void SlowDown(float reduction) {
-        speed -= reduction;
-        // Debug.Log("slowing: " + speed);
+        if (!isInvincible) {
+            speedReduction = reduction;
+            collisionTime = Time.time;
+            StartCoroutine(BecomeInvincible());
+        }
     }
 }
 
