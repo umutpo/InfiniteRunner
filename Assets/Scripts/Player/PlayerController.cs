@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     private float recoveryTime = 2f;    // Seconds after which player returns to previous speed
     private bool isInvincible = false;
     [SerializeField]
-    private float invincibilityDuration = 0.5f;     // Seconds after which player is invincible against collisions
+    private float invincibilityDuration = 1f;     // Seconds after which player is invincible against collisions
 
     void Start()
     {
@@ -144,10 +144,9 @@ public class PlayerController : MonoBehaviour
         if (speedReduction != 0f) {
             currentSpeed -= speedReduction;
             speedReduction = 0f;
-            Debug.Log("collision");
         }
 
-
+        // TODO: Recover or increase speed
 
         if (currentSpeed < failSpeed) {
             // TODO: handle death
@@ -155,7 +154,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator BecomeInvincible()
+    private IEnumerator BecomeInvincibleTemporary()
     {
         isInvincible = true;
 
@@ -175,7 +174,7 @@ public class PlayerController : MonoBehaviour
         if (!isInvincible) {
             speedReduction = reduction;
             collisionTime = Time.time;
-            StartCoroutine(BecomeInvincible());
+            StartCoroutine(BecomeInvincibleTemporary());
         }
     }
 }

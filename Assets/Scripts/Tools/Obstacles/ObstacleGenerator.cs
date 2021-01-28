@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class ObstacleGenerator : MonoBehaviour
 {
-    private int obstacleCount;
+    private int obstacleRowCount;
     [SerializeField]
-    private int maximumObstacleCount = 8;
+    private int maximumObstacleRows = 8;
     
     private GameObject obstacle;
     [SerializeField]
-    private float maxSpawnDist = 7f;
-    private float minSpawnDist = 3f;
+    private int maxSpawnDist = 4;
+    private int minSpawnDist = 1;
+    private float spawnDistanceUnit = 5f;
     private ObstacleController obstacleComponent;
     private Vector3 obstaclePosition;
     const float laneWidth = 3f;
@@ -23,34 +24,57 @@ public class ObstacleGenerator : MonoBehaviour
 
     protected void Start()
     {
-        obstacleCount = 0;
+        obstacleRowCount = 0;
         obstaclePosition = player.transform.position;
     }
 
     protected void Update()
     {
         // TODO: change generation conditions
-        obstaclePosition.x = 0f;
-        if (obstacleCount < maximumObstacleCount) {            
+        while (obstacleRowCount < maximumObstacleRows) {
+            int rowRng = Random.Range(1, 101);
+            obstaclePosition.x = 0f;
             // Choose obstacle
             int obsIndex = Random.Range(0, selectObs.Length);
-            int obsLane = Random.Range(-1, 2);
+            int obsLane = Random.Range(0, 3);
             // Set position of obstacle
-            obstaclePosition.x += obsLane * laneWidth;
-            obstaclePosition.z += Random.Range(minSpawnDist, maxSpawnDist);
+            obstaclePosition.x += (obsLane - 1) * laneWidth;
+            // TODO: change to weighted, more closer distance?
+            obstaclePosition.z += Random.Range(minSpawnDist, maxSpawnDist) * spawnDistanceUnit;
             obstacle = ObjectPooler.Instance.SpawnFromPool(selectObs[obsIndex], obstaclePosition, Quaternion.identity);
             
             obstacleComponent = obstacle.GetComponent<ObstacleController>();
             obstacleComponent.OnObjectSpawn();
             obstacleComponent.onRemoveObstacle += RemoveOne;
 
-            obstacleCount++;
+            // 2 obstacles in same row
+            if (rowRng > 70) {
+                int laneRight = ((obsLane + 1) % 3) - 1;
+                obsIndex = Random.Range(0, selectObs.Length);
+                obstaclePosition.x = laneRight * laneWidth;
+                obstacle = ObjectPooler.Instance.SpawnFromPool(selectObs[obsIndex], obstaclePosition, Quaternion.identity);
+                obstacleComponent = obstacle.GetComponent<ObstacleController>();
+                obstacleComponent.OnObjectSpawn();
+                obstacleComponent.onRemoveObstacle += RemoveOne;
+            }
+
+            // 3 obstacles in same row
+            if (rowRng > 90) {
+                int laneLeft = (obsLane + 2) % 3 - 1;
+                obsIndex = Random.Range(0, selectObs.Length);
+                obstaclePosition.x = laneLeft * laneWidth;
+                obstacle = ObjectPooler.Instance.SpawnFromPool(selectObs[obsIndex], obstaclePosition, Quaternion.identity);
+                obstacleComponent = obstacle.GetComponent<ObstacleController>();
+                obstacleComponent.OnObjectSpawn();
+                obstacleComponent.onRemoveObstacle += RemoveOne;
+            }
+            obstacleRowCount++;
         }
     }
 
     
     void RemoveOne()
     {
-        obstacleCount--;
+        obstacleRowCount--;
     }
 }
