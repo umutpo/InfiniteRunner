@@ -9,4 +9,6 @@ public struct Tags
 public struct Pool
 {
     public static readonly string PLATFORM = "Platform";
+    public static readonly string OBSTACLE1 = "ObstacleFirst";
+    public static readonly string OBSTACLE2 = "ObstacleSecond";
 } 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     const float EPS = 0.01f;
 
+    const float INITIAL_SPEED = 10f;
+
     // Input Variables
     public InputAction jumpAction;
     public InputAction slideAction;
@@ -21,8 +24,9 @@ public class PlayerController : MonoBehaviour
     // Player Variables
     private Rigidbody _body;
     private float jumpHeight = 2f;
-    public float speed = 4f;
-    public float gameOverSpeed = 0.1f;
+    [SerializeField]
+    private float currentSpeed;
+    public float gameOverSpeed = 2f;
     private int currentLane = 2;
 
     float movementTimeCount;
@@ -35,8 +39,16 @@ public class PlayerController : MonoBehaviour
     float starting_elevation;
     Vector3 shift;
 
+    // Related to obstacle collisions
+    private float speedReduction = 0f;
+    private float collisionTime;
+    private bool isInvincible = false;
+    [SerializeField]
+    private float invincibilityDuration = 1f;     // Seconds after which player is invincible against collisions
+
     void Start()
     {
+        currentSpeed = INITIAL_SPEED;
         jumpAction.performed += ctx => Jump();
         slideAction.performed += ctx => Slide();
         moveLeftAction.performed += ctx => MoveLeft();
@@ -49,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        UpdateSpeed();
         if (inMovement == false && getIsNotJumpingOrSliding())
         {
             enableInputActions();
@@ -86,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
     void MoveForward()
     {
-        _body.MovePosition(_body.position + (Time.deltaTime * new Vector3(0, 0, speed)));
+        _body.MovePosition(_body.position + (Time.deltaTime * new Vector3(0, 0, currentSpeed)));
     }
 
     void MoveLeft()
@@ -134,18 +147,47 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void UpdateSpeed()
+    {
+        if (speedReduction != 0f) {
+            currentSpeed -= speedReduction;
+            speedReduction = 0f;
+        }
+
+        // TODO: Recover or increase speed
+    }
+
+    private IEnumerator BecomeInvincibleTemporary()
+    {
+        isInvincible = true;
+
+        for (float i = 0; i < invincibilityDuration; i += Time.deltaTime) {          
+            // TODO: Can add visual cues for invincibility  
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        isInvincible = false;
+    }
+
     bool getIsNotJumpingOrSliding()
     {
         return (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
     }
 
+    public void SlowDown(float reduction) {
+        if (!isInvincible) {
+            speedReduction = reduction;
+            collisionTime = Time.time;
+            StartCoroutine(BecomeInvincibleTemporary());
+        }
+    }
+    
     bool isGameOver()
     {
-        if (speed <= gameOverSpeed) {
+        if (currentSpeed <= gameOverSpeed) {
             return true;
-        } else { 
-            return false;
         }
+
+        return false;
     }
 
     public bool getGameOverState()
