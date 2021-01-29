@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     private float currentSpeed;
     [SerializeField]
     private float failSpeed = 10f;      // Speed lower limit
+    public float speed = 4f;
+    public float gameOverSpeed = 0.1f;
     private int currentLane = 2;
 
     float movementTimeCount;
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
     bool inMovement = false;
     bool isSliding = false;
+    private bool gameOverState = false;
 
     float starting_elevation;
     Vector3 shift;
@@ -72,6 +75,11 @@ public class PlayerController : MonoBehaviour
 
         MoveForward();
         GoToDestination();
+        if (isGameOver())
+        {
+            gameOverState = true;
+            enabled = false;
+        }
     }
 
     void Jump()
@@ -172,7 +180,7 @@ public class PlayerController : MonoBehaviour
         return (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
     }
 
-    public void SlowDown(float reduction) {
+    void SlowDown(float reduction) {
         if (!isInvincible) {
             speedReduction = reduction;
             collisionTime = Time.time;
@@ -180,6 +188,20 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+    bool isGameOver()
+    {
+        if (speed <= gameOverSpeed) {
+            return true;
+        } else { 
+            return false;
+        }
+    }
+
+    public bool getGameOverState()
+    {
+        return gameOverState;
+    }
+
     void enableInputActions()
     {
         jumpAction.Enable();

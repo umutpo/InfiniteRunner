@@ -11,7 +11,8 @@ public class SceneSwitcher : MonoBehaviour
     private enum SceneType {
         MainMenu,
         Settings,
-        GameplayScene
+        GameplayScene,
+        HighScoreScene
     };
 
     [SerializeField] private SceneType destinationScene;

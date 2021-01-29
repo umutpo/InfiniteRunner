@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class ScoreController : MonoBehaviour
 {
     private Text score;
-    private int currentScore = 0;
-    private static int highestScore = 0;
+    public static int currentScore = 0;
+    public static int highestScore = 0;
 
     void Start()
     {
