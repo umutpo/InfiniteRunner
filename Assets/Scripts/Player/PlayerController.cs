@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
     float starting_elevation;
     Vector3 shift;
 
-
     void Start()
     {
         jumpAction.performed += ctx => Jump();
@@ -61,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
         MoveForward();
         GoToDestination();
-        if (gameOver())
+        if (isGameOver())
         {
             gameOverState = true;
             enabled = false;
@@ -140,12 +139,12 @@ public class PlayerController : MonoBehaviour
         return (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
     }
 
-    bool gameOver()
+    bool isGameOver()
     {
         if (speed <= gameOverSpeed) {
             return true;
-        }else { 
-        return false;
+        } else { 
+            return false;
         }
     }
 
