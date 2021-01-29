@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     const float EPS = 0.01f;
 
+    const float INITIAL_SPEED = 10f;
+
     // Input Variables
     public InputAction jumpAction;
     public InputAction slideAction;
@@ -23,12 +25,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _body;
     private float jumpHeight = 2f;
     [SerializeField]
-    private float initialSpeed = 20f;
     private float currentSpeed;
-    [SerializeField]
-    private float failSpeed = 10f;      // Speed lower limit
-    public float speed = 4f;
-    public float gameOverSpeed = 0.1f;
+    public float gameOverSpeed = 2f;
     private int currentLane = 2;
 
     float movementTimeCount;
@@ -50,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        currentSpeed = initialSpeed;
+        currentSpeed = INITIAL_SPEED;
         jumpAction.performed += ctx => Jump();
         slideAction.performed += ctx => Slide();
         moveLeftAction.performed += ctx => MoveLeft();
@@ -157,11 +155,6 @@ public class PlayerController : MonoBehaviour
         }
 
         // TODO: Recover or increase speed
-
-        if (currentSpeed < failSpeed) {
-            // TODO: handle death
-            Debug.Log("Too slow, should die.");
-        }
     }
 
     private IEnumerator BecomeInvincibleTemporary()
@@ -180,7 +173,7 @@ public class PlayerController : MonoBehaviour
         return (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
     }
 
-    void SlowDown(float reduction) {
+    public void SlowDown(float reduction) {
         if (!isInvincible) {
             speedReduction = reduction;
             collisionTime = Time.time;
@@ -190,11 +183,11 @@ public class PlayerController : MonoBehaviour
     
     bool isGameOver()
     {
-        if (speed <= gameOverSpeed) {
+        if (currentSpeed <= gameOverSpeed) {
             return true;
-        } else { 
-            return false;
         }
+
+        return false;
     }
 
     public bool getGameOverState()
