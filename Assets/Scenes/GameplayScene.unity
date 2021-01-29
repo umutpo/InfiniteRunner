@@ -393,6 +393,33 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5537373567377914770}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &356856038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+    type: 3}
+  m_PrefabInstance: {fileID: 5537373567377914770}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356856036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d6490159a1c754c8774f11ab024883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &356856043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356856036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0855596693546d1941b2f3aebf3870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreController: {fileID: 264273164}
+  playerController: {fileID: 356856038}
+  GameOverSceneName: GameOverScene
 --- !u!1 &450251540
 GameObject:
   m_ObjectHideFlags: 0

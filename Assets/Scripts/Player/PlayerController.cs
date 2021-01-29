@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _body;
     private float jumpHeight = 2f;
     public float speed = 4f;
+    public float gameOverSpeed = 0.1f;
     private int currentLane = 2;
 
     float movementTimeCount;
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     bool inMovement = false;
     bool isSliding = false;
+    private bool gameOverState = false;
 
     float starting_elevation;
     Vector3 shift;
@@ -58,6 +60,11 @@ public class PlayerController : MonoBehaviour
 
         MoveForward();
         GoToDestination();
+        if (isGameOver())
+        {
+            gameOverState = true;
+            enabled = false;
+        }
     }
 
     void Jump()
@@ -130,6 +137,20 @@ public class PlayerController : MonoBehaviour
     bool getIsNotJumpingOrSliding()
     {
         return (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
+    }
+
+    bool isGameOver()
+    {
+        if (speed <= gameOverSpeed) {
+            return true;
+        } else { 
+            return false;
+        }
+    }
+
+    public bool getGameOverState()
+    {
+        return gameOverState;
     }
 
     void enableInputActions()
