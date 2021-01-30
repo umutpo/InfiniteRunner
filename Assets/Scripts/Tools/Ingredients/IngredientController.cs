@@ -6,6 +6,8 @@ public class IngredientController : MonoBehaviour, IPooledObject
     [SerializeField]
     private GameObject player;
     private PlayerController playerScript;
+    [SerializeField]
+    protected string ingredientName = "Ingredient";
 
     public delegate void IngredientDelegate();
     public IngredientDelegate onRemoveIngredient;
@@ -31,6 +33,7 @@ public class IngredientController : MonoBehaviour, IPooledObject
     {
         if (other.gameObject.tag == "Player")
         {
+            playerScript.AddToInventory(ingredientName);
             Remove();
         }
     }
