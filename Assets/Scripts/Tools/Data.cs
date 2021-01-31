@@ -11,4 +11,6 @@ public struct Pool
     public static readonly string PLATFORM = "Platform";
     public static readonly string OBSTACLE1 = "ObstacleFirst";
     public static readonly string OBSTACLE2 = "ObstacleSecond";
+    public static readonly string INGREDIENT1 = "IngredientFirst";
+    public static readonly string INGREDIENT2 = "IngredientSecond";
 } 

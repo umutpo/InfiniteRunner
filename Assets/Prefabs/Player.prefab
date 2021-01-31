@@ -116,7 +116,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d6490159a1c754c8774f11ab024883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  jumpAction:
+    m_Name: Jump
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9494d366-1a8f-4691-9e25-7dae80ffb9f2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  slideAction:
+    m_Name: Slide
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d0ddbd16-b1b8-415d-9d46-f15681397336
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  moveLeftAction:
+    m_Name: Move Left
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 803f688e-cef9-4b76-99e2-61a9e83aef1a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  moveRightAction:
+    m_Name: Move Right
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: fd28f8c9-0e9f-44dc-88c7-8019f7aec6ae
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  currentSpeed: 0
+  gameOverSpeed: 0.1
+  invincibilityDuration: 1
 --- !u!33 &5537373567197875066
 MeshFilter:
   m_ObjectHideFlags: 0

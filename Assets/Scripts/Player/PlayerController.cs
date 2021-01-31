@@ -29,6 +29,11 @@ public class PlayerController : MonoBehaviour
     public float gameOverSpeed = 2f;
     private int currentLane = 2;
 
+    // Inventory Variables
+    [SerializeField]
+    private GameObject inventory;
+    private PlayerInventoryData playerInventoryData;
+
     float movementTimeCount;
     float slideTimeCount;
 
@@ -56,6 +61,9 @@ public class PlayerController : MonoBehaviour
 
         _body = gameObject.GetComponent<Rigidbody>();
         starting_elevation = _body.position.y;
+
+        inventory = GameObject.Find("Inventory");
+        playerInventoryData = inventory.GetComponent<PlayerInventoryData>();
     }
 
 
@@ -172,14 +180,6 @@ public class PlayerController : MonoBehaviour
     {
         return (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
     }
-
-    public void SlowDown(float reduction) {
-        if (!isInvincible) {
-            speedReduction = reduction;
-            collisionTime = Time.time;
-            StartCoroutine(BecomeInvincibleTemporary());
-        }
-    }
     
     bool isGameOver()
     {
@@ -209,6 +209,21 @@ public class PlayerController : MonoBehaviour
         slideAction.Disable();
         moveLeftAction.Disable();
         moveRightAction.Disable();
+    }
+
+    public void SlowDown(float reduction)
+    {
+        if (!isInvincible)
+        {
+            speedReduction = reduction;
+            collisionTime = Time.time;
+            StartCoroutine(BecomeInvincibleTemporary());
+        }
+    }
+
+    public void AddToInventory(string ingredient)
+    {
+        playerInventoryData.addIngredient(ingredient);
     }
 }
 
