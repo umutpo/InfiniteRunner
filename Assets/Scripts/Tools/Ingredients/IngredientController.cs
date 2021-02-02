@@ -34,6 +34,7 @@ public class IngredientController : MonoBehaviour, IPooledObject
         if (other.gameObject.tag == "Player")
         {
             playerScript.AddToInventory(ingredientName);
+            playerScript.SlowDown(PlayerController.INGREDIENT_SPEED_REDUCTION, false);
             Remove();
         }
     }
