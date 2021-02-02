@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     const float EPS = 0.01f;
 
     const float INITIAL_SPEED = 10f;
+    public const float INGREDIENT_SPEED_REDUCTION = 1f;
 
     // Input Variables
     public InputAction jumpAction;
@@ -211,19 +212,31 @@ public class PlayerController : MonoBehaviour
         moveRightAction.Disable();
     }
 
-    public void SlowDown(float reduction)
+    public void SlowDown(float reduction, bool isObstacle = true)
     {
-        if (!isInvincible)
+        if (isObstacle)
+        {
+            if (!isInvincible)
+            {
+                speedReduction = reduction;
+                collisionTime = Time.time;
+                StartCoroutine(BecomeInvincibleTemporary());
+            }
+        }
+        else
         {
             speedReduction = reduction;
-            collisionTime = Time.time;
-            StartCoroutine(BecomeInvincibleTemporary());
         }
     }
 
     public void AddToInventory(string ingredient)
     {
         playerInventoryData.addIngredient(ingredient);
+    }
+
+    public void RemoveFromInventory(string ingredient)
+    {
+        playerInventoryData.removeIngredient(ingredient);
     }
 }
 
