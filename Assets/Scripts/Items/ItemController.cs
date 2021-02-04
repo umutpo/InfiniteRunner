@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleController : MonoBehaviour, IPooledObject
-{    
+public class ItemController : MonoBehaviour, IPooledObject
+{ 
     [SerializeField]
-    private GameObject player;
-    private PlayerController playerScript;
-    [SerializeField]
-    protected float speedReduction = 1f;
+    protected GameObject player;
+    protected PlayerController playerScript;
 
-    public delegate void ObstacleDelegate();
-    public ObstacleDelegate onRemoveObstacle;
+    public delegate void ItemDelegate();
+    public ItemDelegate onRemoveItem;
   
     public virtual void OnObjectSpawn() {
     }
@@ -28,19 +26,14 @@ public class ObstacleController : MonoBehaviour, IPooledObject
     }
 
     protected virtual void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player") {
-            // Slow down player speed
-            playerScript.SlowDown(speedReduction);
-            Remove();
-        }
     }
 
     public virtual void Remove() {
-        if (onRemoveObstacle != null)
+        if (onRemoveItem != null)
         {
-            onRemoveObstacle.Invoke();
+            onRemoveItem.Invoke();
         }
-        onRemoveObstacle = null;
+        onRemoveItem = null;
         gameObject.SetActive(false);
     }
 }
