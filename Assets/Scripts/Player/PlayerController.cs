@@ -209,8 +209,6 @@ public class PlayerController : MonoBehaviour
             currentSpeed -= speedReduction;
             speedReduction = 0f;
         }
-
-        // TODO: Recover or increase speed
     }
 
     private IEnumerator BecomeInvincibleTemporary()
