@@ -95,7 +95,6 @@ public class PlayerController : MonoBehaviour
         MoveForward();
         GoToDestination();
 
-
         if (isGameOver())
         {
             gameOverState = true;
