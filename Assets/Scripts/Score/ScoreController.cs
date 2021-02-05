@@ -23,7 +23,7 @@ public class ScoreController : MonoBehaviour
 
     public void updateHighScore(){
         if(currentScore > highestScore){
-        highestScore = currentScore;
+            highestScore = currentScore;
         }
     }
 }
