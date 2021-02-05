@@ -11,30 +11,19 @@ public class ScoreController : MonoBehaviour
 
     void Start()
     {
+        currentScore = 0;
         score = GetComponent<Text>();
         score.text = "Score: " + currentScore;
     }
 
     void Update()
     {
-        
+        score.text = "Score: " + currentScore;
     }
 
     public void updateHighScore(){
         if(currentScore > highestScore){
-        highestScore = currentScore;
+            highestScore = currentScore;
         }
-    }
-
-    public void setCurrentScore(int score){
-        currentScore = score;
-    }
-
-    public int getHighestScore(){
-        return highestScore;
-    }
-
-    public int getCurrentScore(){
-        return currentScore;
     }
 }

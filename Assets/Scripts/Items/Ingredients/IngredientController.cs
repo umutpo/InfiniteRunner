@@ -4,13 +4,13 @@ using System.Collections;
 public class IngredientController : ItemController
 {
     [SerializeField]
-    protected string ingredientName = "Ingredient";
+    public string ingredient;
 
     protected override void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            playerScript.AddToInventory(ingredientName);
+            playerScript.AddToInventory(ingredient);
             playerScript.SlowDown(PlayerController.INGREDIENT_SPEED_REDUCTION, false);
             Remove();
         }
