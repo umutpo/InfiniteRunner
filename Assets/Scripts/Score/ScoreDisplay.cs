@@ -24,6 +24,4 @@ public class ScoreDisplay : MonoBehaviour
             score.text = "Highest Score: " + ScoreController.highestScore;
         }
     }
-
-
 }

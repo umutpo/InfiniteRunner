@@ -10,10 +10,14 @@ public class PlayerController : MonoBehaviour
 
     const float LANE_CHANGE_TIME = 0.05f;
     const float SLIDE_TIME = 2f;
+    const float PERMANENT_SPEED_GAIN_TIME = 60f;
+    const float OBSTACLE_LOST_SPEED_GAIN_TIME = 3f;
 
     const float EPS = 0.01f;
 
     const float INITIAL_SPEED = 10f;
+    const float PERMANENT_SPEED_GAIN = 1f;
+    const float OBSTACLE_SPEED_GAIN = 1f;
     public const float INGREDIENT_SPEED_REDUCTION = 1f;
 
     // Input Variables
@@ -26,9 +30,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _body;
     private float jumpHeight = 2f;
     [SerializeField]
+    private float maxSpeed;
+    [SerializeField]
     private float currentSpeed;
     public float gameOverSpeed = 2f;
     private int currentLane = 2;
+    private float obstacleSpeedGainRemainder = 0f;
 
     // Inventory Variables
     [SerializeField]
@@ -37,6 +44,8 @@ public class PlayerController : MonoBehaviour
 
     float movementTimeCount;
     float slideTimeCount;
+    float permanentSpeedCount;
+    float obstacleSpeedCount;
 
     bool inMovement = false;
     bool isSliding = false;
@@ -54,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        maxSpeed = INITIAL_SPEED;
         currentSpeed = INITIAL_SPEED;
         jumpAction.performed += ctx => Jump();
         slideAction.performed += ctx => Slide();
@@ -80,8 +90,11 @@ public class PlayerController : MonoBehaviour
             disableInputActions();
         }
 
+        GainPermanentSpeed();
+        GainLostSpeedFromObstacle();
         MoveForward();
         GoToDestination();
+
         if (isGameOver())
         {
             gameOverState = true;
@@ -131,6 +144,39 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void GainLostSpeedFromObstacle()
+    {
+        if (obstacleSpeedGainRemainder > 0)
+        {
+            obstacleSpeedCount += Time.deltaTime;
+            if (obstacleSpeedCount >= OBSTACLE_LOST_SPEED_GAIN_TIME)
+            {
+                if (obstacleSpeedGainRemainder < OBSTACLE_SPEED_GAIN)
+                {
+                    currentSpeed += obstacleSpeedGainRemainder;
+                    obstacleSpeedGainRemainder -= obstacleSpeedGainRemainder;
+                } 
+                else
+                {
+                    currentSpeed += OBSTACLE_SPEED_GAIN;
+                    obstacleSpeedGainRemainder -= OBSTACLE_SPEED_GAIN;
+                }
+                obstacleSpeedCount = 0;
+            }
+        }
+    }
+
+    void GainPermanentSpeed()
+    {
+        permanentSpeedCount += Time.deltaTime;
+        if (permanentSpeedCount >= PERMANENT_SPEED_GAIN_TIME)
+        {
+            maxSpeed += PERMANENT_SPEED_GAIN;
+            currentSpeed += PERMANENT_SPEED_GAIN;
+            permanentSpeedCount = 0;
+        }
+    }
+
     void GoToDestination()
     {
         if (inMovement)
@@ -162,8 +208,6 @@ public class PlayerController : MonoBehaviour
             currentSpeed -= speedReduction;
             speedReduction = 0f;
         }
-
-        // TODO: Recover or increase speed
     }
 
     private IEnumerator BecomeInvincibleTemporary()
@@ -218,7 +262,8 @@ public class PlayerController : MonoBehaviour
         {
             if (!isInvincible)
             {
-                speedReduction = reduction;
+                speedReduction = (maxSpeed / reduction);
+                obstacleSpeedGainRemainder += (maxSpeed / reduction);
                 collisionTime = Time.time;
                 StartCoroutine(BecomeInvincibleTemporary());
             }

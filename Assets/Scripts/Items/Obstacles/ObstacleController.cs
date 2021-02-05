@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleController : ItemController
-{    
-    [SerializeField]
-    protected float speedReduction = 1f;
+{
+    private float speedReduction = 4f;
 
     protected override void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Player") {

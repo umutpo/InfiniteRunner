@@ -107,4 +107,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5537373567197875062, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
-  ingredientName: Ingredient 1
+  ingredient: Ingredient1

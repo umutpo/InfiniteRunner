@@ -6,28 +6,32 @@ using System;
 public class PlayerInventoryData : MonoBehaviour
 {
     [SerializeField]
-    private static Dictionary<Ingredient, int> ingredientList;
-    public static Action<Ingredient> AddIngredientEvent;
-    public static Action<Ingredient> RemoveIngredientEvent;
-    // Start is called before the first frame update
+    private List<string> collectedIngredients;
+    private Dictionary<string, int> collectedIngredientsCounts;
+
+    [SerializeField]
+    private List<RecipeController> recipes;
+
     void Start()
     {
-        ingredientList = new Dictionary<Ingredient, int>();
-        foreach (Ingredient i in Ingredient.GetValues(typeof(Ingredient)))
-        {
-            ingredientList.Add(i, 0);
-        }
+        collectedIngredients = new List<string>();
+        collectedIngredientsCounts = new Dictionary<string, int>();
     }
 
     public void AddIngredient(string ingredient)
     {
-        Ingredient addedIngredient = FindInIngredientEnum(ingredient);
-        ingredientList[addedIngredient]++;
-        if (AddIngredientEvent != null)
-            AddIngredientEvent(addedIngredient);
+        if (collectedIngredients.Contains(ingredient))
+        {
+            collectedIngredientsCounts[ingredient]++;
+        }
         else
-            Debug.LogWarning("Update of ingredient nonexistent in UI was fired");
+        {
+            collectedIngredients.Add(ingredient);
+            collectedIngredientsCounts.Add(ingredient, 1);
+            checkRecipes();
+        }
     }
+    
     public void RemoveIngredient(string ingredient)
     {
         Ingredient removedIngredient = FindInIngredientEnum(ingredient);
@@ -39,13 +43,32 @@ public class PlayerInventoryData : MonoBehaviour
     }
     private Ingredient FindInIngredientEnum(string ingredient)
     {
-        ingredient = ingredient.Replace(" ", string.Empty);
-        foreach (Ingredient i in Ingredient.GetValues(typeof(Ingredient)))
+        collectedIngredientsCounts[ingredient]--;
+        if (collectedIngredientsCounts[ingredient] <= 0)
         {
-            if (i.ToString() == ingredient)
-                return i;
+            collectedIngredients.Remove(ingredient);
+            collectedIngredientsCounts.Remove(ingredient);
         }
-        Debug.LogError("Ingredient string does not match any enum type. Returning Ingredient1 by default");
-        return Ingredient.Ingredient1;
+    }
+
+    private void checkRecipes()
+    {
+        foreach (RecipeController recipe in recipes) 
+        {
+            bool canCreateRecipe = recipe.ingredients.TrueForAll(doesContainIngredient);
+            if (canCreateRecipe)
+            {
+                foreach (IngredientController ingredientController in recipe.ingredients)
+                {
+                    removeIngredient(ingredientController.ingredient);
+                }
+                ScoreController.currentScore += recipe.ingredients.Count * 100;
+            }
+        }
+    }
+
+    private bool doesContainIngredient(IngredientController ingredientController)
+    {
+        return collectedIngredients.Contains(ingredientController.ingredient);
     }
 }
