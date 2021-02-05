@@ -475,6 +475,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5537373567377914770}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &356856037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356856036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8e676a6d2e647ab99ceba7ea0ae023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ball: {fileID: 356856036}
 --- !u!114 &356856038 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
@@ -1762,6 +1775,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: slideAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: moveLeftAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: moveRightAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
       propertyPath: speed
       value: 4
       objectReference: {fileID: 0}
@@ -1860,26 +1893,6 @@ PrefabInstance:
         type: 3}
       propertyPath: moveRightAction.m_ExpectedControlType
       value: Button
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: jumpAction.m_SingletonActionBindings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: slideAction.m_SingletonActionBindings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: moveLeftAction.m_SingletonActionBindings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: moveRightAction.m_SingletonActionBindings.Array.size
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}

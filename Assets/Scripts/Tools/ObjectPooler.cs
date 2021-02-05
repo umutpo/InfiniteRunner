@@ -35,6 +35,15 @@ public class ObjectPooler : MonoBehaviour {
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
+                if (pool.tag.Contains("Ingredient"))
+                {
+                    obj.AddComponent<CoinScript>();
+                    // TODO For ingredient randomization, set the ingredient fields
+                    // here to the ingredient name you want to set it to
+                    CoinScript coinScript = obj.GetComponent<CoinScript>();
+                    coinScript.ingredient = "test";
+                }
+
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
