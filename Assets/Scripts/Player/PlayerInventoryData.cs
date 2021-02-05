@@ -23,6 +23,8 @@ public class PlayerInventoryData : MonoBehaviour
 
     public void AddIngredient(string ingredient)
     {
+        bool shouldCheckRecipes = false;
+
         if (collectedIngredients.Contains(ingredient))
         {
             collectedIngredientsCounts[ingredient]++;
@@ -31,13 +33,14 @@ public class PlayerInventoryData : MonoBehaviour
         {
             collectedIngredients.Add(ingredient);
             collectedIngredientsCounts.Add(ingredient, 1);
-            checkRecipes();
+            shouldCheckRecipes = true;
         }
 
-        if (AddIngredientEvent != null)
+        addIngredientUI(ingredient);
+
+        if (shouldCheckRecipes)
         {
-            Ingredient addedIngredient = findInIngredientEnum(ingredient);
-            AddIngredientEvent(addedIngredient, collectedIngredientsCounts[ingredient]);
+            checkRecipes();
         }
     }
     
@@ -45,11 +48,7 @@ public class PlayerInventoryData : MonoBehaviour
     {
         collectedIngredientsCounts[ingredient]--;
 
-        if (RemoveIngredientEvent != null)
-        {
-            Ingredient removedIngredient = findInIngredientEnum(ingredient);
-            RemoveIngredientEvent(removedIngredient, collectedIngredientsCounts[ingredient]);
-        }
+        removeIngredientUI(ingredient);
 
         if (collectedIngredientsCounts[ingredient] <= 0)
         {
@@ -89,5 +88,23 @@ public class PlayerInventoryData : MonoBehaviour
         }
         Debug.LogError("Ingredient string does not match any enum type. Returning Ingredient1 by default");
         return Ingredient.Ingredient1;
+    }
+
+    private void addIngredientUI(string ingredient)
+    {
+        if (AddIngredientEvent != null)
+        {
+            Ingredient addedIngredient = findInIngredientEnum(ingredient);
+            AddIngredientEvent(addedIngredient, collectedIngredientsCounts[ingredient]);
+        }
+    }
+
+    private void removeIngredientUI(string ingredient)
+    {
+        if (RemoveIngredientEvent != null)
+        {
+            Ingredient removedIngredient = findInIngredientEnum(ingredient);
+            RemoveIngredientEvent(removedIngredient, collectedIngredientsCounts[ingredient]);
+        }
     }
 }
