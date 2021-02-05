@@ -12,13 +12,13 @@ public class IngredientCountUI : MonoBehaviour
     
     void OnEnable()
     {
-        IngredientList.AddIngredientEvent += AddIngredient;
-        IngredientList.RemoveIngredientEvent += RemoveIngredient;
+        PlayerInventoryData.AddIngredientEvent += AddIngredient;
+        PlayerInventoryData.RemoveIngredientEvent += RemoveIngredient;
     }
     void OnDisable()
     {
-        IngredientList.AddIngredientEvent -= AddIngredient;
-        IngredientList.RemoveIngredientEvent -= RemoveIngredient;
+        PlayerInventoryData.AddIngredientEvent -= AddIngredient;
+        PlayerInventoryData.RemoveIngredientEvent -= RemoveIngredient;
     }
     void AddIngredient(Ingredient ing)
     {

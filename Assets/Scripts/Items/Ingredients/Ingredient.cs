@@ -2,10 +2,6 @@
 
 public enum Ingredient
 {
-    Meatball,
-    Flour,
-    Potato,
-    Cheese,
-    Tomato,
-    Pasta
+    Ingredient1,
+    Ingredient2
 }
