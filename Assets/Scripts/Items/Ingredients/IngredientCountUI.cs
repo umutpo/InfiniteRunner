@@ -7,37 +7,37 @@ using UnityEngine.UI;
 public class IngredientCountUI : MonoBehaviour
 {
     [SerializeField] private Ingredient ingredientType;
-
-    private int ingredientCount = 0;
     
     void OnEnable()
     {
         PlayerInventoryData.AddIngredientEvent += AddIngredient;
         PlayerInventoryData.RemoveIngredientEvent += RemoveIngredient;
     }
+
     void OnDisable()
     {
         PlayerInventoryData.AddIngredientEvent -= AddIngredient;
         PlayerInventoryData.RemoveIngredientEvent -= RemoveIngredient;
     }
-    void AddIngredient(Ingredient ing)
+
+    void AddIngredient(Ingredient ing, int count)
     {
         if (ingredientType == ing)
         {
-            ingredientCount++;
-            UpdateCount();
+            UpdateCount(count);
         }
     }
-    void RemoveIngredient(Ingredient ing)
+
+    void RemoveIngredient(Ingredient ing, int count)
     {
         if (ingredientType == ing)
         {
-            ingredientCount--;
-            UpdateCount();
+            UpdateCount(count);
         }
     }
-    void UpdateCount()
+
+    void UpdateCount(int count)
     {
-        gameObject.GetComponent<Text>().text = ingredientCount.ToString();
+        gameObject.GetComponent<Text>().text = count.ToString();
     }
 }
