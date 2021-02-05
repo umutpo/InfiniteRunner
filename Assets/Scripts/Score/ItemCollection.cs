@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class ItemCollection : MonoBehaviour
 {
 
-    public GameObject Ball;
 
     #region ingredient variables
     // list all ingredient variables
@@ -194,7 +193,6 @@ public class ItemCollection : MonoBehaviour
             collectedItems.TryGetValue(str, out num);
             if (num > 1)
             {
-                // not sure if this works
                 collectedItems.Remove(str);
                 collectedItems.Add(str, num - 1);
             }
@@ -212,6 +210,13 @@ public class ItemCollection : MonoBehaviour
         int earnedPoints;
         scoreSet.TryGetValue(recipe, out earnedPoints);
         ScoreController.currentScore += earnedPoints;
+        speedIncreaseAfterDish(earnedPoints);
     }
 
+    void speedIncreaseAfterDish(int points)
+    {
+        PlayerController playerController = GetComponent<PlayerController>();
+        float speedIncrease = (points / 100);
+        playerController.SpeedUp(speedIncrease);
+    }
 }

@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
 
     // Related to obstacle collisions
     private float speedReduction = 0f;
+    private float speedIncrease = 0f;
     private float collisionTime;
     private bool isInvincible = false;
     [SerializeField]
@@ -162,7 +163,11 @@ public class PlayerController : MonoBehaviour
             currentSpeed -= speedReduction;
             speedReduction = 0f;
         }
-
+        if (speedIncrease != 0f)
+        {
+            currentSpeed += speedIncrease;
+            speedIncrease = 0f;
+        }
         // TODO: Recover or increase speed
     }
 
@@ -227,6 +232,11 @@ public class PlayerController : MonoBehaviour
         {
             speedReduction = reduction;
         }
+    }
+
+    public void SpeedUp(float speedIncrease)
+    {
+        this.speedIncrease = speedIncrease;
     }
 
     public void AddToInventory(string ingredient)
