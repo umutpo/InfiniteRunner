@@ -276,12 +276,12 @@ public class PlayerController : MonoBehaviour
 
     public void AddToInventory(string ingredient)
     {
-        playerInventoryData.addIngredient(ingredient);
+        playerInventoryData.AddIngredient(ingredient);
     }
 
     public void RemoveFromInventory(string ingredient)
     {
-        playerInventoryData.removeIngredient(ingredient);
+        playerInventoryData.RemoveIngredient(ingredient);
     }
 }
 
