@@ -64,8 +64,7 @@ public class PlayerController : MonoBehaviour
         _body = gameObject.GetComponent<Rigidbody>();
         starting_elevation = _body.position.y;
 
-        inventory = GameObject.Find("Inventory");
-        playerInventoryData = inventory.GetComponent<PlayerInventoryData>();
+        playerInventoryData = gameObject.GetComponent<PlayerInventoryData>();
     }
 
 

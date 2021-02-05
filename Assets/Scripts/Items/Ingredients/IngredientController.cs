@@ -4,7 +4,7 @@ using System.Collections;
 public class IngredientController : ItemController
 {
     [SerializeField]
-    protected string ingredient = "test";
+    protected string ingredient;
 
     protected override void OnTriggerEnter(Collider other)
     {
@@ -19,16 +19,16 @@ public class IngredientController : ItemController
 
     private void AddToCollected(Collider other)
     {
-        if (other.GetComponent<ItemCollection>().collectedItems.ContainsKey(ingredient))
+        if (other.GetComponent<PlayerInventoryData>().collectedItems.ContainsKey(ingredient))
         {
             int num;
-            other.GetComponent<ItemCollection>().collectedItems.TryGetValue(ingredient, out num);
-            other.GetComponent<ItemCollection>().collectedItems.Remove(ingredient);
-            other.GetComponent<ItemCollection>().collectedItems.Add(ingredient, num + 1);
+            other.GetComponent<PlayerInventoryData>().collectedItems.TryGetValue(ingredient, out num);
+            other.GetComponent<PlayerInventoryData>().collectedItems.Remove(ingredient);
+            other.GetComponent<PlayerInventoryData>().collectedItems.Add(ingredient, num + 1);
         }
         else
         {
-            other.GetComponent<ItemCollection>().collectedItems.Add(ingredient, 1);
+            other.GetComponent<PlayerInventoryData>().collectedItems.Add(ingredient, 1);
         }
     }
 }
