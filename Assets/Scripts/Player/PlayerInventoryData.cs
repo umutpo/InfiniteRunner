@@ -12,8 +12,8 @@ public class PlayerInventoryData : MonoBehaviour
     [SerializeField]
     private List<RecipeController> recipes;
 
-    public static Action<Ingredient, int> AddIngredientEvent;
-    public static Action<Ingredient, int> RemoveIngredientEvent;
+    public static Action<string, int> AddIngredientEvent;
+    public static Action<string, int> RemoveIngredientEvent;
 
     void Start()
     {
@@ -78,33 +78,20 @@ public class PlayerInventoryData : MonoBehaviour
         return collectedIngredients.Contains(ingredientController.ingredient);
     }
 
-    private Ingredient findInIngredientEnum(string ingredient)
-    {
-        ingredient = ingredient.Replace(" ", string.Empty);
-        foreach (Ingredient i in Ingredient.GetValues(typeof(Ingredient)))
-        {
-            if (i.ToString() == ingredient)
-                return i;
-        }
-        Debug.LogError("Ingredient string does not match any enum type. Returning Ingredient1 by default");
-        return Ingredient.Ingredient1;
-    }
 
     private void addIngredientUI(string ingredient)
     {
-        if (AddIngredientEvent != null)
+        if (ingredient != null)
         {
-            Ingredient addedIngredient = findInIngredientEnum(ingredient);
-            AddIngredientEvent(addedIngredient, collectedIngredientsCounts[ingredient]);
+            AddIngredientEvent(ingredient, collectedIngredientsCounts[ingredient]);
         }
     }
 
     private void removeIngredientUI(string ingredient)
     {
-        if (RemoveIngredientEvent != null)
+        if (ingredient != null)
         {
-            Ingredient removedIngredient = findInIngredientEnum(ingredient);
-            RemoveIngredientEvent(removedIngredient, collectedIngredientsCounts[ingredient]);
+            RemoveIngredientEvent(ingredient, collectedIngredientsCounts[ingredient]);
         }
     }
 }
