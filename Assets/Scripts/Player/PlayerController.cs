@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     const float SLIDE_TIME = 2f;
     const float PERMANENT_SPEED_GAIN_TIME = 60f;
     const float OBSTACLE_LOST_SPEED_GAIN_TIME = 3f;
+    const float DISH_SPEED_GAIN_TIME = 2f;              // Time to regain speed for EACH ingredient used
 
     const float EPS = 0.01f;
 
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public float gameOverSpeed = 2f;
     private int currentLane = 2;
     private float obstacleSpeedGainRemainder = 0f;
+    private float dishSpeedGainRemainder = 0f;
 
     // Inventory Variables
     [SerializeField]
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
     float slideTimeCount;
     float permanentSpeedCount;
     float obstacleSpeedCount;
+    float ingredientSpeedCount;
 
     bool inMovement = false;
     bool isSliding = false;
@@ -92,6 +95,7 @@ public class PlayerController : MonoBehaviour
 
         GainPermanentSpeed();
         GainLostSpeedFromObstacle();
+        GainSpeedFromCreatingDish();
         MoveForward();
         GoToDestination();
 
@@ -163,6 +167,19 @@ public class PlayerController : MonoBehaviour
                 }
                 obstacleSpeedCount = 0;
             }
+        }
+    }
+
+    void GainSpeedFromCreatingDish()
+    {
+        if (dishSpeedGainRemainder > 0)
+        {
+            Debug.Log("current speed: " + currentSpeed);
+            currentSpeed += INGREDIENT_SPEED_REDUCTION / DISH_SPEED_GAIN_TIME * Time.deltaTime;
+            dishSpeedGainRemainder -= INGREDIENT_SPEED_REDUCTION / DISH_SPEED_GAIN_TIME * Time.deltaTime;
+            ingredientSpeedCount += Time.deltaTime;
+        } else {
+            Debug.Log("not gaining speed from dish");
         }
     }
 
@@ -269,14 +286,18 @@ public class PlayerController : MonoBehaviour
             }
         }
         else
-        {
+        {   // ingredient collision
             speedReduction = reduction;
         }
     }
 
     public void AddToInventory(string ingredient)
     {
-        playerInventoryData.AddIngredient(ingredient);
+        int usedIngredientCount = playerInventoryData.AddIngredient(ingredient);
+        if (usedIngredientCount > 0) {
+            dishSpeedGainRemainder += usedIngredientCount * INGREDIENT_SPEED_REDUCTION;
+        }
+        Debug.Log("the dish speed remainder: " + dishSpeedGainRemainder);
     }
 
     public void RemoveFromInventory(string ingredient)
