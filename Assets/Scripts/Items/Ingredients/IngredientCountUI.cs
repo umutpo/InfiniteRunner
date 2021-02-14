@@ -22,8 +22,7 @@ public class IngredientCountUI : MonoBehaviour
 
     void AddIngredient(string ing, int count)
     {
-        Debug.Log("ingredientType:" + ingredientType);
-        Debug.Log("ing:" + ing);
+
         if (ingredientType.Equals(ing))
         {
             UpdateCount(count);
