@@ -9,6 +9,7 @@ public class ObstacleGenerator : MonoBehaviour
 
     private string[] selectObs = { Pool.OBSTACLE1, Pool.OBSTACLE2 };
 
+
     protected void Start()
     {
         // TODO:
