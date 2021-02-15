@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
      * TODO: Use isSliding to ignore collisions on obstacle scripts if they are elevated objects
      *       if (player.isSliding == true && obstacle.transform.position.y != 0.5f) { ignore collisions on obstacle }
      */
-    void Slide() 
+    void Slide()
     {
         if (getIsNotJumpingOrSliding())
         {
@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
                 {
                     currentSpeed += obstacleSpeedGainRemainder;
                     obstacleSpeedGainRemainder -= obstacleSpeedGainRemainder;
-                } 
+                }
                 else
                 {
                     currentSpeed += OBSTACLE_SPEED_GAIN;
@@ -233,7 +233,8 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateSpeed()
     {
-        if (speedReduction != 0f) {
+        if (speedReduction != 0f)
+        {
             currentSpeed -= speedReduction;
             speedReduction = 0f;
         }
@@ -243,7 +244,8 @@ public class PlayerController : MonoBehaviour
     {
         isInvincible = true;
 
-        for (float i = 0; i < invincibilityDuration; i += Time.deltaTime) {          
+        for (float i = 0; i < invincibilityDuration; i += Time.deltaTime)
+        {
             // TODO: Can add visual cues for invincibility  
             yield return new WaitForSeconds(Time.deltaTime);
         }
@@ -254,10 +256,11 @@ public class PlayerController : MonoBehaviour
     {
         return (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
     }
-    
+
     bool isGameOver()
     {
-        if (currentSpeed <= gameOverSpeed) {
+        if (currentSpeed <= gameOverSpeed)
+        {
             return true;
         }
 
@@ -314,6 +317,11 @@ public class PlayerController : MonoBehaviour
     public void RemoveFromInventory(string ingredient)
     {
         playerInventoryData.RemoveIngredient(ingredient);
+    }
+
+    public double GetJumpDuration()
+    {
+        return 0;
     }
 }
 

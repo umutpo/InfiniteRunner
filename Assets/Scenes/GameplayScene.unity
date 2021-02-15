@@ -1836,6 +1836,51 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 356856036}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: itemDensity
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: capItemDensity
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: deltaItemDensity
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: doubleItemRowWeight
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: singleItemRowWeight
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: tripleItemRowWeight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: deltaDurationInSeconds
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: ingredientVsObstacleBias
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: deltaIngredientVsObstacleBias
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3353a00a13fa93e48980be9b0f2edfe4, type: 3}
 --- !u!1001 &5537373567377914770
