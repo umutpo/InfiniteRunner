@@ -289,6 +289,7 @@ public class PlayerController : MonoBehaviour
     {
         playerInventoryData.RemoveIngredient(ingredient);
     }
+
     public double GetJumpDuration()
     {
         return 0;
