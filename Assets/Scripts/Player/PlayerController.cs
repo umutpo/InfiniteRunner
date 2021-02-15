@@ -12,13 +12,14 @@ public class PlayerController : MonoBehaviour
     const float SLIDE_TIME = 2f;
     const float PERMANENT_SPEED_GAIN_TIME = 60f;
     const float OBSTACLE_LOST_SPEED_GAIN_TIME = 3f;
+    const float DISH_SPEED_GAIN_TIME = 2f;              // Time to regain speed for EACH ingredient used
 
     const float EPS = 0.01f;
 
     const float INITIAL_SPEED = 10f;
     const float PERMANENT_SPEED_GAIN = 1f;
     const float OBSTACLE_SPEED_GAIN = 1f;
-    public const float INGREDIENT_SPEED_REDUCTION = 1f;
+    public const float INGREDIENT_SPEED_GAIN = 1f;
 
     // Input Variables
     public InputAction jumpAction;
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public float gameOverSpeed = 2f;
     private int currentLane = 2;
     private float obstacleSpeedGainRemainder = 0f;
+    private float dishSpeedGainRemainder = 0f;
 
     // Inventory Variables
     [SerializeField]
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
     float slideTimeCount;
     float permanentSpeedCount;
     float obstacleSpeedCount;
+    float ingredientSpeedCount;
 
     bool inMovement = false;
     bool isSliding = false;
@@ -92,6 +95,7 @@ public class PlayerController : MonoBehaviour
 
         GainPermanentSpeed();
         GainLostSpeedFromObstacle();
+        GainSpeedFromCreatingDish();
         MoveForward();
         GoToDestination();
 
@@ -166,6 +170,28 @@ public class PlayerController : MonoBehaviour
                 }
                 obstacleSpeedCount = 0;
             }
+        }
+    }
+
+    void GainSpeedFromCreatingDish()
+    {
+        if (dishSpeedGainRemainder > 0)
+        {
+            ingredientSpeedCount += Time.deltaTime;
+            if (ingredientSpeedCount >= DISH_SPEED_GAIN_TIME)
+            {
+                if (dishSpeedGainRemainder < INGREDIENT_SPEED_GAIN)
+                {
+                    currentSpeed += dishSpeedGainRemainder;
+                    dishSpeedGainRemainder -= dishSpeedGainRemainder;
+                }
+                else
+                {
+                    currentSpeed += INGREDIENT_SPEED_GAIN;
+                    dishSpeedGainRemainder -= INGREDIENT_SPEED_GAIN;
+                }
+                ingredientSpeedCount = 0;
+            }            
         }
     }
 
@@ -279,7 +305,10 @@ public class PlayerController : MonoBehaviour
 
     public void AddToInventory(string ingredient)
     {
-        playerInventoryData.AddIngredient(ingredient);
+        int usedIngredientCount = playerInventoryData.AddIngredient(ingredient);
+        if (usedIngredientCount > 0) {
+            dishSpeedGainRemainder += usedIngredientCount * INGREDIENT_SPEED_GAIN;
+        }
     }
 
     public void RemoveFromInventory(string ingredient)

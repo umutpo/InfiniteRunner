@@ -21,7 +21,8 @@ public class PlayerInventoryData : MonoBehaviour
         collectedIngredientsCounts = new Dictionary<string, int>();
     }
 
-    public void AddIngredient(string ingredient)
+    // Returns number of ingredients used up if dish is created
+    public int AddIngredient(string ingredient)
     {
         bool shouldCheckRecipes = false;
 
@@ -40,8 +41,10 @@ public class PlayerInventoryData : MonoBehaviour
 
         if (shouldCheckRecipes)
         {
-            checkRecipes();
+            return checkRecipes();
         }
+
+        return 0;
     }
     
     public void RemoveIngredient(string ingredient)
@@ -57,7 +60,7 @@ public class PlayerInventoryData : MonoBehaviour
         }
     }
 
-    private void checkRecipes()
+    private int checkRecipes()
     {
         foreach (RecipeController recipe in recipes) 
         {
@@ -69,8 +72,10 @@ public class PlayerInventoryData : MonoBehaviour
                     RemoveIngredient(ingredientController.ingredient);
                 }
                 ScoreController.currentScore += recipe.ingredients.Count * 100;
+                return recipe.ingredients.Count;
             }
         }
+        return 0;
     }
 
     private bool doesContainIngredient(IngredientController ingredientController)
