@@ -6,7 +6,7 @@ using UnityEngine.UI;
 // attach on an object representing an ingredient on the UI with a text component whose value is the current count of the ingredient in inventory
 public class IngredientCountUI : MonoBehaviour
 {
-    [SerializeField] private Ingredient ingredientType;
+    [SerializeField] private string ingredientType;
     
     void OnEnable()
     {
@@ -20,17 +20,18 @@ public class IngredientCountUI : MonoBehaviour
         PlayerInventoryData.RemoveIngredientEvent -= RemoveIngredient;
     }
 
-    void AddIngredient(Ingredient ing, int count)
+    void AddIngredient(string ing, int count)
     {
-        if (ingredientType == ing)
+
+        if (ingredientType.Equals(ing))
         {
             UpdateCount(count);
         }
     }
 
-    void RemoveIngredient(Ingredient ing, int count)
+    void RemoveIngredient(string ing, int count)
     {
-        if (ingredientType == ing)
+        if (ingredientType.Equals(ing))
         {
             UpdateCount(count);
         }
