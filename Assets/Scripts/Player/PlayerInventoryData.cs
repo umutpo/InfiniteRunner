@@ -86,7 +86,7 @@ public class PlayerInventoryData : MonoBehaviour
 
     private void addIngredientUI(string ingredient)
     {
-        if (ingredient != null)
+        if (AddIngredientEvent != null && ingredient != null)
         {
             AddIngredientEvent(ingredient, collectedIngredientsCounts[ingredient]);
         }
@@ -94,7 +94,7 @@ public class PlayerInventoryData : MonoBehaviour
 
     private void removeIngredientUI(string ingredient)
     {
-        if (ingredient != null)
+        if (RemoveIngredientEvent != null && ingredient != null)
         {
             RemoveIngredientEvent(ingredient, collectedIngredientsCounts[ingredient]);
         }
