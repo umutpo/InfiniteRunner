@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     const float INITIAL_SPEED = 10f;
     const float PERMANENT_SPEED_GAIN = 1f;
     const float OBSTACLE_SPEED_GAIN = 1f;
-    public const float INGREDIENT_SPEED_REDUCTION = 1f;
+    public const float INGREDIENT_SPEED_GAIN = 1f;
 
     // Input Variables
     public InputAction jumpAction;
@@ -174,12 +174,21 @@ public class PlayerController : MonoBehaviour
     {
         if (dishSpeedGainRemainder > 0)
         {
-            Debug.Log("current speed: " + currentSpeed);
-            currentSpeed += INGREDIENT_SPEED_REDUCTION / DISH_SPEED_GAIN_TIME * Time.deltaTime;
-            dishSpeedGainRemainder -= INGREDIENT_SPEED_REDUCTION / DISH_SPEED_GAIN_TIME * Time.deltaTime;
             ingredientSpeedCount += Time.deltaTime;
-        } else {
-            Debug.Log("not gaining speed from dish");
+            if (ingredientSpeedCount >= DISH_SPEED_GAIN_TIME)
+            {
+                if (dishSpeedGainRemainder < INGREDIENT_SPEED_GAIN)
+                {
+                    currentSpeed += dishSpeedGainRemainder;
+                    dishSpeedGainRemainder -= dishSpeedGainRemainder;
+                }
+                else
+                {
+                    currentSpeed += INGREDIENT_SPEED_GAIN;
+                    dishSpeedGainRemainder -= INGREDIENT_SPEED_GAIN;
+                }
+                ingredientSpeedCount = 0;
+            }            
         }
     }
 
@@ -286,7 +295,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         else
-        {   // ingredient collision
+        {
             speedReduction = reduction;
         }
     }
@@ -295,9 +304,8 @@ public class PlayerController : MonoBehaviour
     {
         int usedIngredientCount = playerInventoryData.AddIngredient(ingredient);
         if (usedIngredientCount > 0) {
-            dishSpeedGainRemainder += usedIngredientCount * INGREDIENT_SPEED_REDUCTION;
+            dishSpeedGainRemainder += usedIngredientCount * INGREDIENT_SPEED_GAIN;
         }
-        Debug.Log("the dish speed remainder: " + dishSpeedGainRemainder);
     }
 
     public void RemoveFromInventory(string ingredient)

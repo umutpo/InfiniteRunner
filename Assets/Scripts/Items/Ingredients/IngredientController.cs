@@ -11,7 +11,7 @@ public class IngredientController : ItemController
         if (other.gameObject.tag == "Player")
         {
             playerScript.AddToInventory(ingredient);
-            playerScript.SlowDown(PlayerController.INGREDIENT_SPEED_REDUCTION, false);
+            playerScript.SlowDown(PlayerController.INGREDIENT_SPEED_GAIN, false);
             Remove();
         }
     }
