@@ -104,7 +104,10 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        _body.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+        if (_body != null)
+        {
+            _body.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+        }
     }
 
     /*
