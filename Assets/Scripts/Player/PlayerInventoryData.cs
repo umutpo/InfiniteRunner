@@ -12,7 +12,7 @@ public class PlayerInventoryData : MonoBehaviour
     [SerializeField]
     private List<RecipeController> recipes;
 
-    public static Action<string, int> AddIngredientEvent;
+    public static Action<string, int, Sprite> AddIngredientEvent;
     public static Action<string, int> RemoveIngredientEvent;
 
     void Start()
@@ -22,7 +22,7 @@ public class PlayerInventoryData : MonoBehaviour
     }
 
     // Returns number of ingredients used up if dish is created
-    public int AddIngredient(string ingredient)
+    public int AddIngredient(string ingredient, Sprite inventoryImage)
     {
         bool shouldCheckRecipes = false;
 
@@ -37,7 +37,7 @@ public class PlayerInventoryData : MonoBehaviour
             shouldCheckRecipes = true;
         }
 
-        addIngredientUI(ingredient);
+        addIngredientUI(ingredient, inventoryImage);
 
         if (shouldCheckRecipes)
         {
@@ -84,11 +84,11 @@ public class PlayerInventoryData : MonoBehaviour
     }
 
 
-    private void addIngredientUI(string ingredient)
+    private void addIngredientUI(string ingredient, Sprite inventoryImage)
     {
         if (AddIngredientEvent != null && ingredient != null)
         {
-            AddIngredientEvent(ingredient, collectedIngredientsCounts[ingredient]);
+            AddIngredientEvent(ingredient, collectedIngredientsCounts[ingredient], inventoryImage);
         }
     }
 

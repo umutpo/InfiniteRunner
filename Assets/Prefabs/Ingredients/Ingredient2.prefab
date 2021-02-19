@@ -109,3 +109,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5537373567197875062, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
   ingredient: IngredientSecond
+  inventoryImage: {fileID: 21300000, guid: 0c66fb345952c9c4ba8065fcfc388698, type: 3}

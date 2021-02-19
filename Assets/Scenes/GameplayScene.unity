@@ -1621,10 +1621,25 @@ PrefabInstance:
       propertyPath: ingredientType
       value: IngredientFirst
       objectReference: {fileID: 0}
+    - target: {fileID: 1067823032912857704, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2599523354947807373, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
         type: 3}
       propertyPath: ingredientType
       value: IngredientSecond
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660002275822615352, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610305640331688014, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: m_Name
+      value: IngredientImage
       objectReference: {fileID: 0}
     - target: {fileID: 4116583014806320860, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
         type: 3}
@@ -1742,6 +1757,40 @@ PrefabInstance:
       propertyPath: m_ReferenceResolution.y
       value: 960
       objectReference: {fileID: 0}
+    - target: {fileID: 8566966443655393964, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: ingredientType
+      value: IngredientFirst
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566966443655393964, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: inventoryImagePrefab
+      value: 
+      objectReference: {fileID: 4228069648685157811, guid: 7bfab5380536865458601022b11d4596,
+        type: 3}
+    - target: {fileID: 8566966443655393964, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: inventoryItemCountPrefab
+      value: 
+      objectReference: {fileID: 3293532988329424030, guid: 4bb3e44cc94c6a94fb47709c0ca299ae,
+        type: 3}
+    - target: {fileID: 9123966237778577690, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: ingredientType
+      value: IngredientSecond
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123966237778577690, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: inventoryImagePrefab
+      value: 
+      objectReference: {fileID: 4228069648685157811, guid: 7bfab5380536865458601022b11d4596,
+        type: 3}
+    - target: {fileID: 9123966237778577690, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: inventoryItemCountPrefab
+      value: 
+      objectReference: {fileID: 3293532988329424030, guid: 4bb3e44cc94c6a94fb47709c0ca299ae,
+        type: 3}
     - target: {fileID: 9211084122101840973, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1761,6 +1810,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220892268767686036, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ebb5d5eda504174a8b3004ec5ddc549, type: 3}

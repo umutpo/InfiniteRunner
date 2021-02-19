@@ -306,9 +306,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void AddToInventory(string ingredient)
+    public void AddToInventory(string ingredient, Sprite inventoryImage)
     {
-        int usedIngredientCount = playerInventoryData.AddIngredient(ingredient);
+        int usedIngredientCount = playerInventoryData.AddIngredient(ingredient, inventoryImage);
         if (usedIngredientCount > 0) {
             dishSpeedGainRemainder += usedIngredientCount * INGREDIENT_SPEED_GAIN;
         }
