@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class IngredientCountUI : MonoBehaviour
 {
     [SerializeField] private string ingredientType;
-    
+    [SerializeField] private GameObject inventoryItemCountPrefab;
+    [SerializeField] private GameObject inventoryImagePrefab;
+    private GameObject inventoryItemCount;
+    private GameObject inventoryImage;
     void OnEnable()
     {
         PlayerInventoryData.AddIngredientEvent += AddIngredient;
@@ -19,13 +22,19 @@ public class IngredientCountUI : MonoBehaviour
         PlayerInventoryData.AddIngredientEvent -= AddIngredient;
         PlayerInventoryData.RemoveIngredientEvent -= RemoveIngredient;
     }
-
-    void AddIngredient(string ing, int count)
+    void Start() {
+        inventoryItemCount = Instantiate(inventoryItemCountPrefab, Vector3.zero, Quaternion.identity);
+        inventoryItemCount.transform.SetParent(gameObject.transform, false);
+        inventoryImage = Instantiate(inventoryImagePrefab, Vector3.zero, Quaternion.identity);
+        inventoryImage.transform.SetParent(gameObject.transform, false);
+    }
+    void AddIngredient(string ing, int count, Sprite curInventoryImage)
     {
-
         if (ingredientType.Equals(ing))
         {
             UpdateCount(count);
+            if (count >= 1)
+                inventoryImage.GetComponent<Image>().sprite = curInventoryImage;
         }
     }
 
@@ -34,11 +43,13 @@ public class IngredientCountUI : MonoBehaviour
         if (ingredientType.Equals(ing))
         {
             UpdateCount(count);
+            if (count == 0)
+                inventoryImage.GetComponent<Image>().sprite = null;
         }
     }
 
     void UpdateCount(int count)
     {
-        gameObject.GetComponent<Text>().text = count.ToString();
+        inventoryItemCount.GetComponent<Text>().text = count.ToString();
     }
 }
