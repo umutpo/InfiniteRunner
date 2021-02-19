@@ -323,5 +323,10 @@ public class PlayerController : MonoBehaviour
     {
         return 0;
     }
+
+    public float GetCurrentSpeed()
+    {
+        return currentSpeed;
+    }
 }
 
