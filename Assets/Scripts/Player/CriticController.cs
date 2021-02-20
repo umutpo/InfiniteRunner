@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class CriticController : MonoBehaviour
 {
-    const float CRITIC_VISIBLE_SPEED_DIFFERENCE = 5.0f;
+    [SerializeField]
+    private float criticVisibleMinimumDistanceDifference = 1.0f;
+    [SerializeField]
+    private float criticVisibleSpeedDifference = 5.0f;
 
     private Rigidbody _body;
     private PlayerController playerController;
@@ -22,9 +25,17 @@ public class CriticController : MonoBehaviour
             Vector3 parentPosition = this.transform.parent.position;
 
             float gameOverSpeedRemaining = playerController.GetCurrentSpeed() - playerController.gameOverSpeed;
-            if (gameOverSpeedRemaining <= CRITIC_VISIBLE_SPEED_DIFFERENCE)
+            if (gameOverSpeedRemaining <= criticVisibleSpeedDifference)
             {
-                this.transform.position =  new Vector3(parentPosition.x, parentPosition.y, parentPosition.z - (gameOverSpeedRemaining / 2));
+                float distanceBetween = (gameOverSpeedRemaining / 2);
+                if (distanceBetween <= criticVisibleMinimumDistanceDifference)
+                {
+                    this.transform.position = new Vector3(parentPosition.x, parentPosition.y, parentPosition.z - criticVisibleMinimumDistanceDifference);
+                } 
+                else
+                {
+                    this.transform.position = new Vector3(parentPosition.x, parentPosition.y, parentPosition.z - distanceBetween);
+                }
             }
         }
 
