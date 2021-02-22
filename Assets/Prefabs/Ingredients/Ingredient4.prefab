@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3279188749636475778}
   - component: {fileID: 3279188749636475782}
   m_Layer: 0
-  m_Name: Ingredient2
+  m_Name: Ingredient4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 71c5ff0b3754341c2bb12c0134a90b1d, type: 2}
+  - {fileID: 2100000, guid: e16574e68845d4ce2806c7c27569a3ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,5 +108,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5537373567197875062, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
-  ingredient: IngredientSecond
+  ingredient: IngredientFourth
   inventoryImage: {fileID: 21300000, guid: 0c66fb345952c9c4ba8065fcfc388698, type: 3}
