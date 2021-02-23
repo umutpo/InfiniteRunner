@@ -100,8 +100,13 @@ public class PlayerInventoryData : MonoBehaviour
         }
     }
 
-    public Dictionary<string, int> getCollectedIngredientsCounts()
+    public Dictionary<string, int> GetCollectedIngredientsCounts()
     {
         return collectedIngredientsCounts;
+    }
+
+    public List<RecipeController> GetRecipes()
+    {
+        return recipes;
     }
 }

@@ -13,10 +13,11 @@ public class IngredientGenerator : MonoBehaviour
     private string[] selectIng = { Pool.INGREDIENT1, Pool.INGREDIENT2, 
     Pool.INGREDIENT3, Pool.INGREDIENT4, Pool.INGREDIENT5, Pool.INGREDIENT6};
 
-    [SerializeField]
-    private List<RecipeController> recipes;
+    private PlayerController playerController;
+
     protected void Start()
     {
+        playerController = player.GetComponent<PlayerController>();
         // TODO:
         // Initialize rng variables
     }
@@ -31,8 +32,7 @@ public class IngredientGenerator : MonoBehaviour
     public string GetIngredient() {
         // TODO:
         // Return type of ingredient, use strings in Data.cs
-        PlayerController playerController = player.GetComponent<PlayerController>();
-        Dictionary<string, int>  counts = playerController.getCollectedIngredientsCounts();
+        Dictionary<string, int> counts = playerController.GetCollectedIngredientsCounts();
         Dictionary<string, int> spawnProbabilities = initializeSpawnProbabilities();
         updateSpawnProbabilities(counts, spawnProbabilities);
         List<string> ingredientPool = generatePool(spawnProbabilities);
@@ -55,6 +55,7 @@ public class IngredientGenerator : MonoBehaviour
     private void updateSpawnProbabilities(Dictionary<string, int> counts, Dictionary<string, int> spawnProbabilities)
     {
         List<string> keyList = new List<string>(counts.Keys);
+        List<RecipeController> recipes = playerController.GetRecipes();
         foreach (string str in keyList)
         {
             if (counts[str] >= 1)

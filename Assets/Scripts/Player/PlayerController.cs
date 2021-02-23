@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject inventory;
     private PlayerInventoryData playerInventoryData;
-    private Dictionary<string, int> collectedIngredientsCounts;
 
     float movementTimeCount;
     float slideTimeCount;
@@ -80,7 +79,6 @@ public class PlayerController : MonoBehaviour
 
         inventory = GameObject.Find("Inventory");
         playerInventoryData = inventory.GetComponent<PlayerInventoryData>();
-        collectedIngredientsCounts = playerInventoryData.getCollectedIngredientsCounts();
     }
 
 
@@ -315,7 +313,6 @@ public class PlayerController : MonoBehaviour
         if (usedIngredientCount > 0) {
             dishSpeedGainRemainder += usedIngredientCount * INGREDIENT_SPEED_GAIN;
         }
-        collectedIngredientsCounts = playerInventoryData.getCollectedIngredientsCounts();
     }
 
     public void RemoveFromInventory(string ingredient)
@@ -332,9 +329,14 @@ public class PlayerController : MonoBehaviour
     {
         return currentSpeed;
     }
-    public Dictionary<string, int> getCollectedIngredientsCounts()
+    public Dictionary<string, int> GetCollectedIngredientsCounts()
     {
-        return collectedIngredientsCounts;
+        return playerInventoryData.GetCollectedIngredientsCounts();
+    }
+
+    public List<RecipeController> GetRecipes()
+    {
+        return playerInventoryData.GetRecipes();
     }
 }
 
