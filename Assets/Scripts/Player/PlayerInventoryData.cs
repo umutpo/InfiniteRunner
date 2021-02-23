@@ -99,4 +99,14 @@ public class PlayerInventoryData : MonoBehaviour
             RemoveIngredientEvent(ingredient, collectedIngredientsCounts[ingredient]);
         }
     }
+
+    public Dictionary<string, int> GetCollectedIngredientsCounts()
+    {
+        return collectedIngredientsCounts;
+    }
+
+    public List<RecipeController> GetRecipes()
+    {
+        return recipes;
+    }
 }

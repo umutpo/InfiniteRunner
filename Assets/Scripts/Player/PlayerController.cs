@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
@@ -327,6 +328,15 @@ public class PlayerController : MonoBehaviour
     public float GetCurrentSpeed()
     {
         return currentSpeed;
+    }
+    public Dictionary<string, int> GetCollectedIngredientsCounts()
+    {
+        return playerInventoryData.GetCollectedIngredientsCounts();
+    }
+
+    public List<RecipeController> GetRecipes()
+    {
+        return playerInventoryData.GetRecipes();
     }
 }
 
