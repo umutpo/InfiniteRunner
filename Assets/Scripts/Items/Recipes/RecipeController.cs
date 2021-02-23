@@ -9,11 +9,11 @@ public class RecipeController : MonoBehaviour
 
     public List<string> getListOfIngredients()
     {
-        List<string> result = new List<string>();
-        foreach(IngredientController ing in ingredients)
-        {
-            result.Add(ing.ingredient);
-        }
-        return result;
+        return ingredients.ConvertAll<string>(getIngredientName);
+    }
+
+    private string getIngredientName(IngredientController ingredientController)
+    {
+        return ingredientController.ingredient;
     }
 }
