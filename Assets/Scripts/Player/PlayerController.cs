@@ -5,26 +5,23 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
-    // TODO: Move these to Platform script and import from there
     const int NUMBER_OF_LANES = 3;
     const int LANE_LENGTH = 12;
 
     const float LANE_CHANGE_TIME = 0.05f;
-    const float SLIDE_TIME = 2f;
     const float PERMANENT_SPEED_GAIN_TIME = 60f;
     const float OBSTACLE_LOST_SPEED_GAIN_TIME = 3f;
-    const float DISH_SPEED_GAIN_TIME = 2f;              // Time to regain speed for EACH ingredient used
-
-    const float EPS = 0.01f;
+    const float DISH_SPEED_GAIN_TIME = 2f;
 
     const float INITIAL_SPEED = 10f;
     const float PERMANENT_SPEED_GAIN = 1f;
     const float OBSTACLE_SPEED_GAIN = 1f;
     public const float INGREDIENT_SPEED_GAIN = 1f;
 
+    const float EPS = 0.01f;
+
     // Input Variables
     public InputAction jumpAction;
-    public InputAction slideAction;
     public InputAction moveLeftAction;
     public InputAction moveRightAction;
 
@@ -39,75 +36,103 @@ public class PlayerController : MonoBehaviour
     private int currentLane = 2;
     private float obstacleSpeedGainRemainder = 0f;
     private float dishSpeedGainRemainder = 0f;
+    private bool inMovement = false;
+    private bool gameOverState = false;
+    private float starting_elevation;
+    private Vector3 shift;
 
     // Inventory Variables
     [SerializeField]
     private GameObject inventory;
     private PlayerInventoryData playerInventoryData;
 
+    // Timers
     float movementTimeCount;
-    float slideTimeCount;
     float permanentSpeedCount;
     float obstacleSpeedCount;
     float ingredientSpeedCount;
 
-    bool inMovement = false;
-    bool isSliding = false;
-    private bool gameOverState = false;
-
-    float starting_elevation;
-    Vector3 shift;
-
-    // Related to obstacle collisions
+    // Obstacle Collisions
     private float speedReduction = 0f;
-    private float collisionTime;
     private bool isInvincible = false;
     [SerializeField]
-    private float invincibilityDuration = 1f;     // Seconds after which player is invincible against collisions
+    private float invincibilityDuration = 1f;
 
     void Start()
     {
         maxSpeed = INITIAL_SPEED;
         currentSpeed = INITIAL_SPEED;
-        jumpAction.performed += ctx => Jump();
-        slideAction.performed += ctx => Slide();
-        moveLeftAction.performed += ctx => MoveLeft();
-        moveRightAction.performed += ctx => MoveRight();
+
+        jumpAction.performed += ctx => jump();
+        moveLeftAction.performed += ctx => moveLeft();
+        moveRightAction.performed += ctx => moveRight();
 
         _body = gameObject.GetComponent<Rigidbody>();
-        starting_elevation = _body.position.y;
+        starting_elevation = _body.transform.position.y;
 
         inventory = GameObject.Find("Inventory");
         playerInventoryData = inventory.GetComponent<PlayerInventoryData>();
     }
 
-
     void Update()
     {
-        UpdateSpeed();
-        if (inMovement == false && getIsNotJumpingOrSliding())
+        if (canPlayerMove())
         {
-            enableInputActions();
+            jumpAction.Enable();
+            moveLeftAction.Enable();
+            moveRightAction.Enable();
         }
         else
         {
-            disableInputActions();
+            jumpAction.Disable();
+            moveLeftAction.Disable();
+            moveRightAction.Disable();
         }
 
-        GainPermanentSpeed();
-        GainLostSpeedFromObstacle();
-        GainSpeedFromCreatingDish();
-        MoveForward();
-        GoToDestination();
+        updateSpeed();
+        moveBody();
+        checkGameOver();
+    }
 
-        if (isGameOver())
+    private void updateSpeed()
+    {
+        if (speedReduction != 0f)
+        {
+            currentSpeed -= speedReduction;
+            speedReduction = 0f;
+        }
+
+        gainPermanentSpeed();
+        gainLostSpeedFromObstacle();
+        gainLostSpeedFromCreatingDish();
+    }
+
+    private void moveBody()
+    {
+        _body.MovePosition(_body.position + (Time.deltaTime * new Vector3(0, 0, currentSpeed)));
+        if (inMovement)
+        {
+            _body.MovePosition(_body.position + (Mathf.Min(LANE_CHANGE_TIME - movementTimeCount, Time.deltaTime) * shift / LANE_CHANGE_TIME));
+            movementTimeCount += Time.deltaTime;
+            if (movementTimeCount >= LANE_CHANGE_TIME)
+            {
+                inMovement = false;
+                shift = Vector3.zero;
+                movementTimeCount = 0;
+            }
+        }
+    }
+
+    private void checkGameOver()
+    {
+        if (currentSpeed <= gameOverSpeed)
         {
             gameOverState = true;
             enabled = false;
         }
     }
 
-    void Jump()
+    private void jump()
     {
         if (_body != null)
         {
@@ -115,24 +140,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /*
-     * TODO: Use isSliding to ignore collisions on obstacle scripts if they are elevated objects
-     *       if (player.isSliding == true && obstacle.transform.position.y != 0.5f) { ignore collisions on obstacle }
-     */
-    void Slide()
-    {
-        if (getIsNotJumpingOrSliding())
-        {
-            isSliding = true;
-        }
-    }
-
-    void MoveForward()
-    {
-        _body.MovePosition(_body.position + (Time.deltaTime * new Vector3(0, 0, currentSpeed)));
-    }
-
-    void MoveLeft()
+    private void moveLeft()
     {
         if (currentLane > 1)
         {
@@ -142,7 +150,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void MoveRight()
+    private void moveRight()
     {
         if (currentLane < NUMBER_OF_LANES)
         {
@@ -152,7 +160,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void GainLostSpeedFromObstacle()
+    private void gainLostSpeedFromObstacle()
     {
         if (obstacleSpeedGainRemainder > 0)
         {
@@ -174,7 +182,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void GainSpeedFromCreatingDish()
+    private void gainLostSpeedFromCreatingDish()
     {
         if (dishSpeedGainRemainder > 0)
         {
@@ -196,7 +204,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void GainPermanentSpeed()
+    private void gainPermanentSpeed()
     {
         permanentSpeedCount += Time.deltaTime;
         if (permanentSpeedCount >= PERMANENT_SPEED_GAIN_TIME)
@@ -207,44 +215,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void GoToDestination()
-    {
-        if (inMovement)
-        {
-            _body.MovePosition(_body.position + (Mathf.Min(LANE_CHANGE_TIME - movementTimeCount, Time.deltaTime) * shift / LANE_CHANGE_TIME));
-            movementTimeCount += Time.deltaTime;
-            if (movementTimeCount >= LANE_CHANGE_TIME)
-            {
-                inMovement = false;
-                shift = Vector3.zero;
-                movementTimeCount = 0;
-            }
-        }
-
-        if (!inMovement && isSliding)
-        {
-            slideTimeCount += Time.deltaTime;
-            if (slideTimeCount >= SLIDE_TIME)
-            {
-                isSliding = false;
-                slideTimeCount = 0;
-            }
-        }
-    }
-
-    private void UpdateSpeed()
-    {
-        if (speedReduction != 0f)
-        {
-            currentSpeed -= speedReduction;
-            speedReduction = 0f;
-        }
-    }
-
-    private IEnumerator BecomeInvincibleTemporary()
+    private IEnumerator becomeInvincibleTemporary()
     {
         isInvincible = true;
-
         for (float i = 0; i < invincibilityDuration; i += Time.deltaTime)
         {
             // TODO: Can add visual cues for invincibility  
@@ -253,40 +226,14 @@ public class PlayerController : MonoBehaviour
         isInvincible = false;
     }
 
-    bool getIsNotJumpingOrSliding()
+    private bool canPlayerMove()
     {
-        return (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
+        return inMovement == false && (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
     }
 
-    bool isGameOver()
-    {
-        if (currentSpeed <= gameOverSpeed)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    public bool getGameOverState()
+    public bool GetGameOverState()
     {
         return gameOverState;
-    }
-
-    void enableInputActions()
-    {
-        jumpAction.Enable();
-        slideAction.Enable();
-        moveLeftAction.Enable();
-        moveRightAction.Enable();
-    }
-
-    void disableInputActions()
-    {
-        jumpAction.Disable();
-        slideAction.Disable();
-        moveLeftAction.Disable();
-        moveRightAction.Disable();
     }
 
     public void SlowDown(float reduction, bool isObstacle = true)
@@ -297,8 +244,7 @@ public class PlayerController : MonoBehaviour
             {
                 speedReduction = (maxSpeed / reduction);
                 obstacleSpeedGainRemainder += (maxSpeed / reduction);
-                collisionTime = Time.time;
-                StartCoroutine(BecomeInvincibleTemporary());
+                StartCoroutine(becomeInvincibleTemporary());
             }
         }
         else
@@ -315,20 +261,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void RemoveFromInventory(string ingredient)
-    {
-        playerInventoryData.RemoveIngredient(ingredient);
-    }
-
-    public double GetJumpDuration()
-    {
-        return 0;
-    }
-
     public float GetCurrentSpeed()
     {
         return currentSpeed;
     }
+
     public Dictionary<string, int> GetCollectedIngredientsCounts()
     {
         return playerInventoryData.GetCollectedIngredientsCounts();
