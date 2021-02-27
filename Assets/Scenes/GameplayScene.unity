@@ -514,7 +514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &160229595
 RectTransform:
   m_ObjectHideFlags: 0
@@ -711,13 +711,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 356856036}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0c6e184d88d5eb408c7fab0b6df6ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   collectedIngredients: []
   recipes: []
+  recipeDisplay: {fileID: 32430536}
 --- !u!114 &356856038 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
@@ -2050,7 +2051,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -2210,6 +2211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4116583014806320863, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
         type: 3}
+      propertyPath: recipeDisplay
+      value: 
+      objectReference: {fileID: 32430536}
+    - target: {fileID: 4116583014806320863, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
       propertyPath: recipes.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -2235,6 +2241,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401405937665649346, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6970102622759651818, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
         type: 3}
