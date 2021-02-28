@@ -15,10 +15,15 @@ public class PlayerInventoryData : MonoBehaviour
     public static Action<string, int, Sprite> AddIngredientEvent;
     public static Action<string, int> RemoveIngredientEvent;
 
+    [SerializeField]
+    private GameObject recipeDisplay;
+    private Animator recipeDisplayAnim;
+
     void Start()
     {
         collectedIngredients = new List<string>();
         collectedIngredientsCounts = new Dictionary<string, int>();
+        recipeDisplayAnim = recipeDisplay.GetComponent<Animator>();
     }
 
     // Returns number of ingredients used up if dish is created
@@ -72,6 +77,8 @@ public class PlayerInventoryData : MonoBehaviour
                     RemoveIngredient(ingredientController.ingredient);
                 }
                 ScoreController.currentScore += recipe.ingredients.Count * 100;
+                // Set animation for correct recipe
+                recipeDisplayAnim.SetTrigger("CreateBurger");
                 return recipe.ingredients.Count;
             }
         }
