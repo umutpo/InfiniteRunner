@@ -16,7 +16,7 @@ public class GameOverOperation : MonoBehaviour
 
     void Update()
     {
-        if(playerController.getGameOverState())
+        if(playerController.GetGameOverState())
         {
             gameOverOperations();
             enabled = false;
