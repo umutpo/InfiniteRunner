@@ -6,6 +6,8 @@ public class RecipeController : MonoBehaviour
 {
     [SerializeField]
     public List<IngredientController> ingredients = new List<IngredientController>();
+    [SerializeField]
+    private Sprite inventoryImage;
 
     public List<string> getListOfIngredients()
     {
