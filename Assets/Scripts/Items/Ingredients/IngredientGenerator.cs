@@ -10,8 +10,12 @@ public class IngredientGenerator : MonoBehaviour
     [SerializeField]
     public int freqIncrease = 1;
 
-    private string[] selectIng = { Pool.INGREDIENT1, Pool.INGREDIENT2, 
-    Pool.INGREDIENT3, Pool.INGREDIENT4, Pool.INGREDIENT5, Pool.INGREDIENT6};
+    private string[] selectIng = { 
+        Pool.FLOUR, Pool.TOMATO, Pool.CHEESE, Pool.PASTA,
+        Pool.MEATBALL, Pool.BUN, Pool.PATTY, Pool.LETTUCE, 
+        Pool.RICE, Pool.FISH, Pool.SEAWEED, Pool.TACO_SHELL, 
+        Pool.APPLE, Pool.SUGAR
+    };
 
     private PlayerController playerController;
 
