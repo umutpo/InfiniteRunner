@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
 
     const float EPS = 0.01f;
 
+    const float MAX_JUMP_HEIGHT = 3f;
+    const float MAX_JUMP_DISTANCE = 10f;
+
     // Input Variables
     public InputAction jumpAction;
     public InputAction moveLeftAction;
@@ -27,7 +30,6 @@ public class PlayerController : MonoBehaviour
 
     // Player Variables
     private Rigidbody _body;
-    private float jumpHeight = 2f;
     [SerializeField]
     private float maxSpeed;
     [SerializeField]
@@ -89,9 +91,13 @@ public class PlayerController : MonoBehaviour
             moveRightAction.Disable();
         }
 
+        checkGameOver();
+    }
+
+    private void FixedUpdate()
+    {
         updateSpeed();
         moveBody();
-        checkGameOver();
     }
 
     private void updateSpeed()
@@ -136,7 +142,11 @@ public class PlayerController : MonoBehaviour
     {
         if (_body != null)
         {
-            _body.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+            // TODO: Slide function has to be added for higher speed problems
+            float time = currentSpeed / MAX_JUMP_DISTANCE;
+            Physics.gravity = Vector3.up * -1 * ((2 * MAX_JUMP_HEIGHT) / Mathf.Pow((time / 2), 2));
+            float verticalJumpSpeed = Physics.gravity.y * -1 * (time / 2);
+            _body.AddForce(Vector3.up * verticalJumpSpeed, ForceMode.VelocityChange);
         }
     }
 
