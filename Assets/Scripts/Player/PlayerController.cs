@@ -11,12 +11,14 @@ public class PlayerController : MonoBehaviour
     const float LANE_CHANGE_TIME = 0.05f;
     const float PERMANENT_SPEED_GAIN_TIME = 60f;
     const float OBSTACLE_LOST_SPEED_GAIN_TIME = 3f;
-    const float DISH_SPEED_GAIN_TIME = 2f;
+    const float DISH_SPEED_GAIN_TIME = 3f;
+    const float BOOST_DEACCEL_TIME = 0.5f;
 
     const float INITIAL_SPEED = 10f;
     const float PERMANENT_SPEED_GAIN = 1f;
     const float OBSTACLE_SPEED_GAIN = 1f;
     public const float INGREDIENT_SPEED_GAIN = 1f;
+    const float DISH_SPEED_BOOST = 1f;
 
     const float EPS = 0.01f;
 
@@ -110,7 +112,7 @@ public class PlayerController : MonoBehaviour
 
         gainPermanentSpeed();
         gainLostSpeedFromObstacle();
-        gainLostSpeedFromCreatingDish();
+        boostSpeedFromCreatingDish();
     }
 
     private void moveBody()
@@ -192,25 +194,36 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void gainLostSpeedFromCreatingDish()
+    private IEnumerator boostSpeed(float speedGain)
+    {
+        isInvincible = true;
+        currentSpeed += speedGain;
+        // Consider changing this time for another variable
+        for (float i = 0; i < DISH_SPEED_GAIN_TIME; i += Time.deltaTime)
+        {
+            // TODO: Can add visual cues for invincibility  
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        float remaining = speedGain;
+        for (float i = 0; i < BOOST_DEACCEL_TIME; i += Time.deltaTime)
+        {
+            float deaccel = Time.deltaTime * speedGain / BOOST_DEACCEL_TIME;
+            currentSpeed -= deaccel;
+            remaining -= deaccel;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+
+        currentSpeed -= remaining;
+        isInvincible = false;
+    }
+
+    private void boostSpeedFromCreatingDish()
     {
         if (dishSpeedGainRemainder > 0)
         {
-            ingredientSpeedCount += Time.deltaTime;
-            if (ingredientSpeedCount >= DISH_SPEED_GAIN_TIME)
-            {
-                if (dishSpeedGainRemainder < INGREDIENT_SPEED_GAIN)
-                {
-                    currentSpeed += dishSpeedGainRemainder;
-                    dishSpeedGainRemainder -= dishSpeedGainRemainder;
-                }
-                else
-                {
-                    currentSpeed += INGREDIENT_SPEED_GAIN;
-                    dishSpeedGainRemainder -= INGREDIENT_SPEED_GAIN;
-                }
-                ingredientSpeedCount = 0;
-            }            
+            currentSpeed += dishSpeedGainRemainder;
+            StartCoroutine(boostSpeed(DISH_SPEED_BOOST));
+            dishSpeedGainRemainder = 0;
         }
     }
 
@@ -258,7 +271,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         else
-        {
+        { 
             speedReduction = reduction;
         }
     }
