@@ -30,7 +30,7 @@ public class PlayerInventoryData : MonoBehaviour
     public int AddIngredient(string ingredient, Sprite inventoryImage)
     {
         bool shouldCheckRecipes = false;
-
+        Debug.Log("collected: " + ingredient);
         if (collectedIngredients.Contains(ingredient))
         {
             collectedIngredientsCounts[ingredient]++;
