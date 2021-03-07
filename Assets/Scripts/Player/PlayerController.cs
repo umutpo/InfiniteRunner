@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     const float PERMANENT_SPEED_GAIN = 1f;
     const float OBSTACLE_SPEED_GAIN = 1f;
     public const float INGREDIENT_SPEED_GAIN = 1f;
+    const float DISH_SPEED_BOOST = 1f;
 
     const float EPS = 0.01f;
 
@@ -194,7 +195,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private IEnumerator boostSpeed(float speedGain)
-    {        
+    {
         isInvincible = true;
         currentSpeed += speedGain;
         // Consider changing this time for another variable
@@ -218,10 +219,10 @@ public class PlayerController : MonoBehaviour
 
     private void boostSpeedFromCreatingDish()
     {
-        if (dishSpeedGainRemainder > 0) {
+        if (dishSpeedGainRemainder > 0)
+        {
             currentSpeed += dishSpeedGainRemainder;
-            // Consider changing this boost
-            StartCoroutine(boostSpeed(1f));
+            StartCoroutine(boostSpeed(DISH_SPEED_BOOST));
             dishSpeedGainRemainder = 0;
         }
     }
@@ -270,7 +271,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         else
-        {   
+        { 
             speedReduction = reduction;
         }
     }
