@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System;
 using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
@@ -38,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private float dishSpeedGainRemainder = 0f;
     private bool inMovement = false;
     private bool gameOverState = false;
+    private float extra_weight = 0f;
+    public float ingredient_weight = 1f;
     private float starting_elevation;
     private Vector3 shift;
 
@@ -200,7 +203,7 @@ public class PlayerController : MonoBehaviour
                     dishSpeedGainRemainder -= INGREDIENT_SPEED_GAIN;
                 }
                 ingredientSpeedCount = 0;
-            }            
+            }
         }
     }
 
@@ -220,7 +223,7 @@ public class PlayerController : MonoBehaviour
         isInvincible = true;
         for (float i = 0; i < invincibilityDuration; i += Time.deltaTime)
         {
-            // TODO: Can add visual cues for invincibility  
+            // TODO: Can add visual cues for invincibility
             yield return new WaitForSeconds(Time.deltaTime);
         }
         isInvincible = false;
@@ -249,15 +252,29 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            speedReduction = reduction;
+            speedDecreaseWithExtraWeightRatio();
         }
+    }
+
+    // decrease speed by ratio of extra_weight
+    private void speedDecreaseWithExtraWeightRatio()
+    {
+        // decrease speed based on the original speed without ratio decrease;
+        currentSpeed = currentSpeed * calculateExtraWeightSpeedDecreaseRatio();
+    }
+
+    private float calculateExtraWeightSpeedDecreaseRatio()
+    {
+        return (1 / (extra_weight + 1));
     }
 
     public void AddToInventory(string ingredient, Sprite inventoryImage)
     {
+        addToExtraWeight(1);
         int usedIngredientCount = playerInventoryData.AddIngredient(ingredient, inventoryImage);
         if (usedIngredientCount > 0) {
             dishSpeedGainRemainder += usedIngredientCount * INGREDIENT_SPEED_GAIN;
+            reduceExtraWeight(usedIngredientCount);
         }
     }
 
@@ -275,5 +292,13 @@ public class PlayerController : MonoBehaviour
     {
         return playerInventoryData.GetRecipes();
     }
-}
 
+    private void addToExtraWeight(int numberOfIngredient)
+    {
+        extra_weight += numberOfIngredient * ingredient_weight;
+    }
+    private void reduceExtraWeight(int usedIngredientCount)
+    {
+        extra_weight -= usedIngredientCount * ingredient_weight;
+    }
+}
