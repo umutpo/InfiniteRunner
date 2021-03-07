@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     const float LANE_CHANGE_TIME = 0.05f;
     const float PERMANENT_SPEED_GAIN_TIME = 60f;
     const float OBSTACLE_LOST_SPEED_GAIN_TIME = 3f;
-    const float DISH_SPEED_GAIN_TIME = 5f;
+    const float DISH_SPEED_GAIN_TIME = 3f;
     const float BOOST_DEACCEL_TIME = 0.5f;
 
     const float INITIAL_SPEED = 10f;
@@ -186,15 +186,13 @@ public class PlayerController : MonoBehaviour
     private IEnumerator boostSpeed(float speedGain)
     {        
         isInvincible = true;
-        Debug.Log("starting speed: " + currentSpeed);
         currentSpeed += speedGain;
-        Debug.Log("start boost: " + currentSpeed);
+        // Consider changing this time for another variable
         for (float i = 0; i < DISH_SPEED_GAIN_TIME; i += Time.deltaTime)
         {
             // TODO: Can add visual cues for invincibility  
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        Debug.Log("done increase boost");
         float remaining = speedGain;
         for (float i = 0; i < BOOST_DEACCEL_TIME; i += Time.deltaTime)
         {
@@ -206,13 +204,14 @@ public class PlayerController : MonoBehaviour
 
         currentSpeed -= remaining;
         isInvincible = false;
-        Debug.Log("end boost: " + currentSpeed);
     }
 
     private void boostSpeedFromCreatingDish()
     {
         if (dishSpeedGainRemainder > 0) {
-            StartCoroutine(boostSpeed(dishSpeedGainRemainder));
+            currentSpeed += dishSpeedGainRemainder;
+            // Consider changing this boost
+            StartCoroutine(boostSpeed(1f));
             dishSpeedGainRemainder = 0;
         }
     }
