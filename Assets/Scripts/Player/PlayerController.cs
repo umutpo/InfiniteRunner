@@ -187,8 +187,6 @@ public class PlayerController : MonoBehaviour
     {        
         isInvincible = true;
         Debug.Log("starting speed: " + currentSpeed);
-        // if (currentSpeed < maxSpeed) currentSpeed = maxSpeed;
-        // Debug.Log("readjusted: " + currentSpeed);
         currentSpeed += speedGain;
         Debug.Log("start boost: " + currentSpeed);
         for (float i = 0; i < DISH_SPEED_GAIN_TIME; i += Time.deltaTime)
@@ -197,36 +195,22 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
         Debug.Log("done increase boost");
+        float remaining = speedGain;
         for (float i = 0; i < BOOST_DEACCEL_TIME; i += Time.deltaTime)
         {
-            currentSpeed -= Time.deltaTime * speedGain / BOOST_DEACCEL_TIME;
+            float deaccel = Time.deltaTime * speedGain / BOOST_DEACCEL_TIME;
+            currentSpeed -= deaccel;
+            remaining -= deaccel;
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        // currentSpeed -= speedGain;
+
+        currentSpeed -= remaining;
         isInvincible = false;
         Debug.Log("end boost: " + currentSpeed);
     }
 
     private void boostSpeedFromCreatingDish()
     {
-        // if (dishSpeedGainRemainder > 0)
-        // {
-        //     ingredientSpeedCount += Time.deltaTime;
-        //     if (ingredientSpeedCount >= DISH_SPEED_GAIN_TIME)
-        //     {
-        //         if (dishSpeedGainRemainder < INGREDIENT_SPEED_GAIN)
-        //         {
-        //             currentSpeed += dishSpeedGainRemainder;
-        //             dishSpeedGainRemainder -= dishSpeedGainRemainder;
-        //         }
-        //         else
-        //         {
-        //             currentSpeed += INGREDIENT_SPEED_GAIN;
-        //             dishSpeedGainRemainder -= INGREDIENT_SPEED_GAIN;
-        //         }
-        //         ingredientSpeedCount = 0;
-        //     }            
-        // }
         if (dishSpeedGainRemainder > 0) {
             StartCoroutine(boostSpeed(dishSpeedGainRemainder));
             dishSpeedGainRemainder = 0;
@@ -278,11 +262,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {   
-            if (!isInvincible)
-            {
-                speedReduction = reduction;
-
-            }
+            speedReduction = reduction;
         }
     }
 
