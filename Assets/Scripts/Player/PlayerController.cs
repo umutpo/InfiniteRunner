@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     const float EPS = 0.01f;
 
+    const float ingredient_weight = 1f;
+
     // Input Variables
     public InputAction jumpAction;
     public InputAction moveLeftAction;
@@ -39,8 +41,7 @@ public class PlayerController : MonoBehaviour
     private float dishSpeedGainRemainder = 0f;
     private bool inMovement = false;
     private bool gameOverState = false;
-    private float extra_weight = 0f;
-    public float ingredient_weight = 1f;
+    private float extraWeight = 0f;
     private float starting_elevation;
     private Vector3 shift;
 
@@ -256,6 +257,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void addToExtraWeight(int numberOfIngredient)
+    {
+        extraWeight += numberOfIngredient * ingredient_weight;
+    }
+    private void reduceExtraWeight(int usedIngredientCount)
+    {
+        extraWeight -= usedIngredientCount * ingredient_weight;
+    }
+
     // decrease speed by ratio of extra_weight
     private void speedDecreaseWithExtraWeightRatio()
     {
@@ -265,7 +275,7 @@ public class PlayerController : MonoBehaviour
 
     private float calculateExtraWeightSpeedDecreaseRatio()
     {
-        return (1 / (extra_weight + 1));
+        return (10 - extraWeight) / 10;
     }
 
     public void AddToInventory(string ingredient, Sprite inventoryImage)
@@ -291,14 +301,5 @@ public class PlayerController : MonoBehaviour
     public List<RecipeController> GetRecipes()
     {
         return playerInventoryData.GetRecipes();
-    }
-
-    private void addToExtraWeight(int numberOfIngredient)
-    {
-        extra_weight += numberOfIngredient * ingredient_weight;
-    }
-    private void reduceExtraWeight(int usedIngredientCount)
-    {
-        extra_weight -= usedIngredientCount * ingredient_weight;
     }
 }
