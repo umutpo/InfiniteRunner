@@ -12,16 +12,21 @@ public class PlayerController : MonoBehaviour
     const float LANE_CHANGE_TIME = 0.05f;
     const float PERMANENT_SPEED_GAIN_TIME = 60f;
     const float OBSTACLE_LOST_SPEED_GAIN_TIME = 3f;
-    const float DISH_SPEED_GAIN_TIME = 2f;
+    const float DISH_SPEED_GAIN_TIME = 3f;
+    const float BOOST_DEACCEL_TIME = 0.5f;
 
     const float INITIAL_SPEED = 10f;
     const float PERMANENT_SPEED_GAIN = 1f;
     const float OBSTACLE_SPEED_GAIN = 1f;
     public const float INGREDIENT_SPEED_GAIN = 1f;
+    const float DISH_SPEED_BOOST = 1f;
 
     const float EPS = 0.01f;
 
     const float ingredient_weight = 1f;
+    
+    const float MAX_JUMP_HEIGHT = 3f;
+    const float MAX_JUMP_DISTANCE = 10f;
 
     // Input Variables
     public InputAction jumpAction;
@@ -30,7 +35,6 @@ public class PlayerController : MonoBehaviour
 
     // Player Variables
     private Rigidbody _body;
-    private float jumpHeight = 2f;
     [SerializeField]
     private float maxSpeed;
     [SerializeField]
@@ -93,9 +97,13 @@ public class PlayerController : MonoBehaviour
             moveRightAction.Disable();
         }
 
+        checkGameOver();
+    }
+
+    private void FixedUpdate()
+    {
         updateSpeed();
         moveBody();
-        checkGameOver();
     }
 
     private void updateSpeed()
@@ -108,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
         gainPermanentSpeed();
         gainLostSpeedFromObstacle();
-        gainLostSpeedFromCreatingDish();
+        boostSpeedFromCreatingDish();
     }
 
     private void moveBody()
@@ -140,7 +148,11 @@ public class PlayerController : MonoBehaviour
     {
         if (_body != null)
         {
-            _body.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+            // TODO: Slide function has to be added for higher speed problems
+            float time = currentSpeed / MAX_JUMP_DISTANCE;
+            Physics.gravity = Vector3.up * -1 * ((2 * MAX_JUMP_HEIGHT) / Mathf.Pow((time / 2), 2));
+            float verticalJumpSpeed = Physics.gravity.y * -1 * (time / 2);
+            _body.AddForce(Vector3.up * verticalJumpSpeed, ForceMode.VelocityChange);
         }
     }
 
@@ -186,25 +198,36 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void gainLostSpeedFromCreatingDish()
+    private IEnumerator boostSpeed(float speedGain)
+    {
+        isInvincible = true;
+        currentSpeed += speedGain;
+        // Consider changing this time for another variable
+        for (float i = 0; i < DISH_SPEED_GAIN_TIME; i += Time.deltaTime)
+        {
+            // TODO: Can add visual cues for invincibility  
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        float remaining = speedGain;
+        for (float i = 0; i < BOOST_DEACCEL_TIME; i += Time.deltaTime)
+        {
+            float deaccel = Time.deltaTime * speedGain / BOOST_DEACCEL_TIME;
+            currentSpeed -= deaccel;
+            remaining -= deaccel;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+
+        currentSpeed -= remaining;
+        isInvincible = false;
+    }
+
+    private void boostSpeedFromCreatingDish()
     {
         if (dishSpeedGainRemainder > 0)
         {
-            ingredientSpeedCount += Time.deltaTime;
-            if (ingredientSpeedCount >= DISH_SPEED_GAIN_TIME)
-            {
-                if (dishSpeedGainRemainder < INGREDIENT_SPEED_GAIN)
-                {
-                    currentSpeed += dishSpeedGainRemainder;
-                    dishSpeedGainRemainder -= dishSpeedGainRemainder;
-                }
-                else
-                {
-                    currentSpeed += INGREDIENT_SPEED_GAIN;
-                    dishSpeedGainRemainder -= INGREDIENT_SPEED_GAIN;
-                }
-                ingredientSpeedCount = 0;
-            }
+            currentSpeed += dishSpeedGainRemainder;
+            StartCoroutine(boostSpeed(DISH_SPEED_BOOST));
+            dishSpeedGainRemainder = 0;
         }
     }
 

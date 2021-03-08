@@ -2627,6 +2627,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
+      propertyPath: spawnDistanceUnit
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
       propertyPath: doubleItemRowWeight
       value: 35
       objectReference: {fileID: 0}
@@ -2870,10 +2875,10 @@ PrefabInstance:
       propertyPath: moveRightAction.m_SingletonActionBindings.Array.data[0].m_Action
       value: Move Right
       objectReference: {fileID: 0}
-    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+    - target: {fileID: 5537373567197875064, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
-      propertyPath: ingredient_weight
-      value: 0.1
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5537373567197875067, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
