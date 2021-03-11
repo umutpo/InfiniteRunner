@@ -289,7 +289,7 @@ public class PlayerController : MonoBehaviour
         return currentSpeed;
     }
 
-    public Dictionary <string, int> GetCollectedIngredientsCounts()
+    public Dictionary<string, int> GetCollectedIngredientsCounts()
     {
         return playerInventoryData.GetCollectedIngredientsCounts();
     }
