@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     const float EPS = 0.01f;
 
     const float INGREDIENT_WEIGHT = 1f;
+    const float MAX_INVENTORY_INGREDIENT_WEIGHT = 10f;
     
     const float MAX_JUMP_HEIGHT = 3f;
     const float MAX_JUMP_DISTANCE = 10f;
@@ -275,7 +276,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            speedDecreaseWithExtraWeightRatio();
+            currentSpeed = currentSpeed * calculateExtraWeightSpeedDecreaseRatio();
         }
     }
 
@@ -289,14 +290,9 @@ public class PlayerController : MonoBehaviour
         extraWeight -= usedIngredientCount * INGREDIENT_WEIGHT;
     }
 
-    private void speedDecreaseWithExtraWeightRatio()
-    {
-        currentSpeed = currentSpeed * calculateExtraWeightSpeedDecreaseRatio();
-    }
-
     private float calculateExtraWeightSpeedDecreaseRatio()
     {
-        return (10 - extraWeight) / 10;
+        return (MAX_INVENTORY_INGREDIENT_WEIGHT - extraWeight) / MAX_INVENTORY_INGREDIENT_WEIGHT;
     }
 
     public void AddToInventory(string ingredient, Sprite inventoryImage)
