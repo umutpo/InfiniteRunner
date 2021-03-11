@@ -276,7 +276,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            currentSpeed = currentSpeed * calculateExtraWeightSpeedDecreaseRatio();
+            speedReduction = reduction;
         }
     }
 
