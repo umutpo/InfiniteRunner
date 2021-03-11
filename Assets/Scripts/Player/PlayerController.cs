@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
 
     const float EPS = 0.01f;
 
+    const float INGREDIENT_WEIGHT = 1f;
+    const float MAX_INVENTORY_INGREDIENT_WEIGHT = 10f;
+    
     const float MAX_JUMP_HEIGHT = 3f;
     const float MAX_JUMP_DISTANCE = 10f;
 
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour
     private float dishSpeedGainRemainder = 0f;
     private bool inMovement = false;
     private bool gameOverState = false;
+    private float extraWeight = 0f;
     private float starting_elevation;
     private Vector3 shift;
 
@@ -243,7 +247,7 @@ public class PlayerController : MonoBehaviour
         isInvincible = true;
         for (float i = 0; i < invincibilityDuration; i += Time.deltaTime)
         {
-            // TODO: Can add visual cues for invincibility  
+            // TODO: Can add visual cues for invincibility
             yield return new WaitForSeconds(Time.deltaTime);
         }
         isInvincible = false;
@@ -271,16 +275,33 @@ public class PlayerController : MonoBehaviour
             }
         }
         else
-        { 
+        {
             speedReduction = reduction;
         }
     }
 
+    private void addToExtraWeight(int numberOfIngredient)
+    {
+        extraWeight += numberOfIngredient * INGREDIENT_WEIGHT;
+    }
+
+    private void reduceExtraWeight(int usedIngredientCount)
+    {
+        extraWeight -= usedIngredientCount * INGREDIENT_WEIGHT;
+    }
+
+    private float calculateExtraWeightSpeedDecreaseRatio()
+    {
+        return (MAX_INVENTORY_INGREDIENT_WEIGHT - extraWeight) / MAX_INVENTORY_INGREDIENT_WEIGHT;
+    }
+
     public void AddToInventory(string ingredient, Sprite inventoryImage)
     {
+        addToExtraWeight(1);
         int usedIngredientCount = playerInventoryData.AddIngredient(ingredient, inventoryImage);
         if (usedIngredientCount > 0) {
             dishSpeedGainRemainder += usedIngredientCount * INGREDIENT_SPEED_GAIN;
+            reduceExtraWeight(usedIngredientCount);
         }
     }
 
@@ -299,4 +320,3 @@ public class PlayerController : MonoBehaviour
         return playerInventoryData.GetRecipes();
     }
 }
-
