@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
-using System;
 using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
@@ -23,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
     const float EPS = 0.01f;
 
-    const float ingredient_weight = 1f;
+    const float INGREDIENT_WEIGHT = 1f;
     
     const float MAX_JUMP_HEIGHT = 3f;
     const float MAX_JUMP_DISTANCE = 10f;
@@ -282,17 +281,16 @@ public class PlayerController : MonoBehaviour
 
     private void addToExtraWeight(int numberOfIngredient)
     {
-        extraWeight += numberOfIngredient * ingredient_weight;
-    }
-    private void reduceExtraWeight(int usedIngredientCount)
-    {
-        extraWeight -= usedIngredientCount * ingredient_weight;
+        extraWeight += numberOfIngredient * INGREDIENT_WEIGHT;
     }
 
-    // decrease speed by ratio of extra_weight
+    private void reduceExtraWeight(int usedIngredientCount)
+    {
+        extraWeight -= usedIngredientCount * INGREDIENT_WEIGHT;
+    }
+
     private void speedDecreaseWithExtraWeightRatio()
     {
-        // decrease speed based on the original speed without ratio decrease;
         currentSpeed = currentSpeed * calculateExtraWeightSpeedDecreaseRatio();
     }
 
