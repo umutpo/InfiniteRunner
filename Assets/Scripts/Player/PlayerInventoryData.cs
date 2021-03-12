@@ -22,9 +22,9 @@ public class PlayerInventoryData : MonoBehaviour
         foreach (RecipeController recipe in recipes) 
         {
             Dictionary <string, int> curDict = new Dictionary <string, int>();
-            foreach (IngredientController ingredient in recipe.ingredients) 
+            foreach (string ingredient in recipe.getListOfIngredients()) 
             {
-                curDict.Add(ingredient.ingredient, 0);
+                curDict.Add(ingredient, 0);
             }
             recipeList.Add(curDict);
         }
@@ -74,14 +74,15 @@ public class PlayerInventoryData : MonoBehaviour
 
     private int checkRecipes()
     {
-        foreach (Dictionary <string, int> recipeMap in recipeList) 
+        for (int i = 0; i < recipeList.Count; i++)
         {
+            Dictionary<string, int> recipeMap = recipeList[i];
             if (isRecipeCompleted(recipeMap))
             {
                 removeCompletedRecipeIngredients(recipeMap);
                 // TODO: Set animation for correct recipe
                 playCompletedRecipeAnimation("");
-                ScoreController.currentScore += recipeMap.Count * 100;
+                ScoreController.currentScore += recipes[i].GetRecipePoints();
 
                 return recipeMap.Count;
             }
