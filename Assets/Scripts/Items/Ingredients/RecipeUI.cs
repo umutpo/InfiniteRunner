@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // attach on an object representing an ingredient on the UI with a text component whose value is the current count of the ingredient in inventory
-public class IngredientCountUI : MonoBehaviour
+public class RecipeUI : MonoBehaviour
 {
     [SerializeField] private string ingredientType;
     [SerializeField] private GameObject inventoryItemCountPrefab;
