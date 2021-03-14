@@ -82,7 +82,6 @@ public class PlayerInventoryData : MonoBehaviour
             if (isRecipeCompleted(recipeMap))
             {
                 removeCompletedRecipeIngredients(recipeMap);
-                // TODO: Set animation for correct recipe
                 playCompletedRecipeAnimation(recipeNames[recipeMap]);
                 ScoreController.currentScore += recipeMap.Count * 100;
 
@@ -143,6 +142,21 @@ public class PlayerInventoryData : MonoBehaviour
                 break;
             case "pizza":
                 recipeDisplayAnim.SetTrigger("CreatePizza");
+                break;
+            case "sushi":
+                recipeDisplayAnim.SetTrigger("CreateSushi");
+                break;
+            case "pasta":
+                recipeDisplayAnim.SetTrigger("CreatePasta");
+                break;
+            case "salad":
+                recipeDisplayAnim.SetTrigger("CreateSalad");
+                break;
+            case "applePie":
+                recipeDisplayAnim.SetTrigger("CreatePie");
+                break;
+            case "taco":
+                recipeDisplayAnim.SetTrigger("CreateTaco");
                 break;
             default:
                 break;
