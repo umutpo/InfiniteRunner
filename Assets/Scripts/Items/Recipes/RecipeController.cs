@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class RecipeController : MonoBehaviour
 {
+    public string recipeName;
     [SerializeField]
-    private List<IngredientController> ingredients = new List<IngredientController>();
+    public List<IngredientController> ingredients = new List<IngredientController>();
     [SerializeField]
     private Sprite inventoryImage;
     [SerializeField]

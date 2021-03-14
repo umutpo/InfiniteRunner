@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5813d360929f64cb6b5267c3eff31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recipeName: salad
   ingredients:
   - {fileID: 4321147477946885912, guid: e21abd9330dcd02498a2fdd08c85fe2f, type: 3}
   - {fileID: 5892108617819424972, guid: da824293936d24f589e41ef6270b98cf, type: 3}
