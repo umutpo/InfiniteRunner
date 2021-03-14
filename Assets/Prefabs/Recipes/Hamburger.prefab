@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5813d360929f64cb6b5267c3eff31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recipeName: burger
   ingredients:
   - {fileID: 3279188749636475782, guid: f33f0108f55a44006b2c93873e15f880, type: 3}
   - {fileID: 8209789907354412432, guid: aeac33863f8b0864cb19f9312b5a38b3, type: 3}

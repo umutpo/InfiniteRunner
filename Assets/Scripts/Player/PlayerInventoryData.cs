@@ -8,6 +8,7 @@ public class PlayerInventoryData : MonoBehaviour
     [SerializeField]
     private List<RecipeController> recipes;
     private List< Dictionary <string, int> > recipeList;
+    private Dictionary<Dictionary <string, int>, string> recipeNames;
 
     public static Action<string, int, Sprite> AddIngredientEvent;
     public static Action<string, int> RemoveIngredientEvent;
@@ -27,8 +28,10 @@ public class PlayerInventoryData : MonoBehaviour
                 curDict.Add(ingredient.ingredient, 0);
             }
             recipeList.Add(curDict);
+            recipeNames.Add(curDict, recipe.recipeName);
         }
 
+            Debug.Log(recipeList);
         recipeDisplayAnim = recipeDisplay.GetComponent<Animator>();
     }
 
@@ -80,7 +83,7 @@ public class PlayerInventoryData : MonoBehaviour
             {
                 removeCompletedRecipeIngredients(recipeMap);
                 // TODO: Set animation for correct recipe
-                playCompletedRecipeAnimation("");
+                playCompletedRecipeAnimation(recipeNames[recipeMap]);
                 ScoreController.currentScore += recipeMap.Count * 100;
 
                 return recipeMap.Count;
@@ -134,10 +137,16 @@ public class PlayerInventoryData : MonoBehaviour
 
     private void playCompletedRecipeAnimation(string animationName)
     {
-        if (recipeDisplayAnim)
-        {
-            recipeDisplayAnim.SetTrigger("CreateBurger");
-        }
+        switch(animationName) {
+            case "burger": 
+                recipeDisplayAnim.SetTrigger("CreateBurger");
+                break;
+            case "pizza":
+                recipeDisplayAnim.SetTrigger("CreatePizza");
+                break;
+            default:
+                break;
+        }            
     }
 
     // recipe priority comparison rule; whichever needs the least number of ingredients to complete gets placed foremost

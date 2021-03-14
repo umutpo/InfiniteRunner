@@ -43,7 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5813d360929f64cb6b5267c3eff31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recipeName: applePie
   ingredients:
   - {fileID: 5892108617819424972, guid: a26dac4c6845853468df25232470869a, type: 3}
   - {fileID: 2292104775655567495, guid: 8f4a82c21c0456449abc998bd4359347, type: 3}
   - {fileID: 7811816417803966452, guid: 12b7a69fe76711f459aa051971547bff, type: 3}
+  inventoryImage: {fileID: 0}

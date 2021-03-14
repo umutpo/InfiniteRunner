@@ -43,7 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5813d360929f64cb6b5267c3eff31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recipeName: taco
   ingredients:
   - {fileID: 3582588912002461584, guid: 08c8bdc796a85d243a66a84c6ed58ec6, type: 3}
   - {fileID: 5068549008353670273, guid: 59c04c54cc107d444ba0ca80a054ccf7, type: 3}
   - {fileID: 4321147477946885912, guid: e21abd9330dcd02498a2fdd08c85fe2f, type: 3}
+  inventoryImage: {fileID: 0}
