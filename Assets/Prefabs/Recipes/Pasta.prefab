@@ -43,7 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5813d360929f64cb6b5267c3eff31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recipeName: pasta
   ingredients:
   - {fileID: 3279188749636475782, guid: 9647d2faead994748922dc12be6abab8, type: 3}
   - {fileID: 3279188749636475782, guid: 7bda0f1f1c6b92d4bbeffe6a257fd0d7, type: 3}
   - {fileID: 5892108617819424972, guid: 849fb8a3ad6b248839157e1cc651eba6, type: 3}
+  inventoryImage: {fileID: 0}

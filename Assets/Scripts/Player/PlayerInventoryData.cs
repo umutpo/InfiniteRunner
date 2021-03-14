@@ -28,7 +28,6 @@ public class PlayerInventoryData : MonoBehaviour
             }
             recipeList.Add(curDict);
         }
-
         recipeDisplayAnim = recipeDisplay.GetComponent<Animator>();
     }
 
@@ -74,13 +73,13 @@ public class PlayerInventoryData : MonoBehaviour
 
     private int checkRecipes()
     {
-        foreach (Dictionary <string, int> recipeMap in recipeList) 
+        for (int i = 0; i < recipeList.Count; i++)
         {
+            Dictionary<string, int> recipeMap = recipeList[i];
             if (isRecipeCompleted(recipeMap))
             {
                 removeCompletedRecipeIngredients(recipeMap);
-                // TODO: Set animation for correct recipe
-                playCompletedRecipeAnimation("");
+                playCompletedRecipeAnimation(recipes[i].recipeName);
                 ScoreController.currentScore += recipeMap.Count * 100;
 
                 return recipeMap.Count;
@@ -134,10 +133,31 @@ public class PlayerInventoryData : MonoBehaviour
 
     private void playCompletedRecipeAnimation(string animationName)
     {
-        if (recipeDisplayAnim)
-        {
-            recipeDisplayAnim.SetTrigger("CreateBurger");
-        }
+        switch(animationName) {
+            case "burger": 
+                recipeDisplayAnim.SetTrigger("CreateBurger");
+                break;
+            case "pizza":
+                recipeDisplayAnim.SetTrigger("CreatePizza");
+                break;
+            case "sushi":
+                recipeDisplayAnim.SetTrigger("CreateSushi");
+                break;
+            case "pasta":
+                recipeDisplayAnim.SetTrigger("CreatePasta");
+                break;
+            case "salad":
+                recipeDisplayAnim.SetTrigger("CreateSalad");
+                break;
+            case "applePie":
+                recipeDisplayAnim.SetTrigger("CreatePie");
+                break;
+            case "taco":
+                recipeDisplayAnim.SetTrigger("CreateTaco");
+                break;
+            default:
+                break;
+        }            
     }
 
     // recipe priority comparison rule; whichever needs the least number of ingredients to complete gets placed foremost
@@ -176,9 +196,9 @@ public class PlayerInventoryData : MonoBehaviour
         return inventoryItems;
     }
 
-    // use this method to get the "pseudo priority queue" of recipes sorted by their ingredient completion rate
+    // DON'T CHANGE THE ACTUAL LIST HERE!!! WE DECIDE ANIMATION AND POINTS BY recipes and recipeList being in same order
     public List <Dictionary <string, int> > GetRecipeProgress() {
-        recipeList.Sort(closestToFinishFirst);
+        // recipeList.Sort(closestToFinishFirst);
         return recipeList;
     }
 
