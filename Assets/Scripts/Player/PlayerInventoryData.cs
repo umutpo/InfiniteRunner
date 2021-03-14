@@ -8,6 +8,7 @@ public class PlayerInventoryData : MonoBehaviour
     [SerializeField]
     private List<RecipeController> recipes;
     private List< Dictionary <string, int> > recipeList;
+    [SerializeField]
     private Dictionary<Dictionary <string, int>, string> recipeNames;
 
     public static Action<string, int, Sprite> AddIngredientEvent;
@@ -20,6 +21,7 @@ public class PlayerInventoryData : MonoBehaviour
     void Start()
     {
         recipeList = new List<Dictionary<string, int>>();
+        recipeNames = new Dictionary<Dictionary <string, int>, string>();
         foreach (RecipeController recipe in recipes) 
         {
             Dictionary <string, int> curDict = new Dictionary <string, int>();
@@ -30,8 +32,6 @@ public class PlayerInventoryData : MonoBehaviour
             recipeList.Add(curDict);
             recipeNames.Add(curDict, recipe.recipeName);
         }
-
-            Debug.Log(recipeList);
         recipeDisplayAnim = recipeDisplay.GetComponent<Animator>();
     }
 
