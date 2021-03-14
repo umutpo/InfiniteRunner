@@ -196,7 +196,6 @@ public class PlayerInventoryData : MonoBehaviour
         return inventoryItems;
     }
 
-    // use this method to get the "pseudo priority queue" of recipes sorted by their ingredient completion rate
     // DON'T CHANGE THE ACTUAL LIST HERE!!! WE DECIDE ANIMATION AND POINTS BY recipes and recipeList being in same order
     public List <Dictionary <string, int> > GetRecipeProgress() {
         // recipeList.Sort(closestToFinishFirst);
