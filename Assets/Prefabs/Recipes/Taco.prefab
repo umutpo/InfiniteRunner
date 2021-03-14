@@ -49,3 +49,4 @@ MonoBehaviour:
   - {fileID: 5068549008353670273, guid: 59c04c54cc107d444ba0ca80a054ccf7, type: 3}
   - {fileID: 4321147477946885912, guid: e21abd9330dcd02498a2fdd08c85fe2f, type: 3}
   inventoryImage: {fileID: 0}
+  points: 300

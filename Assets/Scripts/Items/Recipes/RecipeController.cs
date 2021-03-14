@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class RecipeController : MonoBehaviour
 {
-    [SerializeField]
     public string recipeName;
     [SerializeField]
     public List<IngredientController> ingredients = new List<IngredientController>();
     [SerializeField]
     private Sprite inventoryImage;
+    [SerializeField]
+    private int points;
+
+    public int GetRecipePoints()
+    {
+        return points;
+    }
 
     public List<string> getListOfIngredients()
     {
