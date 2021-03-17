@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     const int LANE_LENGTH = 12;
 
     const float LANE_CHANGE_TIME = 0.05f;
+    const float SLIDE_TIME = 1f;
     const float PERMANENT_SPEED_GAIN_TIME = 60f;
     const float OBSTACLE_LOST_SPEED_GAIN_TIME = 3f;
     const float DISH_SPEED_GAIN_TIME = 3f;
@@ -30,11 +31,13 @@ public class PlayerController : MonoBehaviour
 
     // Input Variables
     public InputAction jumpAction;
+    public InputAction slideAction;
     public InputAction moveLeftAction;
     public InputAction moveRightAction;
 
     // Player Variables
     private Rigidbody _body;
+    private BoxCollider _collider;
     [SerializeField]
     private float maxSpeed;
     [SerializeField]
@@ -44,6 +47,7 @@ public class PlayerController : MonoBehaviour
     private float obstacleSpeedGainRemainder = 0f;
     private float dishSpeedGainRemainder = 0f;
     private bool inMovement = false;
+    private bool isSliding = false;
     private bool gameOverState = false;
     private float extraWeight = 0f;
     private float starting_elevation;
@@ -56,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
     // Timers
     float movementTimeCount;
+    float slideTimeCount;
     float permanentSpeedCount;
     float obstacleSpeedCount;
     float ingredientSpeedCount;
@@ -72,10 +77,12 @@ public class PlayerController : MonoBehaviour
         currentSpeed = INITIAL_SPEED;
 
         jumpAction.performed += ctx => jump();
+        slideAction.performed += ctx => slide();
         moveLeftAction.performed += ctx => moveLeft();
         moveRightAction.performed += ctx => moveRight();
 
         _body = gameObject.GetComponent<Rigidbody>();
+        _collider = gameObject.GetComponent<BoxCollider>();
         starting_elevation = _body.transform.position.y;
 
         inventory = GameObject.Find("Inventory");
@@ -84,24 +91,29 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        checkGameOver();
+    }
+
+    private void FixedUpdate()
+    {
         if (canPlayerMove())
         {
             jumpAction.Enable();
+            slideAction.Enable();
             moveLeftAction.Enable();
             moveRightAction.Enable();
         }
         else
         {
             jumpAction.Disable();
+            if (isPlayerGrounded())
+            {
+                slideAction.Disable();
+            }
             moveLeftAction.Disable();
             moveRightAction.Disable();
         }
 
-        checkGameOver();
-    }
-
-    private void FixedUpdate()
-    {
         updateSpeed();
         moveBody();
     }
@@ -122,6 +134,19 @@ public class PlayerController : MonoBehaviour
     private void moveBody()
     {
         _body.MovePosition(_body.position + (Time.deltaTime * new Vector3(0, 0, currentSpeed)));
+
+        if (isSliding)
+        {
+            slideTimeCount += Time.deltaTime;
+            if (slideTimeCount >= SLIDE_TIME)
+            {
+                _collider.size = new Vector3(_collider.size.x, _collider.size.y * 2, _collider.size.z);
+                _collider.center = new Vector3(_collider.center.x, 0f, _collider.center.z);
+                slideTimeCount = 0;
+                isSliding = false;
+            }
+        }
+
         if (inMovement)
         {
             _body.MovePosition(_body.position + (Mathf.Min(LANE_CHANGE_TIME - movementTimeCount, Time.deltaTime) * shift / LANE_CHANGE_TIME));
@@ -153,6 +178,17 @@ public class PlayerController : MonoBehaviour
             Physics.gravity = Vector3.up * -1 * ((2 * MAX_JUMP_HEIGHT) / Mathf.Pow((time / 2), 2));
             float verticalJumpSpeed = Physics.gravity.y * -1 * (time / 2);
             _body.AddForce(Vector3.up * verticalJumpSpeed, ForceMode.VelocityChange);
+        }
+    }
+
+    private void slide()
+    {
+        if (_collider != null)
+        {
+            _body.AddForce(Vector3.down * 10, ForceMode.VelocityChange);
+            _collider.size = new Vector3(_collider.size.x, _collider.size.y / 2, _collider.size.z);
+            _collider.center = new Vector3(_collider.center.x, -1 * (_collider.size.y / 2), _collider.center.z);
+            isSliding = true;
         }
     }
 
@@ -255,7 +291,12 @@ public class PlayerController : MonoBehaviour
 
     private bool canPlayerMove()
     {
-        return inMovement == false && (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
+        return inMovement == false && isPlayerGrounded();
+    }
+
+    private bool isPlayerGrounded()
+    {
+        return (_body.position.y <= starting_elevation + EPS) && (starting_elevation - EPS <= _body.position.y);
     }
 
     public bool GetGameOverState()

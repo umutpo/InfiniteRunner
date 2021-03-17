@@ -109,6 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9ff8db60f97b541ab4026320e5883c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  criticVisibleMinimumDistanceDifference: 1
+  criticVisibleSpeedDifference: 5
 --- !u!1 &5537373567197875062
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,11 +120,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5537373567197875067}
+  - component: {fileID: 5537373567197875066}
   - component: {fileID: 5537373567197875061}
-  - component: {fileID: 5537373567197875060}
+  - component: {fileID: 2600003794980141707}
   - component: {fileID: 5537373567197875064}
   - component: {fileID: 5537373567197875063}
-  - component: {fileID: 5537373567197875066}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -146,6 +148,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5537373567197875066
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537373567197875062}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &5537373567197875061
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -185,8 +195,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &5537373567197875060
-SphereCollider:
+--- !u!65 &2600003794980141707
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -196,7 +206,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5537373567197875064
 Rigidbody:
@@ -238,7 +248,7 @@ MonoBehaviour:
     m_Name: Slide
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: d0ddbd16-b1b8-415d-9d46-f15681397336
+    m_Id: becfeb07-32f6-4296-9b88-74a5372d53f6
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -258,17 +268,11 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
+  maxSpeed: 0
   currentSpeed: 0
   gameOverSpeed: 0.1
+  inventory: {fileID: 0}
   invincibilityDuration: 1
---- !u!33 &5537373567197875066
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5537373567197875062}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5537373567531587299
 GameObject:
   m_ObjectHideFlags: 0
