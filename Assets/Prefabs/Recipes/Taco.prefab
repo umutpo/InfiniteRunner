@@ -48,5 +48,5 @@ MonoBehaviour:
   - {fileID: 3582588912002461584, guid: 08c8bdc796a85d243a66a84c6ed58ec6, type: 3}
   - {fileID: 5068549008353670273, guid: 59c04c54cc107d444ba0ca80a054ccf7, type: 3}
   - {fileID: 4321147477946885912, guid: e21abd9330dcd02498a2fdd08c85fe2f, type: 3}
-  inventoryImage: {fileID: 21300000, guid: c956acd0995dfab4fa725e53c30b0a84, type: 3}
+  inventoryImage: {fileID: 21300000, guid: b85321b11d2dc344f98ee3663579baf1, type: 3}
   points: 300
