@@ -16,4 +16,8 @@ public class IngredientController : ItemController
             Remove();
         }
     }
+    public Sprite GetIngredientImage() 
+    {
+        return inventoryImage;
+    }
 }

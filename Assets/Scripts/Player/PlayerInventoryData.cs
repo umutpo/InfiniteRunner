@@ -9,13 +9,12 @@ public class PlayerInventoryData : MonoBehaviour
     private List<RecipeController> recipes;
     private List< Dictionary <string, int> > recipeList;
 
-    public static Action<string, int, Sprite> AddIngredientEvent;
-    public static Action<string, int> RemoveIngredientEvent;
+    public static Action UpdateRecipeUIEvent;
 
     [SerializeField]
     private GameObject recipeDisplay;
     private Animator recipeDisplayAnim;
-
+    
     void Start()
     {
         recipeList = new List<Dictionary<string, int>>();
@@ -47,13 +46,14 @@ public class PlayerInventoryData : MonoBehaviour
             }
         }
 
-        addIngredientUI(ingredient, obtainedIngredientCount, inventoryImage);
-
         if (shouldCheckRecipes)
         {
             return checkRecipes();
         }
-
+        if (UpdateRecipeUIEvent != null) 
+        {
+            UpdateRecipeUIEvent.Invoke();
+        }
         return 0;
     }
     
@@ -67,8 +67,6 @@ public class PlayerInventoryData : MonoBehaviour
                 ingredientAmount = recipeMap[ingredient];
             }
         }
-
-        removeIngredientUI(ingredient, ingredientAmount);
     }
 
     private int checkRecipes()
@@ -87,22 +85,6 @@ public class PlayerInventoryData : MonoBehaviour
         }
 
         return 0;
-    }
-
-    private void addIngredientUI(string ingredient, int ingredientAmount, Sprite inventoryImage)
-    {
-        if (AddIngredientEvent != null && ingredient != null)
-        {
-            AddIngredientEvent(ingredient, ingredientAmount, inventoryImage);
-        }
-    }
-
-    private void removeIngredientUI(string ingredient, int ingredientAmount)
-    {
-        if (RemoveIngredientEvent != null && ingredient != null)
-        {
-            RemoveIngredientEvent(ingredient, ingredientAmount);
-        }
     }
 
     private bool isRecipeCompleted(Dictionary<string, int> recipeMap)
@@ -129,6 +111,8 @@ public class PlayerInventoryData : MonoBehaviour
         {
             RemoveIngredient(ingredient);
         }
+        if (UpdateRecipeUIEvent != null)
+            UpdateRecipeUIEvent.Invoke();
     }
 
     private void playCompletedRecipeAnimation(string animationName)
@@ -160,24 +144,6 @@ public class PlayerInventoryData : MonoBehaviour
         }            
     }
 
-    // recipe priority comparison rule; whichever needs the least number of ingredients to complete gets placed foremost
-    private int closestToFinishFirst(Dictionary<string, int> recipe1, Dictionary<string, int> recipe2)
-    {
-        int missingIngredientCnt1 = 0;
-        int missingIngredientCnt2 = 0;
-        foreach (KeyValuePair<string, int> ingredientAmount in recipe1)
-        {
-            if (ingredientAmount.Value == 0)
-                missingIngredientCnt1++;
-        }
-        foreach (KeyValuePair<string, int> ingredientAmount in recipe2)
-        {
-            if (ingredientAmount.Value == 0)
-                missingIngredientCnt2++;
-        }
-        return missingIngredientCnt1 - missingIngredientCnt2;
-    }
-
     public Dictionary <string, int> GetCollectedIngredientsCounts()
     {
         Dictionary <string, int> inventoryItems = new Dictionary<string, int>();
@@ -198,7 +164,6 @@ public class PlayerInventoryData : MonoBehaviour
 
     // DON'T CHANGE THE ACTUAL LIST HERE!!! WE DECIDE ANIMATION AND POINTS BY recipes and recipeList being in same order
     public List <Dictionary <string, int> > GetRecipeProgress() {
-        // recipeList.Sort(closestToFinishFirst);
         return recipeList;
     }
 
