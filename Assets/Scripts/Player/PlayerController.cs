@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     const int LANE_LENGTH = 12;
 
     const float LANE_CHANGE_TIME = 0.05f;
-    const float SLIDE_TIME = 1f;
+    const float SLIDE_TIME = 0.5f;
     const float PERMANENT_SPEED_GAIN_TIME = 60f;
     const float OBSTACLE_LOST_SPEED_GAIN_TIME = 3f;
     const float DISH_SPEED_GAIN_TIME = 3f;
@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
 
     private void slide()
     {
-        if (_collider != null)
+        if (!isSliding && _collider != null)
         {
             _body.AddForce(Vector3.down * 10, ForceMode.VelocityChange);
             _collider.size = new Vector3(_collider.size.x, _collider.size.y / 2, _collider.size.z);
