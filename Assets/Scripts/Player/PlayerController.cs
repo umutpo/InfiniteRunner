@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
     public float gameOverSpeed = 2f;
     private int currentLane = 2;
     private float obstacleSpeedGainRemainder = 0f;
-    private float dishSpeedGainRemainder = 0f;
     private bool inMovement = false;
     private bool isSliding = false;
     private bool gameOverState = false;
@@ -259,12 +258,8 @@ public class PlayerController : MonoBehaviour
 
     private void boostSpeedFromCreatingDish()
     {
-        if (dishSpeedGainRemainder > 0)
-        {
-            currentSpeed += dishSpeedGainRemainder;
-            StartCoroutine(boostSpeed(DISH_SPEED_BOOST));
-            dishSpeedGainRemainder = 0;
-        }
+        currentSpeed = calculateExtraWeightSpeedDecreaseRatio() * maxSpeed;
+        StartCoroutine(boostSpeed(DISH_SPEED_BOOST));
     }
 
     private void gainPermanentSpeed()
@@ -317,7 +312,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            speedReduction = reduction;
+            speedReduction = (maxSpeed / reduction);
         }
     }
 
@@ -341,7 +336,6 @@ public class PlayerController : MonoBehaviour
         addToExtraWeight(1);
         int usedIngredientCount = playerInventoryData.AddIngredient(ingredient, inventoryImage);
         if (usedIngredientCount > 0) {
-            dishSpeedGainRemainder += usedIngredientCount * INGREDIENT_SPEED_GAIN;
             reduceExtraWeight(usedIngredientCount);
         }
     }

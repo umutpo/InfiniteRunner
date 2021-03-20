@@ -5,6 +5,7 @@ public class IngredientController : ItemController
 {
     [SerializeField]
     public string ingredient;
+    private float speedReduction = 7f;  // ratio of speed reduced
     [SerializeField]
     private Sprite inventoryImage;
     protected override void OnTriggerEnter(Collider other)
@@ -12,7 +13,7 @@ public class IngredientController : ItemController
         if (other.gameObject.tag == "Player")
         {
             playerScript.AddToInventory(ingredient, inventoryImage);
-            playerScript.SlowDown(PlayerController.INGREDIENT_SPEED_GAIN, false);
+            playerScript.SlowDown(speedReduction, false);
             Remove();
         }
     }
