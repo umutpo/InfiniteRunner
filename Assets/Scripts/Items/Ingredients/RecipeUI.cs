@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class RecipeUI : MonoBehaviour
 {
     private PlayerInventoryData playerInventoryData;
+    
     private int priority;
 
     void OnEnable()
@@ -18,13 +19,22 @@ public class RecipeUI : MonoBehaviour
     {
         PlayerInventoryData.UpdateRecipeUIEvent -= ChangeRecipeDisplayed;
     }
+
     private void Start() {
         GameObject player = GameObject.Find("Inventory");
         if (player != null)
+        {
             playerInventoryData = player.GetComponent<PlayerInventoryData>();
-        else Debug.LogError("Cannot find inventory object named \' Inventory \' in the scene. Please change RecipeUI.cs if the inventory object was renamed.");
+        }
+        else 
+        { 
+            Debug.LogError("Cannot find inventory object named \' Inventory \' in the scene. Please change RecipeUI.cs if the inventory object was renamed."); 
+        }
+
         if (playerInventoryData == null)
+        {
             Debug.LogError("Cannot find \' PlayerInventoryData \' script on the \' Inventory \' object in the scene. Please change RecipeUI.cs if the inventory object was renamed, or reattach/rename \' PlayerInventoryData \'.");
+        }
     }
 
     public void SetPriority(int setPriority) {
@@ -48,9 +58,13 @@ public class RecipeUI : MonoBehaviour
         foreach (Transform child in dishImageForeground.transform) {
             IngredientController currentIngredient = recipeToBeDisplayed.ingredients[ingredientIterator];
             if (recipeProgressList[priority][currentIngredient.ingredient] != 0)
+            {
                 child.GetChild(0).GetComponent<Image>().sprite = currentIngredient.GetIngredientImage();
+            }
             else
+            {
                 child.GetChild(0).GetComponent<Image>().sprite = null;
+            }
             ingredientIterator++;
         }
     }
@@ -63,16 +77,25 @@ public class RecipeUI : MonoBehaviour
         foreach (KeyValuePair<string, int> ingredientAmount in recipe1)
         {
             if (ingredientAmount.Value == 0)
+            {
                 missingIngredientCnt1++;
+            }
         }
         foreach (KeyValuePair<string, int> ingredientAmount in recipe2)
         {
             if (ingredientAmount.Value == 0)
+            {
                 missingIngredientCnt2++;
+            }
         }
+
         if (missingIngredientCnt1 == missingIngredientCnt2)
+        {
             return 1;
+        }
         else
+        {
             return missingIngredientCnt1 - missingIngredientCnt2;
+        }
     }
 }

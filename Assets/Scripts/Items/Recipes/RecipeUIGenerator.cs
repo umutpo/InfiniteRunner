@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class RecipeUIGenerator : MonoBehaviour
 {
-    [SerializeField] private int visibleRecipeCnt;
-    [SerializeField] private GameObject recipeUITemplate;
-    // Start is called before the first frame update
+    [SerializeField] 
+    private int visibleRecipeCnt;
+    [SerializeField] 
+    private GameObject recipeUITemplate;
+    
     void Start()
     {
         for (int i = 0; i < visibleRecipeCnt; i++) {

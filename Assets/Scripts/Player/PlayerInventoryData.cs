@@ -50,10 +50,12 @@ public class PlayerInventoryData : MonoBehaviour
         {
             return checkRecipes();
         }
+
         if (UpdateRecipeUIEvent != null) 
         {
             UpdateRecipeUIEvent.Invoke();
         }
+
         return 0;
     }
     
@@ -111,8 +113,11 @@ public class PlayerInventoryData : MonoBehaviour
         {
             RemoveIngredient(ingredient);
         }
+
         if (UpdateRecipeUIEvent != null)
+        {
             UpdateRecipeUIEvent.Invoke();
+        }
     }
 
     private void playCompletedRecipeAnimation(string animationName)
