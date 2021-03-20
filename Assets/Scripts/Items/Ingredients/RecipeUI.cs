@@ -6,50 +6,96 @@ using UnityEngine.UI;
 // attach on an object representing an ingredient on the UI with a text component whose value is the current count of the ingredient in inventory
 public class RecipeUI : MonoBehaviour
 {
-    [SerializeField] private string ingredientType;
-    [SerializeField] private GameObject inventoryItemCountPrefab;
-    [SerializeField] private GameObject inventoryImagePrefab;
-    private GameObject inventoryItemCount;
-    private GameObject inventoryImage;
+    private PlayerInventoryData playerInventoryData;
+    
+    private int priority;
+
     void OnEnable()
     {
-        PlayerInventoryData.AddIngredientEvent += AddIngredient;
-        PlayerInventoryData.RemoveIngredientEvent += RemoveIngredient;
+        PlayerInventoryData.UpdateRecipeUIEvent += ChangeRecipeDisplayed;
     }
 
     void OnDisable()
     {
-        PlayerInventoryData.AddIngredientEvent -= AddIngredient;
-        PlayerInventoryData.RemoveIngredientEvent -= RemoveIngredient;
+        PlayerInventoryData.UpdateRecipeUIEvent -= ChangeRecipeDisplayed;
     }
-    void Start() {
-        inventoryItemCount = Instantiate(inventoryItemCountPrefab, Vector3.zero, Quaternion.identity);
-        inventoryItemCount.transform.SetParent(gameObject.transform, false);
-        inventoryImage = Instantiate(inventoryImagePrefab, Vector3.zero, Quaternion.identity);
-        inventoryImage.transform.SetParent(gameObject.transform, false);
-    }
-    void AddIngredient(string ing, int count, Sprite curInventoryImage)
-    {
-        if (ingredientType.Equals(ing))
+
+    private void Start() {
+        GameObject player = GameObject.Find("Inventory");
+        if (player != null)
         {
-            UpdateCount(count);
-            if (count >= 1)
-                inventoryImage.GetComponent<Image>().sprite = curInventoryImage;
+            playerInventoryData = player.GetComponent<PlayerInventoryData>();
+        }
+        else 
+        { 
+            Debug.LogError("Cannot find inventory object named \' Inventory \' in the scene. Please change RecipeUI.cs if the inventory object was renamed."); 
+        }
+
+        if (playerInventoryData == null)
+        {
+            Debug.LogError("Cannot find \' PlayerInventoryData \' script on the \' Inventory \' object in the scene. Please change RecipeUI.cs if the inventory object was renamed, or reattach/rename \' PlayerInventoryData \'.");
         }
     }
 
-    void RemoveIngredient(string ing, int count)
-    {
-        if (ingredientType.Equals(ing))
+    public void SetPriority(int setPriority) {
+        priority = setPriority;
+    }
+
+    void ChangeRecipeDisplayed() {
+        List <RecipeController> recipes = playerInventoryData.GetRecipes();
+        List <Dictionary <string, int> > recipeProgressList = new List <Dictionary <string, int> >(playerInventoryData.GetRecipeProgress());
+        Dictionary<Dictionary <string, int>, RecipeController> dInverse = new Dictionary<Dictionary <string, int>, RecipeController>();
+        for (int i = 0; i < recipeProgressList.Count; i++) 
         {
-            UpdateCount(count);
-            if (count == 0)
-                inventoryImage.GetComponent<Image>().sprite = null;
+            dInverse[recipeProgressList[i]] = recipes[i];
+        }
+        recipeProgressList.Sort(closestToFinishFirst);
+        RecipeController recipeToBeDisplayed = dInverse[recipeProgressList[priority]];
+        GameObject dishImageForeground = gameObject.transform.GetChild(0).gameObject;
+        dishImageForeground.GetComponent<Image>().sprite = recipeToBeDisplayed.GetRecipeImage();
+
+        int ingredientIterator = 0;
+        foreach (Transform child in dishImageForeground.transform) {
+            IngredientController currentIngredient = recipeToBeDisplayed.ingredients[ingredientIterator];
+            if (recipeProgressList[priority][currentIngredient.ingredient] != 0)
+            {
+                child.GetChild(0).GetComponent<Image>().sprite = currentIngredient.GetIngredientImage();
+            }
+            else
+            {
+                child.GetChild(0).GetComponent<Image>().sprite = null;
+            }
+            ingredientIterator++;
         }
     }
 
-    void UpdateCount(int count)
+    // recipe priority comparison rule; whichever needs the least number of ingredients to complete gets placed foremost
+    private int closestToFinishFirst(Dictionary<string, int> recipe1, Dictionary<string, int> recipe2)
     {
-        inventoryItemCount.GetComponent<Text>().text = count.ToString();
+        int missingIngredientCnt1 = 0;
+        int missingIngredientCnt2 = 0;
+        foreach (KeyValuePair<string, int> ingredientAmount in recipe1)
+        {
+            if (ingredientAmount.Value == 0)
+            {
+                missingIngredientCnt1++;
+            }
+        }
+        foreach (KeyValuePair<string, int> ingredientAmount in recipe2)
+        {
+            if (ingredientAmount.Value == 0)
+            {
+                missingIngredientCnt2++;
+            }
+        }
+
+        if (missingIngredientCnt1 == missingIngredientCnt2)
+        {
+            return 1;
+        }
+        else
+        {
+            return missingIngredientCnt1 - missingIngredientCnt2;
+        }
     }
 }

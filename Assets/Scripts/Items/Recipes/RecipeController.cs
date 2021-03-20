@@ -22,6 +22,11 @@ public class RecipeController : MonoBehaviour
         return ingredients.ConvertAll<string>(getIngredientName);
     }
 
+    public Sprite GetRecipeImage() 
+    {
+        return inventoryImage;
+    }
+
     private string getIngredientName(IngredientController ingredientController)
     {
         return ingredientController.ingredient;
