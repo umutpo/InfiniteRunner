@@ -8,7 +8,8 @@ public class ScoreDisplay : MonoBehaviour
     private enum SceneType
     {
         Score,
-        HighestScore
+        HighestScore,
+        MainMenuHighestScore
     };
 
     [SerializeField] private SceneType destinationScene;
@@ -19,9 +20,13 @@ public class ScoreDisplay : MonoBehaviour
         if (destinationScene.ToString() == "Score") {
             score.text = "Score: " + ScoreController.currentScore;
         }
-        else
+        else if (destinationScene.ToString() == "HighestScore") 
         {
             score.text = "Highest Score: " + ScoreController.highestScore;
+        }
+        else
+        {
+            score.text = ScoreController.highestScore.ToString();
         }
     }
 }
