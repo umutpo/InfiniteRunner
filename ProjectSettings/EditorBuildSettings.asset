@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOverScene.unity
     guid: 7cf4c26402f7b42e996b1b3f03fad7fc
   - enabled: 1
-    path: Assets/Scenes/HighScoreScene.unity
-    guid: 0cb97b9121bab47b5aeadb8aa2d1c809
+    path: Assets/Scenes/CreditsScene.unity
+    guid: 6c43e7298a44f45df9ba6befe7b7b326
+  - enabled: 1
+    path: Assets/Scenes/RecipeScene.unity
+    guid: 947f5d7c0c9dc453e9e0034e6bce77e1
   m_configObjects: {}

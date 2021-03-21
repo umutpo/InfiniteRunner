@@ -12,7 +12,8 @@ public class SceneSwitcher : MonoBehaviour
         MainMenu,
         Settings,
         GameplayScene,
-        HighScoreScene
+        CreditsScene,
+        RecipeScene
     };
 
     [SerializeField] private SceneType destinationScene;
