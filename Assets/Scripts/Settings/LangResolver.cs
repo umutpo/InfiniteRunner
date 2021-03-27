@@ -6,11 +6,25 @@ using UnityEngine.UI;
 
 public class LangResolver : MonoBehaviour
 {
+    private class LangData
+    {
+        public readonly Dictionary<string, string> Lang;
+
+        public LangData(Dictionary<string, string> lang)
+        {
+            Lang = lang;
+        }
+    }
+
     static LangResolver instance = null;
+
     private const char Separator = '=';
+    private const string DEFAULT_LANGUAGE = "English";
+
     private readonly Dictionary<string, LangData> _langData = new Dictionary<string, LangData>();
     private readonly List<string> _supportedLanguages = new List<string>();
     private string _language;
+
     private void Awake()
     {
         if (instance != null)
@@ -25,8 +39,9 @@ public class LangResolver : MonoBehaviour
             ReadProperties();
         }
     }
+
     private void ReadProperties()
-   {
+    {
       foreach (var file in Resources.LoadAll<TextAsset>("LangFiles"))
       {
          string language = file.name;
@@ -40,15 +55,17 @@ public class LangResolver : MonoBehaviour
          _supportedLanguages.Add(language);
       }
       ResolveLanguage();
-   }
+    }
+
    private void ResolveLanguage()
    {
       _language = PrefsHolder.GetLang();
       if (!_supportedLanguages.Contains(_language))
       {
-         _language = "English";
+         _language = DEFAULT_LANGUAGE;
       }
    }
+
     public void ResolveTexts()
     {
         var lang = _langData[_language].Lang;
@@ -57,19 +74,11 @@ public class LangResolver : MonoBehaviour
             langText.ChangeText(lang[langText.GetTextIdentifier()]);
         }
     }
+
     public void ChangeLanguage(string targetLanguage)
     {
         _language = targetLanguage;
         ResolveTexts();
         PrefsHolder.SaveLang(_language);
-    }
-    private class LangData
-    {
-        public readonly Dictionary<string, string> Lang;
-    
-        public LangData(Dictionary<string, string> lang)
-        {
-            Lang = lang;
-        }
     }
 }

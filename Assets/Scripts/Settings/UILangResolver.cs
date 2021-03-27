@@ -39,10 +39,12 @@ public class UILangResolver : MonoBehaviour
             d.value = d.options.FindIndex(option => option.text == PrefsHolder.GetLang());
         }
     }
+
     void Start()
     {
         _langResolver = FindObjectOfType<LangResolver>();
     }
+
     public void ChangeLanguage(Dropdown d)
     {
         _langResolver.ChangeLanguage(d.options[d.value].text);

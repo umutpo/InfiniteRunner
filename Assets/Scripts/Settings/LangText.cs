@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class LangText : MonoBehaviour
 {
-    [SerializeField] private string textIdentifier;
+    [SerializeField] 
+    private string textIdentifier;
+
     public string GetTextIdentifier() {
         return textIdentifier;
     }
