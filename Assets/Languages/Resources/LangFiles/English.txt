@@ -1,0 +1,6 @@
+Welcome=Welcome!
+Setting=Settings
+Volume=Volume
+Music=Music
+Language=Language
+Accessibility=Accessibility (Color Blind)

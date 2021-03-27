@@ -1,0 +1,6 @@
+Welcome=ようこそ！
+Setting=設定
+Volume=サウンドエフェクト
+Music=音楽
+Language=言語
+Accessibility=アクセシビリティ
