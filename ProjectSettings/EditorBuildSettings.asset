@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RecipeScene.unity
     guid: 947f5d7c0c9dc453e9e0034e6bce77e1
+  - enabled: 1
+    path: Assets/Scenes/TutorialScene.unity
+    guid: eb619a89ef55e4d9fa7d88f60e3823b3
   m_configObjects: {}

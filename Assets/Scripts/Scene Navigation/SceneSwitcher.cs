@@ -7,19 +7,47 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Button))]
 public class SceneSwitcher : MonoBehaviour
 {
-    // When new scenes are added, add their name to the enum list below verbatim
+    private const string FIRST_TIME_PLAYING_KEY = "FirstTimePlaying";
+
     private enum SceneType {
         MainMenu,
         Settings,
         GameplayScene,
         CreditsScene,
+        TutorialScene,
         RecipeScene
     };
 
-    [SerializeField] private SceneType destinationScene;
+    [SerializeField] 
+    private SceneType destinationScene;
 
    public void Start() {
        Button thisButton = GetComponent<Button>();
-       thisButton.onClick.AddListener(() => SceneManager.LoadScene(destinationScene.ToString()));
+       thisButton.onClick.AddListener(() => {
+           loadScene();
+       });
+    }
+
+    private void loadScene()
+    {
+        if (destinationScene.ToString() == "GameplayScene" && isFirstTimePlaying())
+        {
+            SceneManager.LoadScene("TutorialScene");
+        }
+        else
+        {
+            SceneManager.LoadScene(destinationScene.ToString());
+        }
+    }
+
+    private bool isFirstTimePlaying()
+    {
+        bool isFirstTime = !PlayerPrefs.HasKey(FIRST_TIME_PLAYING_KEY);
+        if (isFirstTime)
+        {
+            PlayerPrefs.SetInt(FIRST_TIME_PLAYING_KEY, 1);
+        }
+
+        return isFirstTime;
     }
 }
