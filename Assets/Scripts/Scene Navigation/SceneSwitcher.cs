@@ -13,6 +13,7 @@ public class SceneSwitcher : MonoBehaviour
         Settings,
         GameplayScene,
         CreditsScene,
+        TutorialScene,
         RecipeScene
     };
 
@@ -20,6 +21,40 @@ public class SceneSwitcher : MonoBehaviour
 
    public void Start() {
        Button thisButton = GetComponent<Button>();
-       thisButton.onClick.AddListener(() => SceneManager.LoadScene(destinationScene.ToString()));
+       thisButton.onClick.AddListener(() => {
+           loadScene();
+       });
+    }
+
+
+    private void loadScene()
+    {
+        if (destinationScene.ToString() == "GameplayScene")
+        {
+            if (isFirstTimePlaying())
+            {
+                SceneManager.LoadScene("TutorialScene");
+            }
+            else
+            {
+                SceneManager.LoadScene(destinationScene.ToString());
+            }
+        }
+        else
+        {
+            SceneManager.LoadScene(destinationScene.ToString());
+        }
+    }
+    private bool isFirstTimePlaying()
+    {
+        if (!PlayerPrefs.HasKey("FirstTimePlaying"))
+        {
+            PlayerPrefs.SetInt("FirstTimePlaying", 1);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
