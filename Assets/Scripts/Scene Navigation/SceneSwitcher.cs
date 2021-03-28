@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Button))]
 public class SceneSwitcher : MonoBehaviour
 {
-    // When new scenes are added, add their name to the enum list below verbatim
+    private const string FIRST_TIME_PLAYING_KEY = "FirstTimePlaying";
+
     private enum SceneType {
         MainMenu,
         Settings,
@@ -17,7 +18,8 @@ public class SceneSwitcher : MonoBehaviour
         RecipeScene
     };
 
-    [SerializeField] private SceneType destinationScene;
+    [SerializeField] 
+    private SceneType destinationScene;
 
    public void Start() {
        Button thisButton = GetComponent<Button>();
@@ -26,35 +28,26 @@ public class SceneSwitcher : MonoBehaviour
        });
     }
 
-
     private void loadScene()
     {
-        if (destinationScene.ToString() == "GameplayScene")
+        if (destinationScene.ToString() == "GameplayScene" && isFirstTimePlaying())
         {
-            if (isFirstTimePlaying())
-            {
-                SceneManager.LoadScene("TutorialScene");
-            }
-            else
-            {
-                SceneManager.LoadScene(destinationScene.ToString());
-            }
+            SceneManager.LoadScene("TutorialScene");
         }
         else
         {
             SceneManager.LoadScene(destinationScene.ToString());
         }
     }
+
     private bool isFirstTimePlaying()
     {
-        if (!PlayerPrefs.HasKey("FirstTimePlaying"))
+        bool isFirstTime = !PlayerPrefs.HasKey(FIRST_TIME_PLAYING_KEY);
+        if (isFirstTime)
         {
-            PlayerPrefs.SetInt("FirstTimePlaying", 1);
-            return true;
+            PlayerPrefs.SetInt(FIRST_TIME_PLAYING_KEY, 1);
         }
-        else
-        {
-            return false;
-        }
+
+        return isFirstTime;
     }
 }
