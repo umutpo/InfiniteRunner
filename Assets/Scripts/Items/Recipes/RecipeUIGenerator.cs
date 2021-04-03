@@ -8,13 +8,23 @@ public class RecipeUIGenerator : MonoBehaviour
     private int visibleRecipeCnt;
     [SerializeField] 
     private GameObject recipeUITemplate;
-    
+    [SerializeField] 
+    private GameObject stackedRecipeUITemplate;
     void Start()
     {
+        GameObject inventory = GameObject.Find("Inventory");
+        if (inventory == null)
+            Debug.LogError("Inventory object does not exist! Make sure to add an object named inventory with the PlayerInventoryData component attached.");
+        int recipeNumber = inventory.GetComponent<PlayerInventoryData>().GetRecipeNumber();
         for (int i = 0; i < visibleRecipeCnt; i++) {
             GameObject g = Instantiate(recipeUITemplate, Vector3.zero, Quaternion.identity);
             g.transform.SetParent(this.gameObject.transform, false);
             g.GetComponent<RecipeUI>().SetPriority(i);
+        }
+        for (int i = 0; i < recipeNumber - visibleRecipeCnt; i++) {
+            GameObject g = Instantiate(stackedRecipeUITemplate, Vector3.zero, Quaternion.identity);
+            g.transform.SetParent(this.gameObject.transform, false);
+            g.GetComponent<StackedRecipeUI>().SetPriority(i + visibleRecipeCnt);
         }
     }
 }

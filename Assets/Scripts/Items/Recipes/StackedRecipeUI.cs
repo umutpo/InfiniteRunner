@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// attach on an object representing an ingredient on the UI with a text component whose value is the current count of the ingredient in inventory
-public class RecipeUI : MonoBehaviour
+// attach on an object representing a recipe on the UI with dish hidden
+public class StackedRecipeUI : MonoBehaviour
 {
-    private PlayerInventoryData playerInventoryData;
+    protected PlayerInventoryData playerInventoryData;
     
-    private int priority;
+    protected int priority;
 
     void OnEnable()
     {
@@ -41,19 +41,11 @@ public class RecipeUI : MonoBehaviour
         priority = setPriority;
     }
 
-    void ChangeRecipeDisplayed() {
-        List <RecipeController> recipes = playerInventoryData.GetRecipes();
-        List <Dictionary <string, int> > recipeProgressList = new List <Dictionary <string, int> >(playerInventoryData.GetRecipeProgress());
-        Dictionary<Dictionary <string, int>, RecipeController> dInverse = new Dictionary<Dictionary <string, int>, RecipeController>();
-        for (int i = 0; i < recipeProgressList.Count; i++) 
-        {
-            dInverse[recipeProgressList[i]] = recipes[i];
-        }
+    protected void ChangeRecipeDisplayed() {
+        List <Dictionary <string, int> > recipeProgressList = new List <Dictionary <string, int> >(playerInventoryData.GetRecipeProgress());  
+        RecipeController recipeToBeDisplayed = GetRecipeToDisplay();
         recipeProgressList.Sort(closestToFinishFirst);
-        RecipeController recipeToBeDisplayed = dInverse[recipeProgressList[priority]];
         GameObject dishImageForeground = gameObject.transform.GetChild(0).gameObject;
-        dishImageForeground.GetComponent<Image>().sprite = recipeToBeDisplayed.GetRecipeImage();
-
         int ingredientIterator = 0;
         foreach (Transform child in dishImageForeground.transform) {
             IngredientController currentIngredient = recipeToBeDisplayed.ingredients[ingredientIterator];
@@ -67,6 +59,17 @@ public class RecipeUI : MonoBehaviour
             }
             ingredientIterator++;
         }
+    }
+    protected RecipeController GetRecipeToDisplay() {
+        List <RecipeController> recipes = playerInventoryData.GetRecipes();
+        List <Dictionary <string, int> > recipeProgressList = new List <Dictionary <string, int> >(playerInventoryData.GetRecipeProgress());
+        Dictionary<Dictionary <string, int>, RecipeController> dInverse = new Dictionary<Dictionary <string, int>, RecipeController>();
+        for (int i = 0; i < recipeProgressList.Count; i++) 
+        {
+            dInverse[recipeProgressList[i]] = recipes[i];
+        }
+        recipeProgressList.Sort(closestToFinishFirst);
+        return dInverse[recipeProgressList[priority]];
     }
 
     // recipe priority comparison rule; whichever needs the least number of ingredients to complete gets placed foremost

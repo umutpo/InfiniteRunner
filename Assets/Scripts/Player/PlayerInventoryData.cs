@@ -176,4 +176,9 @@ public class PlayerInventoryData : MonoBehaviour
     {
         return recipes;
     }
+
+    public int GetRecipeNumber()
+    {
+        return recipes.Count;
+    }
 }

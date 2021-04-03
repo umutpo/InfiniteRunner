@@ -729,7 +729,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 433831068}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1064,17 +1065,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433831067}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.125, y: 1.125, z: 1.125}
   m_Children:
   - {fileID: 601321444}
-  m_Father: {fileID: 1518029623}
-  m_RootOrder: 1
+  m_Father: {fileID: 85352358}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60, y: -30}
+  m_AnchoredPosition: {x: 67.5, y: 1046.25}
   m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &433831069
@@ -2316,7 +2317,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 264273163}
-  - {fileID: 433831068}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2958,6 +2958,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 240287780845785748, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: m_Spacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125750658604256096, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125750658604256096, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363781799562673181, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: visibleRecipeCnt
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363781799562673181, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: stackedRecipeUITemplate
+      value: 
+      objectReference: {fileID: 5472624509437284874, guid: 0f6332dcdde6aa94e905c1789024689e,
+        type: 3}
     - target: {fileID: 5274801051097399206, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
         type: 3}
       propertyPath: m_LocalPosition.z
