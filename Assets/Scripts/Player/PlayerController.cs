@@ -335,10 +335,10 @@ public class PlayerController : MonoBehaviour
         return (MAX_INVENTORY_INGREDIENT_WEIGHT - extraWeight) / MAX_INVENTORY_INGREDIENT_WEIGHT;
     }
 
-    public void AddToInventory(string ingredient, Sprite inventoryImage)
+    public void AddToInventory(string ingredient)
     {
         addToExtraWeight(1);
-        int usedIngredientCount = playerInventoryData.AddIngredient(ingredient, inventoryImage);
+        int usedIngredientCount = playerInventoryData.AddIngredient(ingredient);
         if (usedIngredientCount > 0) {
             setBoost = true;
             reduceExtraWeight(usedIngredientCount);

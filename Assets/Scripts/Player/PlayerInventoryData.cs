@@ -28,10 +28,14 @@ public class PlayerInventoryData : MonoBehaviour
             recipeList.Add(curDict);
         }
         recipeDisplayAnim = recipeDisplay.GetComponent<Animator>();
+        if (UpdateRecipeUIEvent != null) 
+        {
+            UpdateRecipeUIEvent.Invoke();
+        }
     }
 
     // Returns number of ingredients used up if dish is created
-    public int AddIngredient(string ingredient, Sprite inventoryImage)
+    public int AddIngredient(string ingredient)
     {
         bool shouldCheckRecipes = false;
         int obtainedIngredientCount = 1;

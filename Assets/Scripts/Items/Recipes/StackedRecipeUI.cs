@@ -46,16 +46,17 @@ public class StackedRecipeUI : MonoBehaviour
         RecipeController recipeToBeDisplayed = GetRecipeToDisplay();
         recipeProgressList.Sort(closestToFinishFirst);
         GameObject dishImageForeground = gameObject.transform.GetChild(0).gameObject;
+        dishImageForeground.GetComponent<Image>().sprite = recipeToBeDisplayed.GetRecipeImage();
         int ingredientIterator = 0;
         foreach (Transform child in dishImageForeground.transform) {
             IngredientController currentIngredient = recipeToBeDisplayed.ingredients[ingredientIterator];
             if (recipeProgressList[priority][currentIngredient.ingredient] != 0)
             {
-                child.GetChild(0).GetComponent<Image>().sprite = currentIngredient.GetIngredientImage();
+                child.GetChild(0).GetComponent<Image>().sprite = currentIngredient.GetIngredientImageColored();
             }
             else
             {
-                child.GetChild(0).GetComponent<Image>().sprite = null;
+                child.GetChild(0).GetComponent<Image>().sprite = currentIngredient.GetIngredientImageGreyed();
             }
             ingredientIterator++;
         }
