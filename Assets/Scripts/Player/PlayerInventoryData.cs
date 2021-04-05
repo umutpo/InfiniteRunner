@@ -28,6 +28,7 @@ public class PlayerInventoryData : MonoBehaviour
             recipeList.Add(curDict);
         }
         recipeDisplayAnim = recipeDisplay.GetComponent<Animator>();
+
         if (UpdateRecipeUIEvent != null) 
         {
             UpdateRecipeUIEvent.Invoke();

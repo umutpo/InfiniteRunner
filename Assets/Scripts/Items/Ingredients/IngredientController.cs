@@ -5,11 +5,15 @@ public class IngredientController : ItemController
 {
     [SerializeField]
     public string ingredient;
+
     private float speedReduction = 7f;  // ratio of speed reduced
+
     [SerializeField]
     private Sprite inventoryImageColored;
+
     [SerializeField]
     private Sprite inventoryImageGreyed = null;
+
     protected override void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -19,10 +23,12 @@ public class IngredientController : ItemController
             Remove();
         }
     }
+
     public Sprite GetIngredientImageColored() 
     {
         return inventoryImageColored;
     }
+
     public Sprite GetIngredientImageGreyed() 
     {
         return inventoryImageGreyed;
