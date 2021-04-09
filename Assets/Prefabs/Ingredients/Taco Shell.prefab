@@ -110,4 +110,5 @@ MonoBehaviour:
   ingredient: Taco Shell
   inventoryImageColored: {fileID: 21300000, guid: b1a527a66ce2bda468e67981bbe7bd0e,
     type: 3}
-  inventoryImageGreyed: {fileID: 0}
+  inventoryImageGreyed: {fileID: 21300000, guid: 86005ca6eef7f3942a7b15e449923bbb,
+    type: 3}

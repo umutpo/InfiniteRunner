@@ -110,4 +110,5 @@ MonoBehaviour:
   ingredient: Cheese
   inventoryImageColored: {fileID: 21300000, guid: c956acd0995dfab4fa725e53c30b0a84,
     type: 3}
-  inventoryImageGreyed: {fileID: 0}
+  inventoryImageGreyed: {fileID: 21300000, guid: cc7fbe94b7d5e0a46aba17f82b6481c8,
+    type: 3}

@@ -110,4 +110,5 @@ MonoBehaviour:
   ingredient: Flour
   inventoryImageColored: {fileID: 21300000, guid: df47f53f4f4d82f4dbe45726ea595fab,
     type: 3}
-  inventoryImageGreyed: {fileID: 0}
+  inventoryImageGreyed: {fileID: 21300000, guid: a723318e082edb644a0cdf54afe3498b,
+    type: 3}

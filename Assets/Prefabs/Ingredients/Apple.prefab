@@ -110,4 +110,5 @@ MonoBehaviour:
   ingredient: Apple
   inventoryImageColored: {fileID: 21300000, guid: ba294b6692a2a964f8d2fe2e30889dbd,
     type: 3}
-  inventoryImageGreyed: {fileID: 0}
+  inventoryImageGreyed: {fileID: 21300000, guid: 03cdfd02a27d03342acbb5459b11f8c0,
+    type: 3}

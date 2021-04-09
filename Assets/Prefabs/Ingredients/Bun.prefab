@@ -110,4 +110,5 @@ MonoBehaviour:
   ingredient: Bun
   inventoryImageColored: {fileID: 21300000, guid: 7b44160d8c5a99a4ab1262a8fd92b03f,
     type: 3}
-  inventoryImageGreyed: {fileID: 0}
+  inventoryImageGreyed: {fileID: 21300000, guid: ad4de1884c4c4a3418bdddfd541903c4,
+    type: 3}

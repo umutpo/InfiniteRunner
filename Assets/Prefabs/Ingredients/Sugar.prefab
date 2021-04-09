@@ -110,4 +110,5 @@ MonoBehaviour:
   ingredient: Sugar
   inventoryImageColored: {fileID: 21300000, guid: 8decb36964403654a989e6b996467cf4,
     type: 3}
-  inventoryImageGreyed: {fileID: 0}
+  inventoryImageGreyed: {fileID: 21300000, guid: 35a9c4baf30de124ab11c07750e7c0ed,
+    type: 3}

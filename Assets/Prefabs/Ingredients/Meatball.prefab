@@ -110,4 +110,5 @@ MonoBehaviour:
   ingredient: Meatball
   inventoryImageColored: {fileID: 21300000, guid: ddce5560b8eb9234d974471fd0c22c81,
     type: 3}
-  inventoryImageGreyed: {fileID: 0}
+  inventoryImageGreyed: {fileID: 21300000, guid: 89451f2d98ac173478f0719d4c5e5620,
+    type: 3}

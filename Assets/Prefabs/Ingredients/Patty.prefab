@@ -110,4 +110,5 @@ MonoBehaviour:
   ingredient: Patty
   inventoryImageColored: {fileID: 21300000, guid: 0c66fb345952c9c4ba8065fcfc388698,
     type: 3}
-  inventoryImageGreyed: {fileID: 0}
+  inventoryImageGreyed: {fileID: 21300000, guid: 882a4ce65baa7504c96af552a4266c46,
+    type: 3}

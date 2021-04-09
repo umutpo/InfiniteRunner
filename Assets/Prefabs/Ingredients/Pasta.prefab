@@ -111,4 +111,5 @@ MonoBehaviour:
   ingredient: Pasta
   inventoryImageColored: {fileID: 21300000, guid: 671241162fb1471448dd561c3d436ff3,
     type: 3}
-  inventoryImageGreyed: {fileID: 0}
+  inventoryImageGreyed: {fileID: 21300000, guid: 3dd9037b7158e2945abded0bd3aa44bc,
+    type: 3}

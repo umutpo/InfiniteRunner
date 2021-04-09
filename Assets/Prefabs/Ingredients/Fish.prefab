@@ -110,4 +110,5 @@ MonoBehaviour:
   ingredient: Fish
   inventoryImageColored: {fileID: 21300000, guid: 78053ad995226b94597770ec807e2eeb,
     type: 3}
-  inventoryImageGreyed: {fileID: 0}
+  inventoryImageGreyed: {fileID: 21300000, guid: d6ccb3072e8c69a4e93b405d2e8352c5,
+    type: 3}

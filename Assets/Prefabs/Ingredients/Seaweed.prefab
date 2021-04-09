@@ -110,4 +110,5 @@ MonoBehaviour:
   ingredient: Seaweed
   inventoryImageColored: {fileID: 21300000, guid: cc4bc5e91aafeba4aa4f43a662d326c3,
     type: 3}
-  inventoryImageGreyed: {fileID: 0}
+  inventoryImageGreyed: {fileID: 21300000, guid: 802cc1dc12f0ee84a8a79d019d929443,
+    type: 3}

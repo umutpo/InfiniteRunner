@@ -110,4 +110,5 @@ MonoBehaviour:
   ingredient: Lettuce
   inventoryImageColored: {fileID: 21300000, guid: 8327852f270c0bd43bb1a8b40bbcf7d4,
     type: 3}
-  inventoryImageGreyed: {fileID: 0}
+  inventoryImageGreyed: {fileID: 21300000, guid: d714f4a292243d34d895b5ebaddbc25d,
+    type: 3}
