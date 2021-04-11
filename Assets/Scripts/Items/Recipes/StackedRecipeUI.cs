@@ -20,7 +20,7 @@ public class StackedRecipeUI : MonoBehaviour
         PlayerInventoryData.UpdateRecipeUIEvent -= ChangeRecipeDisplayed;
     }
 
-    private void Start() {
+    private void Awake() {
         GameObject player = GameObject.Find("Inventory");
         if (player != null)
         {

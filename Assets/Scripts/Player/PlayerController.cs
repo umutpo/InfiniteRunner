@@ -71,6 +71,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float invincibilityDuration = 1f;
 
+    // Animation Variables
+    private Animator anim;
+
     void Start()
     {
         maxSpeed = INITIAL_SPEED;
@@ -87,6 +90,8 @@ public class PlayerController : MonoBehaviour
 
         inventory = GameObject.Find("Inventory");
         playerInventoryData = inventory.GetComponent<PlayerInventoryData>();
+
+        anim = gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -178,6 +183,8 @@ public class PlayerController : MonoBehaviour
             Physics.gravity = Vector3.up * -1 * ((2 * MAX_JUMP_HEIGHT) / Mathf.Pow((time / 2), 2));
             float verticalJumpSpeed = Physics.gravity.y * -1 * (time / 2);
             _body.AddForce(Vector3.up * verticalJumpSpeed, ForceMode.VelocityChange);
+            if (anim != null)
+                anim.SetTrigger("Jump");
         }
     }
 
@@ -189,6 +196,8 @@ public class PlayerController : MonoBehaviour
             _collider.size = new Vector3(_collider.size.x, _collider.size.y / 2, _collider.size.z);
             _collider.center = new Vector3(_collider.center.x, -1 * (_collider.size.y / 2), _collider.center.z);
             isSliding = true;
+            if (anim != null)
+                anim.SetTrigger("Slide");
         }
     }
 
@@ -199,6 +208,8 @@ public class PlayerController : MonoBehaviour
             inMovement = true;
             shift = new Vector3(-LANE_LENGTH / (NUMBER_OF_LANES + 1), 0, 0);
             currentLane--;
+            if (anim != null)
+                anim.SetTrigger("MoveLeft");
         }
     }
 
@@ -209,6 +220,8 @@ public class PlayerController : MonoBehaviour
             inMovement = true;
             shift = new Vector3(LANE_LENGTH / (NUMBER_OF_LANES + 1), 0, 0);
             currentLane++;
+            if (anim != null)
+                anim.SetTrigger("MoveRight");
         }
     }
 
