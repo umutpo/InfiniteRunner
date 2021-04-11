@@ -121,8 +121,6 @@ public class PlayerController : MonoBehaviour
 
         updateSpeed();
         moveBody();
-        // update camera position
-        gameObject.transform.position = _body.position;
     }
 
     private void updateSpeed()
@@ -185,7 +183,8 @@ public class PlayerController : MonoBehaviour
             Physics.gravity = Vector3.up * -1 * ((2 * MAX_JUMP_HEIGHT) / Mathf.Pow((time / 2), 2));
             float verticalJumpSpeed = Physics.gravity.y * -1 * (time / 2);
             _body.AddForce(Vector3.up * verticalJumpSpeed, ForceMode.VelocityChange);
-            anim.SetTrigger("Jump");
+            if (anim != null)
+                anim.SetTrigger("Jump");
         }
     }
 
@@ -197,7 +196,8 @@ public class PlayerController : MonoBehaviour
             _collider.size = new Vector3(_collider.size.x, _collider.size.y / 2, _collider.size.z);
             _collider.center = new Vector3(_collider.center.x, -1 * (_collider.size.y / 2), _collider.center.z);
             isSliding = true;
-            anim.SetTrigger("Slide");
+            if (anim != null)
+                anim.SetTrigger("Slide");
         }
     }
 
@@ -208,7 +208,8 @@ public class PlayerController : MonoBehaviour
             inMovement = true;
             shift = new Vector3(-LANE_LENGTH / (NUMBER_OF_LANES + 1), 0, 0);
             currentLane--;
-            anim.SetTrigger("MoveLeft");
+            if (anim != null)
+                anim.SetTrigger("MoveLeft");
         }
     }
 
@@ -219,7 +220,8 @@ public class PlayerController : MonoBehaviour
             inMovement = true;
             shift = new Vector3(LANE_LENGTH / (NUMBER_OF_LANES + 1), 0, 0);
             currentLane++;
-            anim.SetTrigger("MoveRight");
+            if (anim != null)
+                anim.SetTrigger("MoveRight");
         }
     }
 
