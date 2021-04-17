@@ -17,6 +17,9 @@ public class PlatformGenerator : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
+    private int randomCounterLeft;
+    private int randomCounterRight;
+
     protected void Start()
     {
         platformCount = 0;
@@ -40,7 +43,11 @@ public class PlatformGenerator : MonoBehaviour
             platPosition.z += platform.transform.localScale.z;
 
             platformComponent = platform.GetComponent<PlatformController>();
+            // Set random counter for now
+            randomCounterLeft = Random.Range(0, 6);
+            randomCounterRight = Random.Range(0, 6);
             platformComponent.OnObjectSpawn();
+            platformComponent.SetCounter(randomCounterLeft, randomCounterRight);
             platformComponent.onRemovePlatform += RemoveOne;
 
             platformCount++;
