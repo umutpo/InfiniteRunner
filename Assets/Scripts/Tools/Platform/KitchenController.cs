@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class KitchenController : PlatformController
 {
-    public float kitchenSize;
+    private const float KITCHEN_SIZE = 20f;
 
     protected override void Start() {
         base.Start();
-        // TODO: Update once model is in
-        kitchenSize = 20f;
     }
 
     protected override void Update()
     {
         // Remove once out of camera view
-        if (player.transform.position.z > transform.position.z + transform.localScale.z * kitchenSize)
+        if (player.transform.position.z > transform.position.z + transform.localScale.z * KITCHEN_SIZE)
             Remove();
     }
 }

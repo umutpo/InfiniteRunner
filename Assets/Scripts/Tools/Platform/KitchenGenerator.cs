@@ -26,8 +26,8 @@ public class KitchenGenerator : MonoBehaviour
     protected void Start()
     {
         kitchenCount = 0;
-        leftPosition = transform.position - new Vector3(9, 0, 0);
-        rightPosition = transform.position + new Vector3(9, 0, 0);
+        leftPosition = transform.position + new Vector3(-9, -1, 0);
+        rightPosition = transform.position + new Vector3(9, -1, 0);
         pos[0] = leftPosition;
         pos[1] = rightPosition;
         kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(), leftPosition, Quaternion.identity);
@@ -44,20 +44,6 @@ public class KitchenGenerator : MonoBehaviour
 
     protected void Update()
     {
-        // if (player.transform.position.z > spawnRange && kitchenCount < maximumKitchenCount)
-        // {
-        //     // Set position of platform
-        //     kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(), leftPosition, Quaternion.identity);
-        //     // Check if platform spawned
-        //     if (kitchen == null) return;   // Should never occur if pool size is larger than max
-        //     leftPosition.z += kitchen.transform.localScale.z * kitchenLength;
-
-        //     kitchenComponent = kitchen.GetComponent<PlatformController>();
-        //     kitchenComponent.OnObjectSpawn();
-        //     kitchenComponent.onRemovePlatform += RemoveOne;
-
-        //     kitchenCount++;
-        // }
         AddKitchen(0);
         AddKitchen(1);
     }
@@ -81,7 +67,7 @@ public class KitchenGenerator : MonoBehaviour
     }
 
     private string GetRandomKitchen() {
-        int kit = Random.Range(0, 6);
+        int kit = Random.Range(0, KITCHENS.Length);
         return KITCHENS[kit];
     }
 

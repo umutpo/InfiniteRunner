@@ -25,6 +25,6 @@ public class ObstacleGenerator : MonoBehaviour
     public string GetObstacle() {
         // TODO:
         // Return type of ingredient, use strings in Data.cs
-        return selectObs[Random.Range(0, 2)];
+        return selectObs[Random.Range(0, selectObs.Length)];
     }
 }
