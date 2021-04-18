@@ -9,8 +9,17 @@ public struct Tags
 public struct Pool
 {
     public static readonly string PLATFORM = "Platform";
+    // Kitchen counters    
+    public static readonly string KITCHEN1 = "KitchenOne";
+    public static readonly string KITCHEN2 = "KitchenTwo";
+    public static readonly string KITCHEN3 = "KitchenThree";
+    public static readonly string KITCHEN4 = "KitchenFour";
+    public static readonly string KITCHEN5 = "KitchenFive";
+    public static readonly string KITCHEN6 = "KitchenSix";
+    // Obstacles
     public static readonly string OBSTACLE1 = "ObstacleFirst";
     public static readonly string OBSTACLE2 = "ObstacleSecond";
+    // Ingredients
     public static readonly string FLOUR = "Flour";
     public static readonly string TOMATO = "Tomato";
     public static readonly string CHEESE = "Cheese";
