@@ -12,7 +12,8 @@ public class KitchenGenerator : MonoBehaviour
     [SerializeField]
     private float spawnDistance = 200;
     private PlatformController kitchenComponent;
-    private Vector3 kitchenPosition;
+    private Vector3 leftPosition;
+    private Vector3 rightPosition;
 
     [SerializeField]
     private GameObject player;
@@ -22,24 +23,44 @@ public class KitchenGenerator : MonoBehaviour
     protected void Start()
     {
         kitchenCount = 0;
-        kitchenPosition = transform.position;
-        kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(), kitchenPosition, Quaternion.identity);
+        leftPosition = transform.position - new Vector3(9, 0, 0);
+        rightPosition = transform.position + new Vector3(9, 0, 0);
+        kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(), leftPosition, Quaternion.identity);
         if (kitchen != null)
         {
-            kitchenPosition.z += kitchen.transform.localScale.z * 20f;
+            leftPosition.z += kitchen.transform.localScale.z * 20f;
+        }
+        kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(), rightPosition, Quaternion.identity);
+        if (kitchen != null)
+        {
+            rightPosition.z += kitchen.transform.localScale.z * 20f;
         }
     }
 
     protected void Update()
     {
-        float spawnRange = kitchenPosition.z - spawnDistance;
+        float spawnRange = leftPosition.z - spawnDistance;
         if (player.transform.position.z > spawnRange && kitchenCount < maximumKitchenCount)
         {
             // Set position of platform
-            kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(), kitchenPosition, Quaternion.identity);
+            kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(), leftPosition, Quaternion.identity);
             // Check if platform spawned
             if (kitchen == null) return;   // Should never occur if pool size is larger than max
-            kitchenPosition.z += kitchen.transform.localScale.z * 20f;
+            leftPosition.z += kitchen.transform.localScale.z * 20f;
+
+            kitchenComponent = kitchen.GetComponent<PlatformController>();
+            kitchenComponent.OnObjectSpawn();
+            kitchenComponent.onRemovePlatform += RemoveOne;
+
+            kitchenCount++;
+        }
+        if (player.transform.position.z > spawnRange && kitchenCount < maximumKitchenCount)
+        {
+            // Set position of platform
+            kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(), rightPosition, Quaternion.identity);
+            // Check if platform spawned
+            if (kitchen == null) return;   // Should never occur if pool size is larger than max
+            rightPosition.z += kitchen.transform.localScale.z * 20f;
 
             kitchenComponent = kitchen.GetComponent<PlatformController>();
             kitchenComponent.OnObjectSpawn();
