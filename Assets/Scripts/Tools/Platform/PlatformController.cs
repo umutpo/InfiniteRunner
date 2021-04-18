@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlatformController : MonoBehaviour, IPooledObject
 {    
     [SerializeField]
-    private GameObject player;
+    protected GameObject player;
 
     public delegate void PlatformDelegate();
     public PlatformDelegate onRemovePlatform;
