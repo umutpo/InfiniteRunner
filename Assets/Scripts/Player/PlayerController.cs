@@ -183,8 +183,7 @@ public class PlayerController : MonoBehaviour
             Physics.gravity = Vector3.up * -1 * ((2 * MAX_JUMP_HEIGHT) / Mathf.Pow((time / 2), 2));
             float verticalJumpSpeed = Physics.gravity.y * -1 * (time / 2);
             _body.AddForce(Vector3.up * verticalJumpSpeed, ForceMode.VelocityChange);
-            if (anim != null)
-                anim.SetTrigger("Jump");
+            playPLayerAnimation("Jump");
         }
     }
 
@@ -196,8 +195,7 @@ public class PlayerController : MonoBehaviour
             _collider.size = new Vector3(_collider.size.x, _collider.size.y / 2, _collider.size.z);
             _collider.center = new Vector3(_collider.center.x, -1 * (_collider.size.y / 2), _collider.center.z);
             isSliding = true;
-            if (anim != null)
-                anim.SetTrigger("Slide");
+            playPLayerAnimation("Slide");
         }
     }
 
@@ -208,8 +206,7 @@ public class PlayerController : MonoBehaviour
             inMovement = true;
             shift = new Vector3(-LANE_LENGTH / (NUMBER_OF_LANES + 1), 0, 0);
             currentLane--;
-            if (anim != null)
-                anim.SetTrigger("MoveLeft");
+            playPLayerAnimation("MoveLeft");
         }
     }
 
@@ -220,8 +217,7 @@ public class PlayerController : MonoBehaviour
             inMovement = true;
             shift = new Vector3(LANE_LENGTH / (NUMBER_OF_LANES + 1), 0, 0);
             currentLane++;
-            if (anim != null)
-                anim.SetTrigger("MoveRight");
+            playPLayerAnimation("MoveRight");
         }
     }
 
@@ -326,6 +322,7 @@ public class PlayerController : MonoBehaviour
                 obstacleSpeedGainRemainder += (maxSpeed / reduction);
                 StartCoroutine(becomeInvincibleTemporary());
             }
+            playPLayerAnimation("Hit");
         }
         else
         {
@@ -348,6 +345,14 @@ public class PlayerController : MonoBehaviour
         return (MAX_INVENTORY_INGREDIENT_WEIGHT - extraWeight) / MAX_INVENTORY_INGREDIENT_WEIGHT;
     }
 
+    private void playPLayerAnimation(string animationEventName)
+    {
+        if (anim != null)
+        {
+            anim.SetTrigger(animationEventName);
+        }
+    }
+
     public void AddToInventory(string ingredient)
     {
         addToExtraWeight(1);
@@ -355,6 +360,11 @@ public class PlayerController : MonoBehaviour
         if (usedIngredientCount > 0) {
             setBoost = true;
             reduceExtraWeight(usedIngredientCount);
+            playPLayerAnimation("Complete");
+        } 
+        else
+        {
+            playPLayerAnimation("Collect");
         }
     }
 
