@@ -9,6 +9,7 @@ public class StackedRecipeUI : MonoBehaviour
     protected PlayerInventoryData playerInventoryData;
     
     protected int priority;
+    [SerializeField] private List <Sprite> stackedDishTemplatesIncreasingCompletionRate; 
 
     void OnEnable()
     {
@@ -48,18 +49,16 @@ public class StackedRecipeUI : MonoBehaviour
         GameObject dishImageForeground = gameObject.transform.GetChild(0).gameObject;
         dishImageForeground.GetComponent<Image>().sprite = recipeToBeDisplayed.GetRecipeImage();
         int ingredientIterator = 0;
+        int hasIngredientCnt = 0;
         foreach (Transform child in dishImageForeground.transform) {
             IngredientController currentIngredient = recipeToBeDisplayed.ingredients[ingredientIterator];
             if (recipeProgressList[priority][currentIngredient.ingredient] != 0)
-            {
-                child.GetChild(0).GetComponent<Image>().sprite = currentIngredient.GetIngredientImageColored();
-            }
-            else
-            {
-                child.GetChild(0).GetComponent<Image>().sprite = currentIngredient.GetIngredientImageGreyed();
-            }
+                hasIngredientCnt++;
             ingredientIterator++;
         }
+        // only set the UI sprite if on a stacked UI element
+        if (stackedDishTemplatesIncreasingCompletionRate.Count == 3)
+            gameObject.GetComponent<Image>().sprite = stackedDishTemplatesIncreasingCompletionRate[hasIngredientCnt];
     }
     protected RecipeController GetRecipeToDisplay() {
         List <RecipeController> recipes = playerInventoryData.GetRecipes();
@@ -74,7 +73,7 @@ public class StackedRecipeUI : MonoBehaviour
     }
 
     // recipe priority comparison rule; whichever needs the least number of ingredients to complete gets placed foremost
-    private int closestToFinishFirst(Dictionary<string, int> recipe1, Dictionary<string, int> recipe2)
+    protected int closestToFinishFirst(Dictionary<string, int> recipe1, Dictionary<string, int> recipe2)
     {
         int missingIngredientCnt1 = 0;
         int missingIngredientCnt2 = 0;
