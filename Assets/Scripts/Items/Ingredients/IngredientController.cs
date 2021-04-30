@@ -7,12 +7,19 @@ public class IngredientController : ItemController
     public string ingredient;
 
     private float speedReduction = 7f;  // ratio of speed reduced
+    private float rotationDegree = 90f; // degrees per second
 
     [SerializeField]
     private Sprite inventoryImageColored;
 
     [SerializeField]
     private Sprite inventoryImageGreyed = null;
+
+    protected override void Update()
+    {
+        base.Update();
+        transform.Rotate(0, rotationDegree * Time.deltaTime, 0, Space.World);
+    }
 
     protected override void OnTriggerEnter(Collider other)
     {
