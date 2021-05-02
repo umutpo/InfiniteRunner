@@ -105,8 +105,6 @@ public class PlayerController : MonoBehaviour
         {
             jumpAction.Enable();
             slideAction.Enable();
-            moveLeftAction.Enable();
-            moveRightAction.Enable();
         }
         else
         {
@@ -115,9 +113,11 @@ public class PlayerController : MonoBehaviour
             {
                 slideAction.Disable();
             }
-            moveLeftAction.Disable();
-            moveRightAction.Disable();
+            // moveLeftAction.Disable();
+            // moveRightAction.Disable();
         }
+        moveLeftAction.Enable();
+        moveRightAction.Enable();
 
         updateSpeed();
         moveBody();
