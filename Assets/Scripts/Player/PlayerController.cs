@@ -113,8 +113,6 @@ public class PlayerController : MonoBehaviour
             {
                 slideAction.Disable();
             }
-            // moveLeftAction.Disable();
-            // moveRightAction.Disable();
         }
         moveLeftAction.Enable();
         moveRightAction.Enable();
