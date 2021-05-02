@@ -60,7 +60,7 @@ public class KitchenGenerator : MonoBehaviour
 
             kitchenComponent = kitchen.GetComponent<PlatformController>();
             kitchenComponent.OnObjectSpawn();
-            kitchenComponent.onRemovePlatform += RemoveOne;
+            kitchenComponent.onRemoveItem += RemoveOne;
 
             kitchenCount++;
         }

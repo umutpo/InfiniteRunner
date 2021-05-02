@@ -2,33 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformController : MonoBehaviour, IPooledObject
+public class PlatformController : ItemController
 {    
-    [SerializeField]
-    protected GameObject player;
+    private float speedReduction = 4f;
 
-    public delegate void PlatformDelegate();
-    public PlatformDelegate onRemovePlatform;
-  
-    public virtual void OnObjectSpawn() {
-    }
-
-    protected virtual void Start() {
-        player = GameObject.Find("Player");
-    }
-
-    protected virtual void Update() {
-        // Remove once out of camera view
-        if (player.transform.position.z > transform.position.z + transform.localScale.z)
-            Remove();
-    }
-
-    public virtual void Remove() {
-        if (onRemovePlatform != null)
-        {
-            onRemovePlatform.Invoke();
+    protected override void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player") {
+            // Slow down player speed
+            playerScript.SlowDown(speedReduction);
         }
-        onRemovePlatform = null;
-        gameObject.SetActive(false);
     }
 }
