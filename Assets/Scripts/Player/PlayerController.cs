@@ -92,6 +92,9 @@ public class PlayerController : MonoBehaviour
         playerInventoryData = inventory.GetComponent<PlayerInventoryData>();
 
         anim = gameObject.GetComponent<Animator>();
+        
+        moveLeftAction.Enable();
+        moveRightAction.Enable();
     }
 
     void Update()
@@ -105,8 +108,6 @@ public class PlayerController : MonoBehaviour
         {
             jumpAction.Enable();
             slideAction.Enable();
-            moveLeftAction.Enable();
-            moveRightAction.Enable();
         }
         else
         {
@@ -115,8 +116,6 @@ public class PlayerController : MonoBehaviour
             {
                 slideAction.Disable();
             }
-            moveLeftAction.Disable();
-            moveRightAction.Disable();
         }
 
         updateSpeed();
