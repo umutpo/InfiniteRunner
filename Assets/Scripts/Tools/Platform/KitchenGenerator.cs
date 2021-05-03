@@ -14,6 +14,7 @@ public class KitchenGenerator : MonoBehaviour
     private PlatformController kitchenComponent;
     private Vector3 leftPosition;
     private Vector3 rightPosition;
+    private Vector3 laneOffset;
     // TODO: change according to model
     private float kitchenLength = 20f;
 
@@ -22,12 +23,15 @@ public class KitchenGenerator : MonoBehaviour
 
     private string[] KITCHENS = {Pool.KITCHEN1, Pool.KITCHEN2, Pool.KITCHEN3, Pool.KITCHEN4, Pool.KITCHEN5, Pool.KITCHEN6};
     private Vector3[] pos = new Vector3[2];
+    private float[] obstacleEnds = {-1, -1};    // {left lane obstacle end, right lane obstacle end}
+
 
     protected void Start()
     {
         kitchenCount = 0;
-        leftPosition = transform.position + new Vector3(-9, -1, 0);
-        rightPosition = transform.position + new Vector3(9, -1, 0);
+        leftPosition = transform.position + new Vector3(-9, 0, 0);
+        rightPosition = transform.position + new Vector3(9, 0, 0);
+        laneOffset = new Vector3(0, 0, 0);
         pos[0] = leftPosition;
         pos[1] = rightPosition;
         kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(), leftPosition, Quaternion.identity);
@@ -52,11 +56,21 @@ public class KitchenGenerator : MonoBehaviour
         float spawnRange = pos[posIndex].z - spawnDistance;        
         if (player.transform.position.z > spawnRange && kitchenCount < maximumKitchenCount)
         {
+            // Determine if kitchen is lane obstacle
+            if (Random.Range(0, 100) < 10) {
+                laneOffset.x = posIndex == 0? 3 : -3;
+                obstacleEnds[posIndex] = pos[posIndex].z + kitchen.transform.localScale.z * kitchenLength / 2;
+                Debug.Log("the counter end: " + obstacleEnds[posIndex]);
+            } else {
+                laneOffset.x = 0;
+            }
+
             // Set position of platform
-            kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(), pos[posIndex], Quaternion.identity);
+            kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(), pos[posIndex] + laneOffset, Quaternion.identity);
             // Check if platform spawned
             if (kitchen == null) return;   // Should never occur if pool size is larger than max
             pos[posIndex].z += kitchen.transform.localScale.z * kitchenLength;
+                Debug.Log("transform?? " + kitchen.transform.position.z);
 
             kitchenComponent = kitchen.GetComponent<PlatformController>();
             kitchenComponent.OnObjectSpawn();
@@ -69,6 +83,11 @@ public class KitchenGenerator : MonoBehaviour
     private string GetRandomKitchen() {
         int kit = Random.Range(0, KITCHENS.Length);
         return KITCHENS[kit];
+    }
+
+    // lane is 0 for left, 1 for right
+    public float GetObstacleEnd(int lane) {
+        return obstacleEnds[lane];
     }
 
     

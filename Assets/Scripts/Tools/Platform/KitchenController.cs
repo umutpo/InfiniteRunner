@@ -23,7 +23,7 @@ public class KitchenController : PlatformController
     {
         if (other.gameObject.tag == "Player") {
             // Slow down player speed
-            playerScript.SlowDown(speedReduction);
+            playerScript.SetGameOver();
         }
     }
 }

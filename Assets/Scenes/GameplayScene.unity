@@ -1040,6 +1040,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setToGameState: 1
   pauseMenuCanvas: {fileID: 648944963}
+--- !u!114 &593192189 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 581340714027735788, guid: b7bb969bddd6ca949ae245d1203c8ca6,
+    type: 3}
+  m_PrefabInstance: {fileID: 581340713711112125}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44c53192231a6247bead31e1cd5d666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &601321443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,6 +1879,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kitchen Generator
       objectReference: {fileID: 0}
+    - target: {fileID: 581340714027735789, guid: b7bb969bddd6ca949ae245d1203c8ca6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 581340714027735791, guid: b7bb969bddd6ca949ae245d1203c8ca6,
         type: 3}
       propertyPath: m_RootOrder
@@ -1885,7 +1902,7 @@ PrefabInstance:
     - target: {fileID: 581340714027735791, guid: b7bb969bddd6ca949ae245d1203c8ca6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 581340714027735791, guid: b7bb969bddd6ca949ae245d1203c8ca6,
         type: 3}
@@ -1982,7 +1999,7 @@ PrefabInstance:
     - target: {fileID: 4756254010319538034, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 530
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4756254010319538034, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
@@ -2034,6 +2051,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 356856036}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: kitchen
+      value: 
+      objectReference: {fileID: 593192189}
     - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: itemDensity
