@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     private float maxSpeed;
     [SerializeField]
     private float currentSpeed;
-    public float gameOverSpeed = 2f;
+    public float gameOverSpeed = 4f;
     private int currentLane = 2;
     private float obstacleSpeedGainRemainder = 0f;
     private bool inMovement = false;
