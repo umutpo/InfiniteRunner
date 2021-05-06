@@ -4,3 +4,4 @@ Volume=Volume
 Music=Music
 Language=Language
 Accessibility=Accessibility (Color Blind)
+Menu=MENU

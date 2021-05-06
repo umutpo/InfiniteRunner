@@ -4,3 +4,4 @@ Volume=サウンドエフェクト
 Music=音楽
 Language=言語
 Accessibility=アクセシビリティ
+Menu=メニュー

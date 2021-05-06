@@ -4,3 +4,4 @@ Volume=Kalakasan ng Tunog
 Music=Musika
 Language=Wika
 Accessibility=Tulong sa mga Bulag sa Kulay
+Menu=MENU

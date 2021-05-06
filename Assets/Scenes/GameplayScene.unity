@@ -379,13 +379,13 @@ PrefabInstance:
         type: 3}
       propertyPath: pools.Array.data[1].prefab
       value: 
-      objectReference: {fileID: 2419839416057754819, guid: 68d0f36ef4c53c54391ed8db2959ce8c,
+      objectReference: {fileID: 726959526056297484, guid: 68d0f36ef4c53c54391ed8db2959ce8c,
         type: 3}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
       propertyPath: pools.Array.data[2].prefab
       value: 
-      objectReference: {fileID: 7039635872750961352, guid: f0cd92ed6d3db824bb5f45cad6ab2790,
+      objectReference: {fileID: 8969336365563681170, guid: a5db719db34c1b840ad62bc1c999cc8a,
         type: 3}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
