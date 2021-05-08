@@ -80,6 +80,13 @@ public class ItemGenerator : MonoBehaviour
                 int rowRng = Random.Range(0, singleItemRowWeight + doubleItemRowWeight + tripleItemRowWeight);
                 int startLane = Random.Range(0, 3);
                 int itemCntInRow = 1 + (rowRng >= singleItemRowWeight ? 1 : 0) + (rowRng >= singleItemRowWeight + doubleItemRowWeight ? 1 : 0);
+                
+                int itemsPlaced = 0;
+                int openLanes = 3;
+                for (int i = 0; i < 2; i++) {
+                    if (kitchen.GetObstacleEnd(i) > lastGenerateSpot) openLanes--;
+                }
+
                 for (int i = startLane; i < startLane + itemCntInRow; i++)
                 {
                     int lane = i % 3;
@@ -94,9 +101,9 @@ public class ItemGenerator : MonoBehaviour
                     GameObject item = ObjectPooler.Instance.SpawnFromPool(itemName, itemPosition, Quaternion.identity);
                     ItemController itemComponent = item.GetComponent<ItemController>();
                     itemComponent.OnObjectSpawn();
-                    Debug.Log(itemName + " generated at: " + lastGenerateSpot);
+                    itemsPlaced++;
                 }
-                if (itemCntInRow == 3)
+                if (itemsPlaced == openLanes)
                     lastGenerateSpot += spawnDistanceUnit; // give player time after a row full of obstacles and items by making next row blank
             }
 

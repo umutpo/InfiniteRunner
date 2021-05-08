@@ -60,7 +60,6 @@ public class KitchenGenerator : MonoBehaviour
             if (Random.Range(0, 100) < 10) {
                 laneOffset.x = posIndex == 0? 3 : -3;
                 obstacleEnds[posIndex] = pos[posIndex].z + kitchen.transform.localScale.z * kitchenLength / 2;
-                Debug.Log("the counter end: " + obstacleEnds[posIndex]);
             } else {
                 laneOffset.x = 0;
             }
@@ -70,7 +69,6 @@ public class KitchenGenerator : MonoBehaviour
             // Check if platform spawned
             if (kitchen == null) return;   // Should never occur if pool size is larger than max
             pos[posIndex].z += kitchen.transform.localScale.z * kitchenLength;
-                Debug.Log("transform?? " + kitchen.transform.position.z);
 
             kitchenComponent = kitchen.GetComponent<PlatformController>();
             kitchenComponent.OnObjectSpawn();
