@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -74,6 +75,10 @@ public class PlayerController : MonoBehaviour
     // Animation Variables
     private Animator anim;
 
+    // Tutorial Variables
+    public static Action StopTutorial;
+    private bool waitForTutorial = false;
+
     void Start()
     {
         maxSpeed = INITIAL_SPEED;
@@ -118,8 +123,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        updateSpeed();
-        moveBody();
+        if (!waitForTutorial)
+        {
+            updateSpeed();
+            moveBody();
+        }
     }
 
     private void updateSpeed()
@@ -385,5 +393,19 @@ public class PlayerController : MonoBehaviour
     public List<RecipeController> GetRecipes()
     {
         return playerInventoryData.GetRecipes();
+    }
+
+    public IEnumerator StartTutorial(UnityEngine.InputSystem.Controls.KeyControl key)
+    {
+        anim.enabled = false;
+        waitForTutorial = true;
+        yield return new WaitUntil(() => (key.isPressed));
+        waitForTutorial = false;
+        anim.enabled = true;
+
+        if (StopTutorial != null)
+        {
+            StopTutorial.Invoke();
+        }
     }
 }
