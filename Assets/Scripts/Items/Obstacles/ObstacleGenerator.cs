@@ -7,7 +7,7 @@ public class ObstacleGenerator : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
-    private string[] selectObs = { Pool.OBSTACLE1, Pool.OBSTACLE2 };
+    private string[] OBSTACLES = { Pool.OBSTACLE1, Pool.OBSTACLE2 };
 
     protected void Start()
     {
@@ -25,6 +25,6 @@ public class ObstacleGenerator : MonoBehaviour
     public string GetObstacle() {
         // TODO:
         // Return type of ingredient, use strings in Data.cs
-        return selectObs[Random.Range(0, selectObs.Length)];
+        return OBSTACLES[Random.Range(0, OBSTACLES.Length)];
     }
 }

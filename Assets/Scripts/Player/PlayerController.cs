@@ -176,9 +176,14 @@ public class PlayerController : MonoBehaviour
     {
         if (currentSpeed <= gameOverSpeed)
         {
-            gameOverState = true;
-            enabled = false;
+            SetGameOver();
         }
+    }
+
+    public void SetGameOver()
+    {
+        gameOverState = true;
+        enabled = false;
     }
 
     private void jump()
