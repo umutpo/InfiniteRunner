@@ -21,6 +21,9 @@ public class KitchenGenerator : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
+    [SerializeField]
+    private bool isTutorial = false;
+
     private string[] KITCHENS = {Pool.KITCHEN1, Pool.KITCHEN2, Pool.KITCHEN3, Pool.KITCHEN4, Pool.KITCHEN5, Pool.KITCHEN6};
     private Vector3[] pos = new Vector3[2];
     private float[] obstacleEnds = {-1, -1};    // {left lane obstacle end, right lane obstacle end}
@@ -57,7 +60,7 @@ public class KitchenGenerator : MonoBehaviour
         if (player.transform.position.z > spawnRange && kitchenCount < maximumKitchenCount)
         {
             // Determine if kitchen is lane obstacle
-            if (Random.Range(0, 100) < 10) {
+            if (!isTutorial && Random.Range(0, 100) < 10) {
                 laneOffset.x = posIndex == 0? 3 : -3;
                 obstacleEnds[posIndex] = pos[posIndex].z + kitchen.transform.localScale.z * kitchenLength / 2;
             } else {

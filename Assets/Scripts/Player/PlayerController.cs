@@ -395,11 +395,18 @@ public class PlayerController : MonoBehaviour
         return playerInventoryData.GetRecipes();
     }
 
-    public IEnumerator StartTutorial(UnityEngine.InputSystem.Controls.KeyControl key)
+    public IEnumerator StartTutorial(UnityEngine.InputSystem.Controls.KeyControl key = null)
     {
         anim.enabled = false;
         waitForTutorial = true;
-        yield return new WaitUntil(() => (key.isPressed));
+        if (key != null)
+        {
+            yield return new WaitUntil(() => (key.isPressed));
+        }
+        else
+        {
+            yield return new WaitForSeconds(2.5f);
+        }
         waitForTutorial = false;
         anim.enabled = true;
 

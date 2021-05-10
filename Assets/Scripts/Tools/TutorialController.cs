@@ -7,7 +7,12 @@ public class TutorialController : MonoBehaviour
 {
     const float JUMP_TUTORIAL_TRIGGER_POSITION = 25.0f;
     const float CHANGE_LANES_TUTORIAL_TRIGGER_POSITION = 50.0f;
-    const float END_TUTORIAL_TRIGGER_POSITION = 75.0f;
+    const float HUD_INTRO_TEXT_TRIGGER_POSITION = 75.0f;
+    const float END_TUTORIAL_TRIGGER_POSITION = 1000.0f;
+
+    const string JUMP_TUTORIAL_TEXT = "Jump!";
+    const string CHANGE_LANES_TUTORIAL_TEXT = "Move Right!";
+    const string HUD_INTRO_TUTORIAL_TEXT = "See the dishes you are on your way to completing!";
 
     [SerializeField]
     private GameObject _player;
@@ -19,6 +24,7 @@ public class TutorialController : MonoBehaviour
 
     bool jumpFlag = true;
     bool changeLanesFlag = true;
+    bool hudIntroFlag = true;
 
     void Start()
     {
@@ -37,17 +43,24 @@ public class TutorialController : MonoBehaviour
 
     void Update()
     {
-        if (jumpFlag && _player.transform.position.z >= JUMP_TUTORIAL_TRIGGER_POSITION)
+        float currentPlayerPositionZ = _player.transform.position.z;
+        if (jumpFlag && currentPlayerPositionZ >= JUMP_TUTORIAL_TRIGGER_POSITION)
         {
             jumpFlag = false;
-            StartTextDisplay("JUMP!");
+            StartTextDisplay(JUMP_TUTORIAL_TEXT);
             StartCoroutine(_playerController.StartTutorial(Keyboard.current.upArrowKey));
         } 
-        else if (changeLanesFlag && _player.transform.position.z >= CHANGE_LANES_TUTORIAL_TRIGGER_POSITION)
+        else if (changeLanesFlag && currentPlayerPositionZ >= CHANGE_LANES_TUTORIAL_TRIGGER_POSITION)
         {
             changeLanesFlag = false;
-            StartTextDisplay("MOVE RIGHT!");
+            StartTextDisplay(CHANGE_LANES_TUTORIAL_TEXT);
             StartCoroutine(_playerController.StartTutorial(Keyboard.current.rightArrowKey));
+        }
+        else if (hudIntroFlag && currentPlayerPositionZ >= HUD_INTRO_TEXT_TRIGGER_POSITION)
+        {
+            hudIntroFlag = false;
+            StartTextDisplay(HUD_INTRO_TUTORIAL_TEXT);
+            StartCoroutine(_playerController.StartTutorial());
         }
         else if (_player.transform.position.z >= END_TUTORIAL_TRIGGER_POSITION)
         {
