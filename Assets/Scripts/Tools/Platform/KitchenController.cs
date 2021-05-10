@@ -5,6 +5,7 @@ using UnityEngine;
 public class KitchenController : PlatformController
 {
     private const float KITCHEN_SIZE = 20f;
+    private float speedReduction = 4f;
 
     protected override void Start() {
         base.Start();
@@ -15,5 +16,14 @@ public class KitchenController : PlatformController
         // Remove once out of camera view
         if (player.transform.position.z > transform.position.z + transform.localScale.z * KITCHEN_SIZE)
             Remove();
+    }
+    
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player") {
+            // Slow down player speed
+            playerScript.SetGameOver();
+        }
     }
 }

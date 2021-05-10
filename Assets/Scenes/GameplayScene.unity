@@ -18,13 +18,13 @@ RenderSettings:
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
-  m_LinearFogStart: 0
+  m_LinearFogStart: 15
   m_LinearFogEnd: 50
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -1056,6 +1056,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   setToGameState: 1
   pauseMenuCanvas: {fileID: 648944963}
+--- !u!114 &593192189 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 581340714027735788, guid: b7bb969bddd6ca949ae245d1203c8ca6,
+    type: 3}
+  m_PrefabInstance: {fileID: 581340713711112125}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44c53192231a6247bead31e1cd5d666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &601321443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,17 +1407,17 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.4
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -1883,6 +1895,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kitchen Generator
       objectReference: {fileID: 0}
+    - target: {fileID: 581340714027735789, guid: b7bb969bddd6ca949ae245d1203c8ca6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 581340714027735791, guid: b7bb969bddd6ca949ae245d1203c8ca6,
         type: 3}
       propertyPath: m_RootOrder
@@ -1998,7 +2015,7 @@ PrefabInstance:
     - target: {fileID: 4756254010319538034, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 530
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4756254010319538034, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
@@ -2050,6 +2067,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 356856036}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: kitchen
+      value: 
+      objectReference: {fileID: 593192189}
     - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: itemDensity
@@ -2200,12 +2222,12 @@ PrefabInstance:
     - target: {fileID: 5537373567531587302, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5537373567531587302, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 5649442652637785093, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
@@ -2219,6 +2241,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7113742550581899826, guid: 3853498a847a5404fa7abcf29cc8ec3f,
         type: 3}
+    - target: {fileID: 8637958349022818274, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: criticVisibleMinimumDistanceDifference
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8764914886097214694, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
       propertyPath: m_Mesh
