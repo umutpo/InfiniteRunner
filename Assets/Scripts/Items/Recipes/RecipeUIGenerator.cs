@@ -31,7 +31,7 @@ public class RecipeUIGenerator : MonoBehaviour
         for (int i = 0; i < visibleRecipeCnt; i++) {
             GameObject g = Instantiate(recipeUITemplate, Vector3.zero, Quaternion.identity);
             g.transform.SetParent(this.gameObject.transform, false);
-            g.GetComponent<ShownRecipeUI>().SetPriority(visibleRecipeCnt - i - 1);
+            g.transform.GetChild(0).gameObject.GetComponent<ShownRecipeUI>().SetPriority(visibleRecipeCnt - i - 1);
         }
     }
 }
