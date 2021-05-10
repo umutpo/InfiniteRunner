@@ -7,7 +7,7 @@ public class ObstacleGenerator : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
-    private string[] selectObs = { Pool.OBSTACLE1, Pool.OBSTACLE2, Pool.OBSTACLE3 };
+    private string[] OBSTACLES = { Pool.OBSTACLE1, Pool.OBSTACLE2, Pool.OBSTACLE3 };
 
     protected void Start()
     {
