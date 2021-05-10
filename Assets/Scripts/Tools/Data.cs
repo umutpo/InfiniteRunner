@@ -19,6 +19,7 @@ public struct Pool
     // Obstacles
     public static readonly string OBSTACLE1 = "ObstacleFirst";
     public static readonly string OBSTACLE2 = "ObstacleSecond";
+    public static readonly string OBSTACLE3 = "ObstacleThird";
     // Ingredients
     public static readonly string FLOUR = "Flour";
     public static readonly string TOMATO = "Tomato";
