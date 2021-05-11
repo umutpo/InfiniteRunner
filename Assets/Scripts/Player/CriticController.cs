@@ -5,7 +5,7 @@ using UnityEngine;
 public class CriticController : MonoBehaviour
 {
     [SerializeField]
-    private float criticVisibleMinimumDistanceDifference = 1.0f;
+    private float criticVisibleMinimumDistanceDifference = 3.0f;
     [SerializeField]
     private float criticVisibleSpeedDifference = 5.0f;
 

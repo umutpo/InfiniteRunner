@@ -41,7 +41,7 @@ public class PlatformGenerator : MonoBehaviour
 
             platformComponent = platform.GetComponent<PlatformController>();
             platformComponent.OnObjectSpawn();
-            platformComponent.onRemovePlatform += RemoveOne;
+            platformComponent.onRemoveItem += RemoveOne;
 
             platformCount++;
         }

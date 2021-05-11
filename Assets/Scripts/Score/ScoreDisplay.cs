@@ -18,11 +18,11 @@ public class ScoreDisplay : MonoBehaviour
     {
         score = GetComponent<Text>();
         if (destinationScene.ToString() == "Score") {
-            score.text = "Score: " + ScoreController.currentScore;
+            score.text = ScoreController.currentScore.ToString();
         }
         else if (destinationScene.ToString() == "HighestScore") 
         {
-            score.text = "Highest Score: " + ScoreController.highestScore;
+            score.text = ScoreController.highestScore.ToString();
         }
         else
         {
