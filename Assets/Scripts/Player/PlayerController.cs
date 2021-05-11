@@ -365,6 +365,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void enableInput(UnityEngine.InputSystem.Controls.KeyControl key)
+    {
+        if (key.name == "upArrow")
+        {
+            jumpAction.Enable();
+        }
+        else if (key.name == "downArrow")
+        {
+            slideAction.Enable();
+        }
+        else if (key.name == "leftArrow")
+        {
+            moveLeftAction.Enable();
+        }
+        else if (key.name == "rightArrow")
+        {
+            moveRightAction.Enable();
+        }
+    }
+
     public void AddToInventory(string ingredient)
     {
         addToExtraWeight(1);
@@ -401,11 +421,12 @@ public class PlayerController : MonoBehaviour
         waitForTutorial = true;
         if (key != null)
         {
+            enableInput(key);
             yield return new WaitUntil(() => (key.isPressed));
         }
         else
         {
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(3f);
         }
         waitForTutorial = false;
         anim.enabled = true;
@@ -414,5 +435,21 @@ public class PlayerController : MonoBehaviour
         {
             StopTutorial.Invoke();
         }
+    }
+
+    public void DisableAllInput()
+    {
+        jumpAction.Disable();
+        slideAction.Disable();
+        moveLeftAction.Disable();
+        moveRightAction.Disable();
+    }
+
+    public void EnableAllInput()
+    {
+        jumpAction.Enable();
+        slideAction.Enable();
+        moveLeftAction.Enable();
+        moveRightAction.Enable();
     }
 }
