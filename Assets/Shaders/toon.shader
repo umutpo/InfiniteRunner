@@ -1,160 +1,101 @@
 ﻿Shader "Custom/CurvedToon"
 {
-    // Adapted from Roystan toon shader
-	Properties
-	{
-		_Color("Color", Color) = (1,1,1,1)
-		_MainTex("Main Texture", 2D) = "white" {}
-        _Curvature("World Curvature", Float) = 0.001
-		// Ambient light is applied uniformly to all surfaces on the object.
-		[HDR]
-		_AmbientColor("Ambient Color", Color) = (0.4,0.4,0.4,1)
-		[HDR]
-		_SpecularColor("Specular Color", Color) = (0.9,0.9,0.9,1)
-		// Controls the size of the specular reflection.
-		_Glossiness("Glossiness", Float) = 32
-		[HDR]
-		_RimColor("Rim Color", Color) = (1,1,1,1)
-		_RimAmount("Rim Amount", Range(0, 1)) = 0.716
-		// Control how smoothly the rim blends when approaching unlit
-		// parts of the surface.
-		_RimThreshold("Rim Threshold", Range(0, 1)) = 0.1		
+	//show values to edit in inspector
+	Properties {
+        [Header(Base Parameters)]
+		_Color ("Tint", Color) = (0, 0, 0, 1)
+		_MainTex ("Texture", 2D) = "white" {}
+		_Curvature("Curvature", Float) = 0.001
+		[HDR] _Emission ("Emission", color) = (0 ,0 ,0 , 1)
+
+        [Header(Lighting Parameters)]
+		_ShadowTint ("Shadow Color", Color) = (0.5, 0.5, 0.5, 1)
+		_Outline ("Outline Color", Color) = (0, 0, 0, 1)
+		_OutlineWidth ("Outline Width", Float) = 0.1
 	}
-	SubShader
-	{
-		Pass
-		{
-			// Setup our pass to use Forward rendering, and only receive
-			// data on the main directional light and ambient light.
-			Tags
-			{
-                "RenderType" = "Opaque"
-				"LightMode" = "ForwardBase"
-				"PassFlags" = "OnlyDirectional"
-			}
-            LOD 200
+	SubShader {
+		//the material is completely non-transparent and is rendered at the same time as the other opaque geometry
+		Tags{ "RenderType"="Opaque"}
 
-			CGPROGRAM
-			#pragma vertex vert addshadow
-			#pragma fragment frag
-			// Compile multiple versions of this shader depending on lighting settings.
-			#pragma multi_compile_fwdbase
+		CGPROGRAM
 
-			#include "UnityCG.cginc"
-			// Files below include macros and functions to assist
-			// with lighting and shadows.
-			#include "Lighting.cginc"
-			#include "AutoLight.cginc"
+		//the shader is a surface shader, meaning that it will be extended by unity in the background to have fancy lighting and other features
+		//our surface shader function is called surf and we use our custom lighting model
+		//fullforwardshadows makes sure unity adds the shadow passes the shader might need
+		#pragma surface surf Stepped vertex:vert addshadow
+		#pragma target 3.0
 
-			struct appdata
-			{
-				float4 vertex : POSITION;				
-				float4 uv : TEXCOORD0;
-				float3 normal : NORMAL;
-			};
+		sampler2D _MainTex;
+		fixed4 _Color;
+		float _Curvature;
+		half3 _Emission;
 
-			struct v2f
-			{
-				float4 pos : SV_POSITION;
-				float3 worldNormal : NORMAL;
-				float2 uv : TEXCOORD0;
-				float3 viewDir : TEXCOORD1;	
-				// Macro found in Autolight.cginc. Declares a vector4
-				// into the TEXCOORD2 semantic with varying precision 
-				// depending on platform target.
-				SHADOW_COORDS(2)
-			};
+        float3 _ShadowTint;
+		float3 _Outline;
+		float _OutlineWidth;
 
-			sampler2D _MainTex;
-			float4 _MainTex_ST;
-            float _Curvature;
-			
-			v2f vert (appdata v)
-			{
-                // Change to curved world position
-                // Transform the vertex coordinates from model space into world space
-                float4 vv = mul(unity_ObjectToWorld, v.vertex);
+		//our lighting function. Will be called once per light
+		float4 LightingStepped(SurfaceOutput s, float3 lightDir, half3 viewDir, float shadowAttenuation){
+			//how much does the normal point towards the light?
+			float towardsLight = dot(s.Normal, lightDir);
+            // make the lighting a hard cut
+            float towardsLightChange = fwidth(towardsLight);
+            float lightIntensity = smoothstep(0, towardsLightChange, towardsLight);
 
-                // Now adjust the coordinates to be relative to the camera position
-                vv.xyz -= _WorldSpaceCameraPos.xyz;
-                // Reduce the y coordinate (i.e. lower the "height") of each vertex based
-                // on the square of the distance from the camera in the z axis, multiplied
-                // by the chosen curvature factor
-                vv = float4(0.0f, (vv.z * vv.z) * -_Curvature, 0.0f, 0.0f);
+        #ifdef USING_DIRECTIONAL_LIGHT
+            //for directional lights, get a hard vut in the middle of the shadow attenuation
+            float attenuationChange = fwidth(shadowAttenuation) * 0.5;
+            float shadow = smoothstep(0.5 - attenuationChange, 0.5 + attenuationChange, shadowAttenuation);
+        #else
+            //for other light types (point, spot), put the cutoff near black, so the falloff doesn't affect the range
+            float attenuationChange = fwidth(shadowAttenuation);
+            float shadow = smoothstep(0, attenuationChange, shadowAttenuation);
+        #endif
+            lightIntensity = lightIntensity * shadow;
 
-                // Now apply the offset back to the vertices in model space
-                v.vertex += mul(unity_WorldToObject, vv);
-
-				v2f o;
-				o.pos = UnityObjectToClipPos(v.vertex);
-				o.worldNormal = UnityObjectToWorldNormal(v.normal);		
-				o.viewDir = WorldSpaceViewDir(v.vertex);
-				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				// Defined in Autolight.cginc. Assigns the above shadow coordinate
-				// by transforming the vertex from world space to shadow-map space.
-				TRANSFER_SHADOW(o)
-				return o;
-			}
-			
-			float4 _Color;
-
-			float4 _AmbientColor;
-
-			float4 _SpecularColor;
-			float _Glossiness;		
-
-			float4 _RimColor;
-			float _RimAmount;
-			float _RimThreshold;	
-
-			float4 frag (v2f i) : SV_Target
-			{
-				float3 normal = normalize(i.worldNormal);
-				float3 viewDir = normalize(i.viewDir);
-
-				// Lighting below is calculated using Blinn-Phong,
-				// with values thresholded to creat the "toon" look.
-				// https://en.wikipedia.org/wiki/Blinn-Phong_shading_model
-
-				// Calculate illumination from directional light.
-				// _WorldSpaceLightPos0 is a vector pointing the OPPOSITE
-				// direction of the main directional light.
-				float NdotL = dot(_WorldSpaceLightPos0, normal);
-
-				// Samples the shadow map, returning a value in the 0...1 range,
-				// where 0 is in the shadow, and 1 is not.
-				float shadow = SHADOW_ATTENUATION(i);
-				// Partition the intensity into light and dark, smoothly interpolated
-				// between the two to avoid a jagged break.
-				float lightIntensity = smoothstep(0, 0.01, NdotL * shadow);	
-				// Multiply by the main directional light's intensity and color.
-				float4 light = lightIntensity * _LightColor0;
-
-				// Calculate specular reflection.
-				float3 halfVector = normalize(_WorldSpaceLightPos0 + viewDir);
-				float NdotH = dot(normal, halfVector);
-				// Multiply _Glossiness by itself to allow artist to use smaller
-				// glossiness values in the inspector.
-				float specularIntensity = pow(NdotH * lightIntensity, _Glossiness * _Glossiness);
-				float specularIntensitySmooth = smoothstep(0.005, 0.01, specularIntensity);
-				float4 specular = specularIntensitySmooth * _SpecularColor;				
-
-				// Calculate rim lighting.
-				float rimDot = 1 - dot(viewDir, normal);
-				// We only want rim to appear on the lit side of the surface,
-				// so multiply it by NdotL, raised to a power to smoothly blend it.
-				float rimIntensity = rimDot * pow(NdotL, _RimThreshold);
-				rimIntensity = smoothstep(_RimAmount - 0.01, _RimAmount + 0.01, rimIntensity);
-				float4 rim = rimIntensity * _RimColor;
-
-				float4 sample = tex2D(_MainTex, i.uv);
-
-				return (light + _AmbientColor + specular + rim) * _Color * sample;
-			}
-			ENDCG
+            //calculate shadow color and mix light and shadow based on the light. Then taint it based on the light color
+            float3 shadowColor = s.Albedo * _ShadowTint;
+            float4 color;
+            color.rgb = lerp(shadowColor, s.Albedo, lightIntensity) * _LightColor0.rgb;
+            color.a = s.Alpha;
+            return color;
 		}
 
-		// Shadow casting support.
-        // UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
+
+		//input struct which is automatically filled by unity
+		struct Input {
+			float2 uv_MainTex;
+		};
+
+		// This is where the curvature is applied
+		void vert(inout appdata_full v)
+		{
+			// Transform the vertex coordinates from model space into world space
+			float4 vv = mul(unity_ObjectToWorld, v.vertex);
+
+			// Now adjust the coordinates to be relative to the camera position
+			vv.xyz -= _WorldSpaceCameraPos.xyz;
+
+			// Reduce the y coordinate (i.e. lower the "height") of each vertex based
+			// on the square of the distance from the camera in the z axis, multiplied
+			// by the chosen curvature factor
+			vv = float4(0.0f, (vv.z * vv.z) * -_Curvature, 0.0f, 0.0f);
+
+			// Now apply the offset back to the vertices in model space
+			v.vertex += mul(unity_WorldToObject, vv);
+		}
+
+
+		//the surface shader function which sets parameters the lighting function then uses
+		void surf (Input i, inout SurfaceOutput o) {
+			//sample and tint albedo texture
+			fixed4 col = tex2D(_MainTex, i.uv_MainTex);
+			col *= _Color;
+			o.Albedo = col.rgb;
+
+			o.Emission = _Emission;
+		}
+		ENDCG
 	}
+	FallBack "Standard"
 }
