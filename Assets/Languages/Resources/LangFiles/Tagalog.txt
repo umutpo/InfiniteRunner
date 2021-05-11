@@ -4,3 +4,7 @@ Volume=Kalakasan ng Tunog
 Music=Musika
 Language=Wika
 Accessibility=Tulong sa mga Bulag sa Kulay
+Menu=MENU
+HUD_INTRO_TUTORIAL_TEXT=Makikita mo sa kanan ang mga kinukumpleto mong pagkain!
+COMPLETE_DISH_TUTORIAL_TEXT=Kumpletuhin natin ang burger!
+FINISH_TUTORIAL_TEXT=Magsimula tayo magluto!

@@ -4,3 +4,7 @@ Volume=サウンドエフェクト
 Music=音楽
 Language=言語
 Accessibility=アクセシビリティ
+Menu=メニュー
+HUD_INTRO_TUTORIAL_TEXT=完成している料理をごらんください!
+COMPLETE_DISH_TUTORIAL_TEXT=ハンバーガーを作りましょう!
+FINISH_TUTORIAL_TEXT=料理を作りましょう!
