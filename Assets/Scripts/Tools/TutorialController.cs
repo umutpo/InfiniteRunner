@@ -16,7 +16,7 @@ public class TutorialController : MonoBehaviour
 
     const string HUD_INTRO_TUTORIAL_TEXT = "See the dishes you are on your way to completing!";
     const string COMPLETE_DISH_TUTORIAL_TEXT = "Complete the Burger!";
-    const string FINISH_TUTORIAL_TEXT = "Now, it is time cook!";
+    const string FINISH_TUTORIAL_TEXT = "Now, time to cook!";
 
     [SerializeField]
     private Sprite JumpTutorialImage;
@@ -126,6 +126,7 @@ public class TutorialController : MonoBehaviour
     private void StartImageDisplay(Sprite image)
     {
         _tutorialVisualImage.sprite = image;
+        _tutorialVisualImage.SetNativeSize();
         _tutorialVisualImage.color = new Color(255f, 255f, 255f, 255f);
         _tutorialVisual.SetActive(true);
     }

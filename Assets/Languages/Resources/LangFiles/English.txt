@@ -6,4 +6,4 @@ Language=Language
 Accessibility=Accessibility (Color Blind)
 HUD_INTRO_TUTORIAL_TEXT=See the dishes you are on your way to completing!
 COMPLETE_DISH_TUTORIAL_TEXT=Complete the Burger!
-FINISH_TUTORIAL_TEXT=Congratulations! Now, it is time cook!
+FINISH_TUTORIAL_TEXT=Now, time to cook!
