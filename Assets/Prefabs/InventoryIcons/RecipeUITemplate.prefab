@@ -567,7 +567,7 @@ MonoBehaviour:
   stackedDishTemplatesIncreasingCompletionRate: []
   shownDishTemplatesIncreasingCompletionRate:
   - {fileID: 21300000, guid: 6252459054356824b823b5c4e98e88f6, type: 3}
-  - {fileID: 21300000, guid: 86a48026898710347b1904a7cd5a81ac, type: 3}
+  - {fileID: 21300000, guid: 7b5c47a5a7f9eb04fa19c36e23b41d2a, type: 3}
   - {fileID: 21300000, guid: a100235edca51494da185c6ae6fbaab0, type: 3}
 --- !u!1 &7272294529870893069
 GameObject:

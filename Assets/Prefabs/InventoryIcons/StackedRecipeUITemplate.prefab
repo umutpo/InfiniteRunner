@@ -326,5 +326,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stackedDishTemplatesIncreasingCompletionRate:
   - {fileID: 21300000, guid: 0338c3b240c555648b832e5cb1c37827, type: 3}
-  - {fileID: 21300000, guid: 5b60bef2dabf7554498cb296172aedb7, type: 3}
+  - {fileID: 21300000, guid: 9e0fb8e2d1e7e584092c4769352409e1, type: 3}
   - {fileID: 21300000, guid: d498bfe5ec336c34fae101584f0da57c, type: 3}
