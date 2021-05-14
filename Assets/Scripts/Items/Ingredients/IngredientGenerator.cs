@@ -60,26 +60,35 @@ public class IngredientGenerator : MonoBehaviour
     {
         List<string> keyList = new List<string>(counts.Keys);
         List<RecipeController> recipes = playerController.GetRecipes();
-        foreach (string str in keyList)
+        // iterate over each recipe
+        foreach (RecipeController recipe in recipes)
         {
-            if (counts[str] >= 1)
+            List<string> ingredients = recipe.getListOfIngredients();
+            List<string> ingredientsLeftToComplete = new List<string>();
+            bool halfFinished = false;
+            // iterate over all the ingredients needed for this recipe
+            // check to see if anything for this recipe is collected
+            foreach (string ingredient in ingredients)
             {
-                foreach(RecipeController recipe in recipes)
+                if (counts[ingredient] == 0)
                 {
-                    List<string> ingredients = recipe.getListOfIngredients();
-                    // if that recipe has the item already collected
-                    if (ingredients.Contains(str))
-                    {
-                        foreach(string ingredient in ingredients)
-                        {
-                            // dont increase frequency for item already collected
-                            if(ingredient != str)
-                            {
-                                int originalFreq = spawnProbabilities[ingredient];
-                                spawnProbabilities[ingredient] = originalFreq + freqIncrease;
-                            }
-                        }
-                    }
+                    ingredientsLeftToComplete.Add(ingredient);
+                }
+            }
+            // 
+            if(ingredientsLeftToComplete.Count != ingredients.Count
+            && ingredientsLeftToComplete.Count != 0)
+            {
+                halfFinished = true;
+            }
+            // increase freqency for ingredientsLeftToComplete if recipe is halffinished
+            // do not change anything is the recipe has nothing collected yet or can be finished as  a dish
+            if(halfFinished)
+            {
+                foreach (string ingredientToIncrease in ingredientsLeftToComplete)
+                {
+                    int originalFreq = spawnProbabilities[ingredientToIncrease];
+                    spawnProbabilities[ingredientToIncrease] = originalFreq + freqIncrease;
                 }
             }
         }
