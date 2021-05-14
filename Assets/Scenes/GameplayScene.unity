@@ -1735,6 +1735,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a5a731a45ec5854d858e9778c2739d8, type: 3}
+--- !u!1 &1319917690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8339827939122216602, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+    type: 3}
+  m_PrefabInstance: {fileID: 8339827939183077954}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1518029619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1966,17 +1972,17 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
+      propertyPath: recipes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 356856036}
     - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: freqIncrease
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
-        type: 3}
-      propertyPath: recipes.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
@@ -2164,6 +2170,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1319917690}
     - target: {fileID: 5537373567197875067, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
       propertyPath: m_RootOrder
