@@ -128,7 +128,6 @@ public class ItemGenerator : MonoBehaviour
     }
 
     string GetItemName() {
-        // TODO:
         // Determine what type of item: Ingredient or obstacle
         int itemTypeRng = Random.Range(0, 100);
         // Return item name

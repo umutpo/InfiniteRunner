@@ -5,7 +5,6 @@ using UnityEngine;
 public class KitchenController : PlatformController
 {
     private const float KITCHEN_SIZE = 20f;
-    private float speedReduction = 4f;
 
     protected override void Start() {
         base.Start();
