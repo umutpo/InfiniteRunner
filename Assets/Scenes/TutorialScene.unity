@@ -2563,9 +2563,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72304ab03bdfc514dbd56e18be76212c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpTutorialImage: {fileID: 21300000, guid: 95fd53d7bcfd97c4fbe5b87652fb4bf6, type: 3}
-  SlideTutorialImage: {fileID: 21300000, guid: 7bfdec1f6284c7f46b12a952c87bfb90, type: 3}
-  ChangeLanesTutorialImage: {fileID: 21300000, guid: 1a5e5166193a58f4cb2666e33b88a7b3,
+  JumpTutorialImage: {fileID: 21300000, guid: abb870e6527dda64589559c09832490e, type: 3}
+  SlideTutorialImage: {fileID: 21300000, guid: 0c887dd981542994e87ecc3cc0e3bc1a, type: 3}
+  ChangeLanesTutorialImage: {fileID: 21300000, guid: bd95f55ee1775414bb68b36c258ca66a,
     type: 3}
   _player: {fileID: 1043191425}
   _tutorialCommand: {fileID: 223738701}
