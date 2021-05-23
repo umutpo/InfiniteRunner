@@ -719,7 +719,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 07c73a5a27ba5884d817bc6deb69f81e, type: 2}
+  - {fileID: 2100000, guid: b06f1a39b0c5a54438820e3d7f71a58c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -747,7 +747,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110403071}
-  m_Mesh: {fileID: -6469185298395569704, guid: 438f2542596bc7448a74670173caca15, type: 3}
+  m_Mesh: {fileID: 7233159054065966114, guid: 6a0119a32e11eaf449f0aa77de1b0820, type: 3}
 --- !u!4 &110403076
 Transform:
   m_ObjectHideFlags: 0
@@ -1987,8 +1987,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064234646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 1, z: 90}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3, y: 1.5, z: 90}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
@@ -2195,13 +2195,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100390875}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 1, z: 94}
+  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: -3, y: 0.65, z: 94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!1001 &1314294785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2563,9 +2563,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72304ab03bdfc514dbd56e18be76212c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpTutorialImage: {fileID: 21300000, guid: 95fd53d7bcfd97c4fbe5b87652fb4bf6, type: 3}
-  SlideTutorialImage: {fileID: 21300000, guid: 7bfdec1f6284c7f46b12a952c87bfb90, type: 3}
-  ChangeLanesTutorialImage: {fileID: 21300000, guid: 1a5e5166193a58f4cb2666e33b88a7b3,
+  JumpTutorialImage: {fileID: 21300000, guid: abb870e6527dda64589559c09832490e, type: 3}
+  SlideTutorialImage: {fileID: 21300000, guid: 0c887dd981542994e87ecc3cc0e3bc1a, type: 3}
+  ChangeLanesTutorialImage: {fileID: 21300000, guid: bd95f55ee1775414bb68b36c258ca66a,
     type: 3}
   _player: {fileID: 1043191425}
   _tutorialCommand: {fileID: 223738701}
@@ -2786,8 +2786,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711741473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 28}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 30}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
