@@ -38,8 +38,8 @@ public class KitchenGenerator : MonoBehaviour
     protected void Start()
     {
         kitchenCount = 0;
-        leftPosition = transform.position + new Vector3(-9, 0, 0);
-        rightPosition = transform.position + new Vector3(9, 0, 0);
+        leftPosition = transform.position + new Vector3(-7.5f, 0, 0);
+        rightPosition = transform.position + new Vector3(7.5f, 0, 0);
         laneOffset = new Vector3(0, 0, 0);
         pos[0] = leftPosition;
         pos[1] = rightPosition;
