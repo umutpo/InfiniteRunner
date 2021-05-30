@@ -2409,30 +2409,6 @@ PrefabInstance:
       propertyPath: scoreController
       value: 
       objectReference: {fileID: 264273164}
-    - target: {fileID: 1016845870483556814, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 246237887660379932, guid: bc83e6578746ea546b90e6e9296e1f0d,
-        type: 3}
-    - target: {fileID: 1615011252832460160, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1749788427702966484, guid: 017a9f10d59c5a84e82e89c8826f54d9,
-        type: 3}
-    - target: {fileID: 5276975408099716716, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1452172608068218227, guid: 3579948118d8e6e4c8423681400ebf54,
-        type: 3}
-    - target: {fileID: 5489715389113871937, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -8870946231481924797, guid: 10d9f6ec5cb575c44bd72ee57f2df569,
-        type: 3}
     - target: {fileID: 5537373567197875062, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
       propertyPath: m_Name
@@ -2493,39 +2469,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5537373567531587302, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537373567531587302, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5649442652637785093, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -2192719202202067047, guid: 799c7739a17b965469ef7fb171a50f58,
-        type: 3}
-    - target: {fileID: 6683513836838124397, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 7113742550581899826, guid: 3853498a847a5404fa7abcf29cc8ec3f,
-        type: 3}
-    - target: {fileID: 8637958349022818274, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: criticVisibleMinimumDistanceDifference
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8764914886097214694, guid: f4eaea86d4f33324fa75387c319d2243,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -3262910355955414891, guid: d08f569465a8a214c88d40bc5f53f52c,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
 --- !u!1 &1426560698 stripped
