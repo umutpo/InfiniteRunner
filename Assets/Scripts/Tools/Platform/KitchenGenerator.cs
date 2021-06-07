@@ -28,8 +28,8 @@ public class KitchenGenerator : MonoBehaviour
 
     private string[] LEFT_KITCHENS = { Pool.KITCHEN1, Pool.KITCHEN2, Pool.KITCHEN3 };
     private string[] RIGHT_KITCHENS = { Pool.KITCHEN4, Pool.KITCHEN5, Pool.KITCHEN6 };
-    private string[] OBSTACLE_LEFT_KITCHENS = { };
-    private string[] OBSTACLE_RIGHT_KITCHENS = { };
+    private string[] OBSTACLE_LEFT_KITCHENS = { Pool.KITCHEN7 };
+    private string[] OBSTACLE_RIGHT_KITCHENS = { Pool.KITCHEN8 };
 
     private Vector3[] pos = new Vector3[2];
     private float[] obstacleEnds = {-1, -1};    // {left lane obstacle end, right lane obstacle end}
@@ -40,7 +40,6 @@ public class KitchenGenerator : MonoBehaviour
         kitchenCount = 0;
         leftPosition = transform.position + new Vector3(-7.5f, 0, 0);
         rightPosition = transform.position + new Vector3(7.5f, 0, 0);
-        laneOffset = new Vector3(0, 0, 0);
         pos[0] = leftPosition;
         pos[1] = rightPosition;
         kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(KITCHEN_TYPES.LEFT), leftPosition, Quaternion.identity);
@@ -70,15 +69,12 @@ public class KitchenGenerator : MonoBehaviour
             // Determine if kitchen is lane obstacle
             if (!isTutorial && OBSTACLE_LEFT_KITCHENS.Length > 0 && OBSTACLE_RIGHT_KITCHENS.Length > 0 && Random.Range(0, 100) < 10) {
                 currentKitchenType = posIndex == 0 ? KITCHEN_TYPES.OBSTACLE_LEFT : KITCHEN_TYPES.OBSTACLE_RIGHT;
-                laneOffset.x = posIndex == 0 ? 3 : -3;
-                obstacleEnds[posIndex] = pos[posIndex].z + kitchen.transform.localScale.z * kitchenLength / 2;
             } else {
                 currentKitchenType = posIndex == 0 ? KITCHEN_TYPES.LEFT : KITCHEN_TYPES.RIGHT;
-                laneOffset.x = 0;
             }
 
             // Set position of platform
-            kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(currentKitchenType), pos[posIndex] + laneOffset, Quaternion.identity);
+            kitchen = ObjectPooler.Instance.SpawnFromPool(GetRandomKitchen(currentKitchenType), pos[posIndex], Quaternion.identity);
             // Check if platform spawned
             if (kitchen == null) return;   // Should never occur if pool size is larger than max
             pos[posIndex].z += kitchen.transform.localScale.z * kitchenLength;
