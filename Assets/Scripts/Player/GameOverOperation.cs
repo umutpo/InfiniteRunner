@@ -7,8 +7,9 @@ public class GameOverOperation : MonoBehaviour
 {
     public ScoreController scoreController;
     public PlayerController playerController;
+    public Animator screenTransition;
 
-    public string GameOverSceneName = "GameOverScene";
+    private const string GameOverSceneName = "GameOverScene";
 
     void Start()
     {
@@ -27,6 +28,13 @@ public class GameOverOperation : MonoBehaviour
     public void gameOverOperations()
     {
         scoreController.updateHighScore();
+        StartCoroutine(loadGameOverScene());
+    }
+
+    private IEnumerator loadGameOverScene()
+    {
+        screenTransition.SetTrigger("start");
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(GameOverSceneName);
     }
 }

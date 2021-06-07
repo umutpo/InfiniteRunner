@@ -962,6 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationScene: 0
+  screenTransition: {fileID: 1048874570}
 --- !u!114 &473104251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2163,17 +2164,17 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
+      propertyPath: recipes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 356856036}
     - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: freqIncrease
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
-        type: 3}
-      propertyPath: recipes.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
@@ -2332,6 +2333,38 @@ PrefabInstance:
       propertyPath: scoreController
       value: 
       objectReference: {fileID: 264273164}
+    - target: {fileID: 356856043, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
+      propertyPath: screenTransition
+      value: 
+      objectReference: {fileID: 1048874570}
+    - target: {fileID: 1424326131, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016845870483556814, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 246237887660379932, guid: bc83e6578746ea546b90e6e9296e1f0d,
+        type: 3}
+    - target: {fileID: 1615011252832460160, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1749788427702966484, guid: 017a9f10d59c5a84e82e89c8826f54d9,
+        type: 3}
+    - target: {fileID: 5276975408099716716, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1452172608068218227, guid: 3579948118d8e6e4c8423681400ebf54,
+        type: 3}
+    - target: {fileID: 5489715389113871937, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8870946231481924797, guid: 10d9f6ec5cb575c44bd72ee57f2df569,
+        type: 3}
     - target: {fileID: 5537373567197875062, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
       propertyPath: m_Name
