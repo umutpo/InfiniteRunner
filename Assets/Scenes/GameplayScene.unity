@@ -962,6 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationScene: 0
+  screenTransition: {fileID: 1048874570}
 --- !u!114 &473104251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2163,17 +2164,17 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
+      propertyPath: recipes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 356856036}
     - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: freqIncrease
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
-        type: 3}
-      propertyPath: recipes.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4756254010319538032, guid: 3353a00a13fa93e48980be9b0f2edfe4,
@@ -2344,6 +2345,10 @@ PrefabInstance:
       propertyPath: scoreController
       value: 
       objectReference: {fileID: 264273164}
+    - target: {fileID: 356856043, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
+      propertyPath: screenTransition
+      value: 
+      objectReference: {fileID: 1048874570}
     - target: {fileID: 1424326131, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
       propertyPath: m_Text
       value: 

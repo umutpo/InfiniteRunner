@@ -669,6 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationScene: 2
+  screenTransition: {fileID: 506537628}
 --- !u!114 &1134351175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,6 +898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationScene: 0
+  screenTransition: {fileID: 506537628}
 --- !u!1 &1356829647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,6 +1148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationScene: 1
+  screenTransition: {fileID: 506537628}
 --- !u!114 &1445211760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1487,6 +1490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationScene: 5
+  screenTransition: {fileID: 506537628}
 --- !u!114 &1709098735
 MonoBehaviour:
   m_ObjectHideFlags: 0
