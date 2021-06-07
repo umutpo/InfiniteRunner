@@ -902,8 +902,7 @@ MonoBehaviour:
   maxSpeed: 0
   currentSpeed: 0
   gameOverSpeed: 2
-  inventory: {fileID: 4116583014806320862, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
-    type: 3}
+  inventory: {fileID: 0}
   invincibilityDuration: 1
 --- !u!95 &356856037
 Animator:
