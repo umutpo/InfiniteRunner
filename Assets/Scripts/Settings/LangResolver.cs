@@ -74,7 +74,15 @@ public class LangResolver : MonoBehaviour
         var lang = _langData[_language].Lang;
         foreach (var langText in Resources.FindObjectsOfTypeAll<LangText>())
         {
-            langText.ChangeText(lang[langText.GetTextIdentifier()]);
+            string currentTextIdentifier = langText.GetTextIdentifier();
+            if (currentTextIdentifier == "")
+            {
+                langText.ChangeText("");
+            }
+            else
+            {
+                langText.ChangeText(lang[currentTextIdentifier]);
+            }
         }
     }
 

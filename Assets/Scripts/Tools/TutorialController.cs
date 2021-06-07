@@ -31,6 +31,7 @@ public class TutorialController : MonoBehaviour
 
     [SerializeField]
     private GameObject _tutorialCommand;
+    private LangText _tutorialCommandLang;
     private Text _tutorialCommandText;
 
     [SerializeField]
@@ -58,6 +59,7 @@ public class TutorialController : MonoBehaviour
 
         if (_tutorialCommand != null)
         {
+            _tutorialCommandLang = _tutorialCommand.GetComponent<LangText>();
             _tutorialCommandText = _tutorialCommand.GetComponent<Text>();
         }
 
@@ -119,7 +121,7 @@ public class TutorialController : MonoBehaviour
 
     private void StartTextDisplay(string text)
     {
-        _tutorialCommandText.text = text;
+        _tutorialCommandLang.SetTextIdentifier(text);
         _tutorialCommand.SetActive(true);
     }
 
@@ -142,7 +144,7 @@ public class TutorialController : MonoBehaviour
 
     private void StopTextDisplay()
     {
-        _tutorialCommandText.text = "";
+        _tutorialCommandLang.SetTextIdentifier("");
         _tutorialCommand.SetActive(false);
     }
 
