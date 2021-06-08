@@ -11,6 +11,13 @@ public class LangText : MonoBehaviour
     public string GetTextIdentifier() {
         return textIdentifier;
     }
+
+    public void SetTextIdentifier(string newText)
+    {
+        textIdentifier = newText;
+        FindObjectOfType<LangResolver>().ResolveTexts();
+    }
+
     public void ChangeText(string text)
     {
         GetComponent<Text>().text = Regex.Unescape(text);
