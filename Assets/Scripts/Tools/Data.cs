@@ -16,6 +16,8 @@ public struct Pool
     public static readonly string KITCHEN4 = "KitchenFour";
     public static readonly string KITCHEN5 = "KitchenFive";
     public static readonly string KITCHEN6 = "KitchenSix";
+    public static readonly string KITCHEN7 = "KitchenSeven";
+    public static readonly string KITCHEN8 = "KitchenEight";
     // Obstacles
     public static readonly string OBSTACLE1 = "ObstacleFirst";
     public static readonly string OBSTACLE2 = "ObstacleSecond";
