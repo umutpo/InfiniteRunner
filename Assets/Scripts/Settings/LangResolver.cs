@@ -48,9 +48,7 @@ public class LangResolver : MonoBehaviour
          var lang = new Dictionary<string, string>();
          foreach (var line in file.text.Split('\n'))
          {
-             Debug.Log(line);
             var prop = line.Split(Separator);
-            Debug.Log(prop);
             lang[prop[0]] = prop[1];
          }
          _langData[language] = new LangData(lang);
@@ -62,7 +60,6 @@ public class LangResolver : MonoBehaviour
    private void ResolveLanguage()
    {
       _language = PrefsHolder.GetLang();
-      Debug.Log(_language);
       if (!_supportedLanguages.Contains(_language))
       {
          _language = DEFAULT_LANGUAGE;
