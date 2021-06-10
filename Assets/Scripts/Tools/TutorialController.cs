@@ -2,6 +2,7 @@
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class TutorialController : MonoBehaviour
 {
@@ -37,6 +38,8 @@ public class TutorialController : MonoBehaviour
     [SerializeField]
     private GameObject _tutorialVisual;
     private Image _tutorialVisualImage;
+
+    public Animator screenTransition;
 
     bool jumpFlag = true;
     bool slideFlag = true;
@@ -115,7 +118,7 @@ public class TutorialController : MonoBehaviour
         }
         else if (currentPlayerPositionZ >= END_TUTORIAL_TRIGGER_POSITION)
         {
-            SceneManager.LoadScene("GameplayScene");
+            StartCoroutine(loadGamePlayScene());
         }
     }
 
@@ -153,5 +156,11 @@ public class TutorialController : MonoBehaviour
         _tutorialVisualImage.sprite = null;
         _tutorialVisualImage.color = new Color(255f, 255f, 255f, 0f);
         _tutorialVisual.SetActive(false);
+    }
+    private IEnumerator loadGamePlayScene()
+    {
+    screenTransition.SetTrigger("start");
+    yield return new WaitForSeconds(1f);
+    SceneManager.LoadScene("GameplayScene");
     }
 }
