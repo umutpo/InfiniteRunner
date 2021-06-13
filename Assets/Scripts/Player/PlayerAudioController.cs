@@ -13,48 +13,58 @@ public class PlayerAudioController : MonoBehaviour
     [SerializeField] private AudioSource gameEnd;
     [SerializeField] private AudioSource running;
 
-    public void PlayGameStart()
-    {
-        gameStart.Play();
-    }
+// Audio played on awake instead
+    // public void PlayGameStart()
+    // {
+    //     if (gameStart != null)
+    //     gameStart.Play();
+    // }
 
     public void PlayObstacleHit()
     {
-        obstacleHit.Play();
+        if (obstacleHit != null)
+            obstacleHit.Play();
     }
 
     public void PlayRecipeCompletion()
     {
-        recipeCompletion.Play();
+        if (recipeCompletion != null)
+            recipeCompletion.Play();
     }
 
     public void PlayJump()
     {
-        jump.Play();
+        if (jump != null)
+            jump.Play();
     }
 
     public void PlaySlide()
     {
-        slide.Play();
+        if (slide != null)
+            slide.Play();
     }
 
     public void PlayLaneSwitch()
     {
-        laneSwitch.Play();
+        if (laneSwitch != null)
+            laneSwitch.Play();
     }
 
     public void PlayGameEnd()
     {
-        gameEnd.Play();
+        if (gameEnd != null)
+            gameEnd.Play();
     }
 
     public void PlayRunning()
     {
+        if (running != null)
         running.Play();
     }
 
     public void PauseRunning()
     {
+        if (running != null)
         running.Pause();
     }
 }
