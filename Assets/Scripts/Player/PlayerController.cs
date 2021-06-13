@@ -116,11 +116,13 @@ public class PlayerController : MonoBehaviour
     {
         if (canPlayerMove())
         {
+            audioController.PlayRunning();
             jumpAction.Enable();
             slideAction.Enable();
         }
         else
         {
+            audioController.PauseRunning();
             jumpAction.Disable();
             if (isPlayerGrounded())
             {
@@ -161,6 +163,7 @@ public class PlayerController : MonoBehaviour
                 _collider.center = new Vector3(_collider.center.x, 0f, _collider.center.z);
                 slideTimeCount = 0;
                 isSliding = false;
+                audioController.PlayRunning();
             }
         }
 

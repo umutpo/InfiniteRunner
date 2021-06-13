@@ -58,13 +58,13 @@ public class PlayerAudioController : MonoBehaviour
 
     public void PlayRunning()
     {
-        if (running != null)
-        running.Play();
+        if (running != null && !running.isPlaying)
+            running.Play();
     }
 
     public void PauseRunning()
     {
         if (running != null)
-        running.Pause();
+            running.Pause();
     }
 }
