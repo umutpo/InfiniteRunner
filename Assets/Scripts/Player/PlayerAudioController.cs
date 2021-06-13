@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerAudioController : MonoBehaviour
 {
+    [SerializeField] AudioMixer masterMixer;
+
     [SerializeField] private AudioSource gameStart;
     [SerializeField] private AudioSource obstacleHit;
     [SerializeField] private AudioSource recipeCompletion;

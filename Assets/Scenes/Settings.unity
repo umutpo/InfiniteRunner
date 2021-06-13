@@ -767,6 +767,7 @@ GameObject:
   - component: {fileID: 367345278}
   - component: {fileID: 367345277}
   - component: {fileID: 367345276}
+  - component: {fileID: 367345279}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -863,6 +864,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367345274}
   m_CullTransparentMesh: 0
+--- !u!114 &367345279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367345274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dc9e519b481864eaa9862870c97da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: 943538d4026d7064db1e526859f3dbdf, type: 2}
+  musicSlider: {fileID: 809449700}
+  sfxSlider: {fileID: 398691354}
 --- !u!1 &398691352
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,13 +961,24 @@ MonoBehaviour:
   m_FillRect: {fileID: 1560045591}
   m_HandleRect: {fileID: 362746201}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 367345279}
+        m_MethodName: SetSfxLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &412878237
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,13 +1925,24 @@ MonoBehaviour:
   m_FillRect: {fileID: 1730399327}
   m_HandleRect: {fileID: 906790718}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 367345279}
+        m_MethodName: SetMusicLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &839273385
 GameObject:
   m_ObjectHideFlags: 0
@@ -4771,6 +4809,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3458213501767277584, guid: 2933264f2e17342db99c973557052d2e,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3458213501767277584, guid: 2933264f2e17342db99c973557052d2e,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 320
       objectReference: {fileID: 0}
@@ -4786,6 +4829,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3458213501767277584, guid: 2933264f2e17342db99c973557052d2e,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3458213501767277584, guid: 2933264f2e17342db99c973557052d2e,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -4798,16 +4846,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3458213501767277584, guid: 2933264f2e17342db99c973557052d2e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3458213501767277584, guid: 2933264f2e17342db99c973557052d2e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3458213501767277584, guid: 2933264f2e17342db99c973557052d2e,
         type: 3}
