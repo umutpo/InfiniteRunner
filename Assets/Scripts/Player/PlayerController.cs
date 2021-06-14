@@ -79,6 +79,9 @@ public class PlayerController : MonoBehaviour
     public static Action StopTutorial;
     private bool waitForTutorial = false;
 
+    // Audio variables
+    private PlayerAudioController audioController;
+
     void Start()
     {
         maxSpeed = INITIAL_SPEED;
@@ -97,6 +100,8 @@ public class PlayerController : MonoBehaviour
         playerInventoryData = inventory.GetComponent<PlayerInventoryData>();
 
         anim = gameObject.GetComponent<Animator>();
+
+        audioController = gameObject.GetComponent<PlayerAudioController>();
         
         moveLeftAction.Enable();
         moveRightAction.Enable();
@@ -111,11 +116,13 @@ public class PlayerController : MonoBehaviour
     {
         if (canPlayerMove())
         {
+            audioController.PlayRunning();
             jumpAction.Enable();
             slideAction.Enable();
         }
         else
         {
+            audioController.PauseRunning();
             jumpAction.Disable();
             if (isPlayerGrounded())
             {
@@ -156,6 +163,7 @@ public class PlayerController : MonoBehaviour
                 _collider.center = new Vector3(_collider.center.x, 0f, _collider.center.z);
                 slideTimeCount = 0;
                 isSliding = false;
+                audioController.PlayRunning();
             }
         }
 
@@ -176,6 +184,7 @@ public class PlayerController : MonoBehaviour
     {
         if (currentSpeed <= gameOverSpeed)
         {
+            audioController.PlayGameEnd();
             SetGameOver();
         }
     }
@@ -195,7 +204,8 @@ public class PlayerController : MonoBehaviour
             Physics.gravity = Vector3.up * -1 * ((2 * MAX_JUMP_HEIGHT) / Mathf.Pow((time / 2), 2));
             float verticalJumpSpeed = Physics.gravity.y * -1 * (time / 2);
             _body.AddForce(Vector3.up * verticalJumpSpeed, ForceMode.VelocityChange);
-            playPLayerAnimation("Jump");
+            playPlayerAnimation("Jump");
+            audioController.PlayJump();
         }
     }
 
@@ -207,7 +217,8 @@ public class PlayerController : MonoBehaviour
             _collider.size = new Vector3(_collider.size.x, _collider.size.y / 2, _collider.size.z);
             _collider.center = new Vector3(_collider.center.x, -1 * (_collider.size.y / 2), _collider.center.z);
             isSliding = true;
-            playPLayerAnimation("Slide");
+            playPlayerAnimation("Slide");
+            audioController.PlaySlide();
         }
     }
 
@@ -218,7 +229,8 @@ public class PlayerController : MonoBehaviour
             inMovement = true;
             shift = new Vector3(-LANE_LENGTH / (NUMBER_OF_LANES + 1), 0, 0);
             currentLane--;
-            playPLayerAnimation("MoveLeft");
+            playPlayerAnimation("MoveLeft");
+            audioController.PlayLaneSwitch();
         }
     }
 
@@ -229,7 +241,8 @@ public class PlayerController : MonoBehaviour
             inMovement = true;
             shift = new Vector3(LANE_LENGTH / (NUMBER_OF_LANES + 1), 0, 0);
             currentLane++;
-            playPLayerAnimation("MoveRight");
+            playPlayerAnimation("MoveRight");
+            audioController.PlayLaneSwitch();
         }
     }
 
@@ -334,7 +347,8 @@ public class PlayerController : MonoBehaviour
                 obstacleSpeedGainRemainder += (maxSpeed / reduction);
                 StartCoroutine(becomeInvincibleTemporary());
             }
-            playPLayerAnimation("Hit");
+            playPlayerAnimation("Hit");
+            audioController.PlayObstacleHit();
         }
         else
         {
@@ -357,7 +371,7 @@ public class PlayerController : MonoBehaviour
         return (MAX_INVENTORY_INGREDIENT_WEIGHT - extraWeight) / MAX_INVENTORY_INGREDIENT_WEIGHT;
     }
 
-    private void playPLayerAnimation(string animationEventName)
+    private void playPlayerAnimation(string animationEventName)
     {
         if (anim != null)
         {
@@ -392,11 +406,12 @@ public class PlayerController : MonoBehaviour
         if (usedIngredientCount > 0) {
             setBoost = true;
             reduceExtraWeight(usedIngredientCount);
-            playPLayerAnimation("Complete");
+            playPlayerAnimation("Complete");
+            audioController.PlayRecipeCompletion();
         } 
         else
         {
-            playPLayerAnimation("Collect");
+            playPlayerAnimation("Collect");
         }
     }
 
