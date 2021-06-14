@@ -15,8 +15,9 @@ public class PlayerAudioController : MonoBehaviour
     [SerializeField] private AudioSource laneSwitch;
     [SerializeField] private AudioSource gameEnd;
     [SerializeField] private AudioSource running;
+    [SerializeField] private AudioSource itemCollection;
 
-// Audio played on awake instead
+    // Audio played on awake instead
     // public void PlayGameStart()
     // {
     //     if (gameStart != null)
@@ -69,5 +70,11 @@ public class PlayerAudioController : MonoBehaviour
     {
         if (running != null)
             running.Pause();
+    }
+
+    public void PlayItemCollection()
+    {
+        if (itemCollection != null)
+            itemCollection.Play();
     }
 }

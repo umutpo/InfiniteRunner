@@ -13,12 +13,12 @@ public class ScoreController : MonoBehaviour
     {
         currentScore = 0;
         score = GetComponent<Text>();
-        score.text = "Score: " + currentScore;
+        score.text = currentScore.ToString();
     }
 
     void Update()
     {
-        score.text = "Score: " + currentScore;
+        score.text = currentScore.ToString();
     }
 
     public void updateHighScore(){
