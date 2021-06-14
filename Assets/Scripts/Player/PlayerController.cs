@@ -412,6 +412,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             playPlayerAnimation("Collect");
+            audioController.PlayItemCollection();
         }
     }
 
