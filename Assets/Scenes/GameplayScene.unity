@@ -953,7 +953,6 @@ GameObject:
   - component: {fileID: 473104252}
   - component: {fileID: 473104251}
   - component: {fileID: 473104250}
-  - component: {fileID: 473104254}
   m_Layer: 5
   m_Name: ReturnButton
   m_TagString: Untagged
@@ -978,8 +977,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 270, y: -585}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 230, y: -495}
+  m_SizeDelta: {x: 160, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &473104250
 MonoBehaviour:
@@ -1075,20 +1074,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 473104248}
   m_CullTransparentMesh: 0
---- !u!114 &473104254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473104248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a82ad2a0be1ca7b4096b8f4fc14acdd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  setToGameState: 1
-  pauseMenuCanvas: {fileID: 648944963}
 --- !u!114 &593192189 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 581340714027735788, guid: b7bb969bddd6ca949ae245d1203c8ca6,
@@ -1216,8 +1201,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 270, y: -195}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 230, y: -165}
+  m_SizeDelta: {x: 160, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &603475193
 MonoBehaviour:
@@ -1599,7 +1584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &915028893
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1803,6 +1788,11 @@ PrefabInstance:
       propertyPath: screenTransition
       value: 
       objectReference: {fileID: 1048874570}
+    - target: {fileID: 3458213503728990608, guid: 2933264f2e17342db99c973557052d2e,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3458213503728990623, guid: 2933264f2e17342db99c973557052d2e,
         type: 3}
       propertyPath: m_SortingOrder
@@ -2224,6 +2214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1743703880}
   - component: {fileID: 1743703882}
+  - component: {fileID: 1743703881}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -2250,6 +2241,39 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1743703881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743703879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: RESUME
 --- !u!222 &1743703882
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2307,11 +2331,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1744605643}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e0a4c1b5baf47f46bbe55679147c727, type: 3}
+  m_Script: {fileID: 11500000, guid: a82ad2a0be1ca7b4096b8f4fc14acdd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationScene: 0
-  screenTransition: {fileID: 1048874570}
+  setToGameState: 0
+  pauseMenuCanvas: {fileID: 648944963}
 --- !u!114 &1744605646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2351,7 +2375,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 915028894}
+  m_TargetGraphic: {fileID: 1744605647}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -2374,8 +2398,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: ee2b1646ee3b3e84da9ff573d48621dd, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

@@ -22,7 +22,7 @@ public class SceneSwitcher : MonoBehaviour
     private SceneType destinationScene;
 
     public Animator screenTransition;
-    public void Start() {
+    public void Awake() {
         Button thisButton = GetComponent<Button>();
        thisButton.onClick.AddListener(() => {
         StartCoroutine(loadScene());
@@ -31,8 +31,9 @@ public class SceneSwitcher : MonoBehaviour
 
     private IEnumerator loadScene()
     {
+        Time.timeScale = 1; // reset the time scale every time a new scene is loaded so the gameplay animations wont freeze
         screenTransition.SetTrigger("start");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSecondsRealtime(1f);
         if (destinationScene.ToString() == "GameplayScene" && isFirstTimePlaying())
         {
             SceneManager.LoadScene("TutorialScene");
@@ -41,6 +42,7 @@ public class SceneSwitcher : MonoBehaviour
         {
             SceneManager.LoadScene(destinationScene.ToString());
         }
+        yield return false;
     }
 
     private bool isFirstTimePlaying()
