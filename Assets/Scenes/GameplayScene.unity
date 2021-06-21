@@ -2716,7 +2716,7 @@ PrefabInstance:
     - target: {fileID: 240287780845785748, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
         type: 3}
       propertyPath: m_Spacing
-      value: -11
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 240287780845785748, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
         type: 3}
@@ -2730,13 +2730,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 240287780845785748, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
         type: 3}
+      propertyPath: m_ChildScaleHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 240287780845785748, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 240287780845785748, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 240287780845785748, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
+        type: 3}
       propertyPath: m_ChildForceExpandHeight
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2125750658604256096, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 2125750658604256096, guid: 9ebb5d5eda504174a8b3004ec5ddc549,
         type: 3}
