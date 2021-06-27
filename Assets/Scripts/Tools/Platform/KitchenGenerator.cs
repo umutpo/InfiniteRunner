@@ -26,10 +26,10 @@ public class KitchenGenerator : MonoBehaviour
     [SerializeField]
     private bool isTutorial = false;
 
-    private string[] LEFT_KITCHENS = { Pool.KITCHEN1, Pool.KITCHEN2, Pool.KITCHEN3 };
-    private string[] RIGHT_KITCHENS = { Pool.KITCHEN4, Pool.KITCHEN5, Pool.KITCHEN6 };
-    private string[] OBSTACLE_LEFT_KITCHENS = { Pool.KITCHEN7 };
-    private string[] OBSTACLE_RIGHT_KITCHENS = { Pool.KITCHEN8 };
+    private string[] LEFT_KITCHENS = { Pool.KITCHEN1, Pool.KITCHEN2, Pool.KITCHEN3, Pool.KITCHEN4, Pool.KITCHEN5 };
+    private string[] RIGHT_KITCHENS = {  Pool.KITCHEN6, Pool.KITCHEN7, Pool.KITCHEN8, Pool.KITCHEN9, Pool.KITCHEN10 };
+    private string[] OBSTACLE_LEFT_KITCHENS = { Pool.OBSTACLEKIT1, Pool.OBSTACLEKIT2, Pool.OBSTACLEKIT3, Pool.OBSTACLEKIT4, Pool.OBSTACLEKIT5 };
+    private string[] OBSTACLE_RIGHT_KITCHENS = { Pool.OBSTACLEKIT6, Pool.OBSTACLEKIT7, Pool.OBSTACLEKIT8, Pool.OBSTACLEKIT9, Pool.OBSTACLEKIT10 };
 
     private Vector3[] pos = new Vector3[2];
     private float[] obstacleEnds = {-1, -1};    // {left lane obstacle end, right lane obstacle end}
