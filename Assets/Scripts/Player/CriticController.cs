@@ -11,11 +11,13 @@ public class CriticController : MonoBehaviour
 
     private Rigidbody _body;
     private PlayerController playerController;
+    private Animator animator;
 
     void Start()
     {
         _body = gameObject.GetComponent<Rigidbody>();
         playerController = this.GetComponentInParent<PlayerController>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -31,11 +33,16 @@ public class CriticController : MonoBehaviour
                 if (distanceBetween <= criticVisibleMinimumDistanceDifference)
                 {
                     this.transform.position = new Vector3(parentPosition.x, parentPosition.y, parentPosition.z - criticVisibleMinimumDistanceDifference);
+                    animator.SetInteger("CriticCloseness", 1);
                 } 
                 else
                 {
                     this.transform.position = new Vector3(parentPosition.x, parentPosition.y, parentPosition.z - distanceBetween);
+                    animator.SetInteger("CriticCloseness", 0);
                 }
+            }
+            else {
+                animator.SetInteger("CriticCloseness", 0);
             }
         }
 
