@@ -2650,7 +2650,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e14539930a2312c47b04edb4728ff387,
         type: 3}
       propertyPath: m_Name
-      value: criticAnimated 1
+      value: Critic Model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e14539930a2312c47b04edb4728ff387, type: 3}
