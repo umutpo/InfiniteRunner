@@ -50,16 +50,30 @@ public class ObjectPooler : MonoBehaviour {
             Debug.LogWarning(tag + " does not exist");
             return null;
         }
-       
-        GameObject newObj =   poolDictionary[tag].Dequeue();
-        newObj.SetActive(true);
-        newObj.transform.position = position;
-        newObj.transform.rotation = rotation;
 
-        poolDictionary[tag].Enqueue(newObj);
 
-        return newObj;
+        if (!isThereAlreadyAnObject(position))
+        {
+            GameObject newObj = poolDictionary[tag].Dequeue();
+            newObj.SetActive(true);
+            newObj.transform.position = position;
+            newObj.transform.rotation = rotation;
+
+            poolDictionary[tag].Enqueue(newObj);
+
+            return newObj;
+        }
+
+        return null;
     }
 
+    private bool isThereAlreadyAnObject(Vector3 position)
+    {
+        if (Physics.Raycast(position, new Vector3(0, 0, 1), 2) || Physics.Raycast(position, new Vector3(0, 0, -1), 2))
+        {
+            return true;
+        }
 
+        return false;
+    }
 }
