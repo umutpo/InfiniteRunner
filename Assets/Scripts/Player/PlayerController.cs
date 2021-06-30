@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
 
         audioController = gameObject.GetComponent<PlayerAudioController>();
+        // TODO: set music audio source ignoreListenerPause to true
         
         moveLeftAction.Enable();
         moveRightAction.Enable();
