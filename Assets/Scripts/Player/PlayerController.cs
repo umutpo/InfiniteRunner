@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 touchEndPosition;
     private float touchEndTime;
 
+    // only used for tutorial
+    public enum SwipeAction {Nil, Up, Down, Left, Right};
+    private SwipeAction latestSwipe = SwipeAction.Nil;
+
     [SerializeField]
     private Camera worldCamera;
 
@@ -455,14 +459,14 @@ public class PlayerController : MonoBehaviour
         return playerInventoryData.GetRecipes();
     }
 
-    public IEnumerator StartTutorial(UnityEngine.InputSystem.Controls.KeyControl key = null)
+    public IEnumerator StartTutorial(UnityEngine.InputSystem.Controls.KeyControl key = null, SwipeAction swipe = SwipeAction.Nil)
     {
         anim.enabled = false;
         waitForTutorial = true;
-        if (key != null)
+        if (key != null && swipe != SwipeAction.Nil)
         {
             enableInput(key);
-            yield return new WaitUntil(() => (key.isPressed));
+            yield return new WaitUntil(() => (key.isPressed || latestSwipe == swipe));
         }
         else
         {
@@ -499,6 +503,12 @@ public class PlayerController : MonoBehaviour
         touchPosition.Enable();
     }
 
+    public void EnableTouchInput()
+    {
+        touchContact.Enable();
+        touchPosition.Enable();
+    }
+
     private void StartTouchPrimary(InputAction.CallbackContext context) {
         touchStartPosition = ScreenToWorld(touchPosition.ReadValue<Vector2>());
         touchStartTime = (float)context.startTime;
@@ -513,15 +523,21 @@ public class PlayerController : MonoBehaviour
                 float deltaY = touchEndPosition.y - touchStartPosition.y;
                 float deltaX = touchEndPosition.x - touchStartPosition.x;
                 if (Mathf.Abs(deltaY) > MIN_SWIPE_DIST) {                        
-                    if (deltaY > 0)
+                    if (deltaY > 0) {
                         jump();
-                    else
+                        latestSwipe = SwipeAction.Up;
+                    } else {
                         slide();
+                        latestSwipe = SwipeAction.Down;
+                    }
                 } if (Mathf.Abs(deltaX) > MIN_SWIPE_DIST) { 
-                    if (deltaX > 0)
+                    if (deltaX > 0) {
                         moveRight();
-                    else    
+                        latestSwipe = SwipeAction.Right;
+                    } else {    
                         moveLeft();
+                        latestSwipe = SwipeAction.Left;
+                    }
                 }
         }
     }

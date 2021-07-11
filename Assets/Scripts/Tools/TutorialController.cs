@@ -54,10 +54,12 @@ public class TutorialController : MonoBehaviour
         PlayerController.StopTutorial += StopTextDisplay;
         PlayerController.StopTutorial += StopImageDisplay;
 
+
         if (_player != null)
         {
             _playerController = _player.GetComponent<PlayerController>();
             _playerController.DisableAllInput();
+            _playerController.EnableTouchInput();
         }
 
         if (_tutorialCommand != null)
@@ -79,20 +81,20 @@ public class TutorialController : MonoBehaviour
         {
             jumpFlag = false;
             StartImageDisplay(JumpTutorialImage);
-            StartCoroutine(_playerController.StartTutorial(Keyboard.current.upArrowKey));
+            StartCoroutine(_playerController.StartTutorial(Keyboard.current.upArrowKey, PlayerController.SwipeAction.Up));
         }
         else if (slideFlag && currentPlayerPositionZ >= SLIDE_TUTORIAL_TRIGGER_POSITION)
         {
             // TODO: ADD AN OBJECT TO SLIDE UNDER ON UNITY!!!
             slideFlag = false;
             StartImageDisplay(SlideTutorialImage);
-            StartCoroutine(_playerController.StartTutorial(Keyboard.current.downArrowKey));
+            StartCoroutine(_playerController.StartTutorial(Keyboard.current.downArrowKey, PlayerController.SwipeAction.Down));
         }
         else if (changeLanesFlag && currentPlayerPositionZ >= CHANGE_LANES_TUTORIAL_TRIGGER_POSITION)
         {
             changeLanesFlag = false;
             StartImageDisplay(ChangeLanesTutorialImage);
-            StartCoroutine(_playerController.StartTutorial(Keyboard.current.rightArrowKey));
+            StartCoroutine(_playerController.StartTutorial(Keyboard.current.rightArrowKey, PlayerController.SwipeAction.Right));
         }
         else if (hudIntroFlag && currentPlayerPositionZ >= HUD_INTRO_TEXT_TRIGGER_POSITION)
         {
