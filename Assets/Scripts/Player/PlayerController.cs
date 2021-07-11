@@ -30,11 +30,27 @@ public class PlayerController : MonoBehaviour
     const float MAX_JUMP_HEIGHT = 3f;
     const float MAX_JUMP_DISTANCE = 10f;
 
+    // SWIPE THRESHOLD
+    const float MAX_SWIPE_TIME = 0.5f;
+    const float MIN_SWIPE_DIST = 0.01f;
+
     // Input Variables
     public InputAction jumpAction;
     public InputAction slideAction;
     public InputAction moveLeftAction;
     public InputAction moveRightAction;
+
+    public InputAction touchContact;
+    public InputAction touchPosition;
+
+    // Swipe variables
+    private Vector3 touchStartPosition;
+    private float touchStartTime;
+    private Vector3 touchEndPosition;
+    private float touchEndTime;
+
+    [SerializeField]
+    private Camera worldCamera;
 
     // Player Variables
     private Rigidbody _body;
@@ -92,6 +108,9 @@ public class PlayerController : MonoBehaviour
         moveLeftAction.performed += ctx => moveLeft();
         moveRightAction.performed += ctx => moveRight();
 
+        touchContact.started += ctx => StartTouchPrimary(ctx);
+        touchContact.canceled += ctx => EndTouchPrimary(ctx);
+
         _body = gameObject.GetComponent<Rigidbody>();
         _collider = gameObject.GetComponent<BoxCollider>();
         starting_elevation = _body.transform.position.y;
@@ -106,6 +125,9 @@ public class PlayerController : MonoBehaviour
         
         moveLeftAction.Enable();
         moveRightAction.Enable();
+
+        touchContact.Enable();
+        touchPosition.Enable();
     }
 
     void Update()
@@ -194,6 +216,7 @@ public class PlayerController : MonoBehaviour
     {
         gameOverState = true;
         enabled = false;
+        DisableAllInput();
     }
 
     private void jump()
@@ -460,6 +483,9 @@ public class PlayerController : MonoBehaviour
         slideAction.Disable();
         moveLeftAction.Disable();
         moveRightAction.Disable();
+
+        touchContact.Disable();
+        touchPosition.Disable();
     }
 
     public void EnableAllInput()
@@ -468,5 +494,40 @@ public class PlayerController : MonoBehaviour
         slideAction.Enable();
         moveLeftAction.Enable();
         moveRightAction.Enable();
+
+        touchContact.Enable();
+        touchPosition.Enable();
+    }
+
+    private void StartTouchPrimary(InputAction.CallbackContext context) {
+        touchStartPosition = ScreenToWorld(touchPosition.ReadValue<Vector2>());
+        touchStartTime = (float)context.startTime;
+        Debug.Log("touch down");
+    }
+
+    private void EndTouchPrimary(InputAction.CallbackContext context) {
+        Debug.Log("touch lifted, dist: " + Vector2.Distance(touchStartPosition, touchEndPosition));
+        touchEndPosition = ScreenToWorld(touchPosition.ReadValue<Vector2>());
+        touchEndTime = (float)context.time;
+        if ((touchEndTime - touchStartTime) <= MAX_SWIPE_TIME) {
+                float deltaY = touchEndPosition.y - touchStartPosition.y;
+                float deltaX = touchEndPosition.x - touchStartPosition.x;
+                if (Mathf.Abs(deltaY) > MIN_SWIPE_DIST) {                        
+                    if (deltaY > 0)
+                        jump();
+                    else
+                        slide();
+                } if (Mathf.Abs(deltaX) > MIN_SWIPE_DIST) { 
+                    if (deltaX > 0)
+                        moveRight();
+                    else    
+                        moveLeft();
+                }
+        }
+    }
+
+    private Vector3 ScreenToWorld(Vector3 position) {
+        position.z = worldCamera.nearClipPlane;
+        return worldCamera.ScreenToWorldPoint(position);
     }
 }
