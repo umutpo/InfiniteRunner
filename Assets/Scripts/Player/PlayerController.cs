@@ -512,11 +512,9 @@ public class PlayerController : MonoBehaviour
     private void StartTouchPrimary(InputAction.CallbackContext context) {
         touchStartPosition = ScreenToWorld(touchPosition.ReadValue<Vector2>());
         touchStartTime = (float)context.startTime;
-        Debug.Log("touch down");
     }
 
     private void EndTouchPrimary(InputAction.CallbackContext context) {
-        Debug.Log("touch lifted, dist: " + Vector2.Distance(touchStartPosition, touchEndPosition));
         touchEndPosition = ScreenToWorld(touchPosition.ReadValue<Vector2>());
         touchEndTime = (float)context.time;
         if ((touchEndTime - touchStartTime) <= MAX_SWIPE_TIME) {
