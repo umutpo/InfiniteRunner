@@ -603,7 +603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1815447461878388632
 Transform:
   m_ObjectHideFlags: 0
@@ -1295,8 +1295,8 @@ MonoBehaviour:
       m_Flags: 0
   moveLeftAction:
     m_Name: Move Left
-    m_Type: 1
-    m_ExpectedControlType: Button
+    m_Type: 2
+    m_ExpectedControlType: 
     m_Id: accf382d-a7ef-4f93-ac55-0edc6cfd4d4a
     m_Processors: 
     m_Interactions: 
@@ -1311,8 +1311,8 @@ MonoBehaviour:
       m_Flags: 0
   moveRightAction:
     m_Name: Move Right
-    m_Type: 1
-    m_ExpectedControlType: Button
+    m_Type: 2
+    m_ExpectedControlType: 
     m_Id: c4eab7b3-bbec-4963-bba2-5859b133a924
     m_Processors: 
     m_Interactions: 
@@ -1325,6 +1325,39 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Move Right
       m_Flags: 0
+  touchContact:
+    m_Name: Touch Contact
+    m_Type: 2
+    m_ExpectedControlType: 
+    m_Id: 18d21f68-f487-4952-aeab-1fe59fbf920c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 2622ab87-3234-4295-9854-510b1896cafe
+      m_Path: <Touchscreen>/primaryTouch/press
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: Touch Contact
+      m_Flags: 0
+  touchPosition:
+    m_Name: Touch Position
+    m_Type: 2
+    m_ExpectedControlType: Vector2
+    m_Id: 58586dc8-677f-405d-988f-1c79c31e1ff6
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 4cace85f-76e8-4d87-a516-eb691ad84416
+      m_Path: <Touchscreen>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Touch Position
+      m_Flags: 0
+  worldCamera: {fileID: 5537373567531587297}
   maxSpeed: 0
   currentSpeed: 0
   gameOverSpeed: 2
@@ -1513,7 +1546,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1083671203036151069, guid: 943538d4026d7064db1e526859f3dbdf,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: b5bef16dfcfb2bb4685c4c616cbf7624, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -2503,8 +2536,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9ff8db60f97b541ab4026320e5883c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  criticVisibleMinimumDistanceDifference: 3
-  criticVisibleSpeedDifference: 5
+  criticVisibleMinimumDistanceDifference: 1
+  criticVisibleSpeedDifference: 6
+--- !u!95 &184840142
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8312750652609553632}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d0039f476358954438ad397ecef799ea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8493681235493534579
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,13 +2651,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e14539930a2312c47b04edb4728ff387,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e14539930a2312c47b04edb4728ff387,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e14539930a2312c47b04edb4728ff387,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e14539930a2312c47b04edb4728ff387,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e14539930a2312c47b04edb4728ff387,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e14539930a2312c47b04edb4728ff387,
         type: 3}
