@@ -2031,6 +2031,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066654711}
   m_CullTransparentMesh: 0
+--- !u!1 &1150134493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9101413231889534929, guid: f4eaea86d4f33324fa75387c319d2243,
+    type: 3}
+  m_PrefabInstance: {fileID: 5537373567377914770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1150134495
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150134493}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 073420c3d2bbaf647aa30eaf7d759c39, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1314294785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2803,6 +2828,26 @@ PrefabInstance:
       propertyPath: screenTransition
       value: 
       objectReference: {fileID: 1048874570}
+    - target: {fileID: 770766137151115926, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712118007404805281, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678845230094867243, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678845230094867243, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5537373567197875062, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
       propertyPath: m_Name
@@ -2868,7 +2913,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9101413231889534929, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: m_Name
+      value: Player Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101413231889534929, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101413231889534929, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 356856037, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
 --- !u!1001 &8339827939183077954
 PrefabInstance:
