@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,6 +56,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Camera worldCamera;
+    [SerializeField]
+    private Text bagWeightText;
 
     // Player Variables
     private Rigidbody _body;
@@ -121,6 +124,8 @@ public class PlayerController : MonoBehaviour
 
         inventory = GameObject.Find("Inventory");
         playerInventoryData = inventory.GetComponent<PlayerInventoryData>();
+
+        bagWeightText.text = "0";
 
         anim = gameObject.GetComponent<Animator>();
 
@@ -387,11 +392,13 @@ public class PlayerController : MonoBehaviour
     private void addToExtraWeight(int numberOfIngredient)
     {
         extraWeight += numberOfIngredient * INGREDIENT_WEIGHT;
+        bagWeightText.text = extraWeight.ToString();
     }
 
     private void reduceExtraWeight(int usedIngredientCount)
     {
         extraWeight -= usedIngredientCount * INGREDIENT_WEIGHT;
+        bagWeightText.text = extraWeight.ToString();
     }
 
     private float calculateExtraWeightSpeedDecreaseRatio()
