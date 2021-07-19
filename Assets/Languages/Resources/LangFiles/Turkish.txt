@@ -1,0 +1,15 @@
+﻿Replay=Yeniden Oyna
+Play=Oyna
+Credits=Katkıda Bulunanlar
+High Score=Yüksek Skor
+Score=Skor
+Recipes=Tarifler
+Setting=Ayarlar
+Welcome=Hoşgeldiniz!
+Volume=Ses
+Music=Müzik
+Language=Dil
+Menu=MENÜ
+HUD_INTRO_TUTORIAL_TEXT=Tamamlamakta oldugun yemekleri takip et!
+COMPLETE_DISH_TUTORIAL_TEXT=Hamburgeri tamamla!
+FINISH_TUTORIAL_TEXT=Yemek yapma zamanı!
