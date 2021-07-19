@@ -124,11 +124,8 @@ public class PlayerController : MonoBehaviour
 
         inventory = GameObject.Find("Inventory");
         playerInventoryData = inventory.GetComponent<PlayerInventoryData>();
-
+        anim = GameObject.Find("Player Model").GetComponent<Animator>();
         bagWeightText.text = "0";
-
-        anim = gameObject.GetComponent<Animator>();
-
         audioController = gameObject.GetComponent<PlayerAudioController>();
         // TODO: set music audio source ignoreListenerPause to true
         
