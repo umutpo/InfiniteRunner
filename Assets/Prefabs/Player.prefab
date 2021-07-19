@@ -791,6 +791,7 @@ MonoBehaviour:
       m_Action: Touch Position
       m_Flags: 0
   worldCamera: {fileID: 0}
+  bagWeightText: {fileID: 0}
   maxSpeed: 0
   currentSpeed: 0
   gameOverSpeed: 2
