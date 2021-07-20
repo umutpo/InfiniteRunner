@@ -99,6 +99,7 @@ public class ItemGenerator : MonoBehaviour
                     Vector3 itemPosition = new Vector3((lane - 1) * laneWidth, 1, lastGenerateSpot);
                     string itemName = GetItemName();
                     GameObject item = ObjectPooler.Instance.SpawnFromPool(itemName, itemPosition, Quaternion.identity);
+                    if (item == null) continue;
                     ItemController itemComponent = item.GetComponent<ItemController>();
                     itemComponent.OnObjectSpawn();
                     itemsPlaced++;
