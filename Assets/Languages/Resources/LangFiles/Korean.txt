@@ -1,0 +1,15 @@
+Replay=다시하기
+Play=시작
+Credits=크레딧
+High Score=최고 점수
+Score=점수
+Recipes=레시피
+Setting=설정
+Welcome=환영합니다!
+Volume=사운드
+Music=음악
+Language=언어
+Menu=게임 메뉴
+HUD_INTRO_TUTORIAL_TEXT=남은 요리를 확인하세요!
+COMPLETE_DISH_TUTORIAL_TEXT=버거를 완성하세요!
+FINISH_TUTORIAL_TEXT=이제 요리할 시간이에요!
