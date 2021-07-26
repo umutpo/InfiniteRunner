@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44c53192231a6247bead31e1cd5d666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumKitchenCount: 8
+  maximumKitchenCount: 15
   spawnDistance: 200
   player: {fileID: 0}
+  isTutorial: 0

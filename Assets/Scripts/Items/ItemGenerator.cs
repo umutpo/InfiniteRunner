@@ -6,6 +6,7 @@ public class ItemGenerator : MonoBehaviour
 {
     private IngredientGenerator ingredient;
     private ObstacleGenerator obstacle;
+    [SerializeField]  private KitchenGenerator kitchen;
     const int INFINITY = 1000000000;
 
     //private GameObject item;
@@ -58,6 +59,7 @@ public class ItemGenerator : MonoBehaviour
     {
         ingredient = gameObject.GetComponent<IngredientGenerator>();
         obstacle = gameObject.GetComponent<ObstacleGenerator>();
+        
         lastGenerateSpot = startingItemRow * spawnDistanceUnit;
         lastDeltaTime = Time.time;
     }
@@ -78,15 +80,31 @@ public class ItemGenerator : MonoBehaviour
                 int rowRng = Random.Range(0, singleItemRowWeight + doubleItemRowWeight + tripleItemRowWeight);
                 int startLane = Random.Range(0, 3);
                 int itemCntInRow = 1 + (rowRng >= singleItemRowWeight ? 1 : 0) + (rowRng >= singleItemRowWeight + doubleItemRowWeight ? 1 : 0);
+                
+                int itemsPlaced = 0;
+                int openLanes = 3;
+                for (int i = 0; i < 2; i++) {
+                    if (kitchen.GetObstacleEnd(i) > lastGenerateSpot) openLanes--;
+                }
+
                 for (int i = startLane; i < startLane + itemCntInRow; i++)
                 {
-                    Vector3 itemPosition = new Vector3((i % 3 - 1) * laneWidth, 1, lastGenerateSpot);
+                    int lane = i % 3;
+                    if (lane == 0 && kitchen.GetObstacleEnd(0) > lastGenerateSpot) {
+                        continue;
+                    }
+                    if (lane == 2 && kitchen.GetObstacleEnd(1) > lastGenerateSpot) {
+                        continue;
+                    }
+                    Vector3 itemPosition = new Vector3((lane - 1) * laneWidth, 1, lastGenerateSpot);
                     string itemName = GetItemName();
                     GameObject item = ObjectPooler.Instance.SpawnFromPool(itemName, itemPosition, Quaternion.identity);
+                    if (item == null) continue;
                     ItemController itemComponent = item.GetComponent<ItemController>();
                     itemComponent.OnObjectSpawn();
+                    itemsPlaced++;
                 }
-                if (itemCntInRow == 3)
+                if (itemsPlaced == openLanes)
                     lastGenerateSpot += spawnDistanceUnit; // give player time after a row full of obstacles and items by making next row blank
             }
 
@@ -111,7 +129,6 @@ public class ItemGenerator : MonoBehaviour
     }
 
     string GetItemName() {
-        // TODO:
         // Determine what type of item: Ingredient or obstacle
         int itemTypeRng = Random.Range(0, 100);
         // Return item name

@@ -43,3 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfaa1ee8639fae049a5d09c3b3d4faad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maximumPlatformCount: 10
+  spawnDistance: 200
+  player: {fileID: 0}

@@ -45,11 +45,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44cf9de55529266469aecdcabc81673b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximumItemRows: 8
-  maxSpawnDist: 4
-  minSpawnDist: 1
-  spawnDistanceUnit: 5
+  kitchen: {fileID: 0}
   player: {fileID: 0}
+  spawnDistanceUnit: 5
+  laneWidth: 3
+  generateAheadDistance: 8
+  startingItemRow: 15
+  ingredientVsObstacleBias: 50
+  itemDensity: 100
+  singleItemRowWeight: 60
+  doubleItemRowWeight: 35
+  tripleItemRowWeight: 5
+  deltaDurationInSeconds: 30
+  deltaIngredientVsObstacleBias: 0
+  deltaItemDensity: -5
+  deltaSingleItemRowWeight: 0
+  deltaDoubleItemRowWeight: 0
+  deltaTripleItemRowWeight: 0
+  capIngredientVsObstacleBias: 0
+  capItemDensity: 20
+  capSingleItemRowWeight: 0
+  capDoubleItemRowWeight: 0
+  capTripleItemRowWeight: 0
 --- !u!114 &4756254010319538032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  freqIncrease: 3
 --- !u!114 &4756254010319538035
 MonoBehaviour:
   m_ObjectHideFlags: 0

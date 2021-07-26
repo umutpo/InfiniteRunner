@@ -16,6 +16,21 @@ public struct Pool
     public static readonly string KITCHEN4 = "KitchenFour";
     public static readonly string KITCHEN5 = "KitchenFive";
     public static readonly string KITCHEN6 = "KitchenSix";
+    public static readonly string KITCHEN7 = "KitchenSeven";
+    public static readonly string KITCHEN8 = "KitchenEight";
+    public static readonly string KITCHEN9 = "KitchenNine";
+    public static readonly string KITCHEN10 = "KitchenTen";
+    // Kitchen obstacle counters
+    public static readonly string OBSTACLEKIT1 = "ObstacleKitchenOne";
+    public static readonly string OBSTACLEKIT2 = "ObstacleKitchenTwo";
+    public static readonly string OBSTACLEKIT3 = "ObstacleKitchenThree";
+    public static readonly string OBSTACLEKIT4 = "ObstacleKitchenFour";
+    public static readonly string OBSTACLEKIT5 = "ObstacleKitchenFive";
+    public static readonly string OBSTACLEKIT6 = "ObstacleKitchenSix";
+    public static readonly string OBSTACLEKIT7 = "ObstacleKitchenSeven";
+    public static readonly string OBSTACLEKIT8 = "ObstacleKitchenEight";
+    public static readonly string OBSTACLEKIT9 = "ObstacleKitchenNine";
+    public static readonly string OBSTACLEKIT10 = "ObstacleKitchenTen";
     // Obstacles
     public static readonly string OBSTACLE1 = "ObstacleFirst";
     public static readonly string OBSTACLE2 = "ObstacleSecond";

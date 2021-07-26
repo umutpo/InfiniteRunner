@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class PlayerInventoryData : MonoBehaviour
@@ -14,6 +15,8 @@ public class PlayerInventoryData : MonoBehaviour
     [SerializeField]
     private GameObject recipeDisplay;
     private Animator recipeDisplayAnim;
+    [SerializeField]
+    private Text recipePoints;
     
     void Start()
     {
@@ -28,6 +31,7 @@ public class PlayerInventoryData : MonoBehaviour
             recipeList.Add(curDict);
         }
         recipeDisplayAnim = recipeDisplay.GetComponent<Animator>();
+        recipePoints.text = "";
 
         if (UpdateRecipeUIEvent != null) 
         {
@@ -85,7 +89,9 @@ public class PlayerInventoryData : MonoBehaviour
             {
                 removeCompletedRecipeIngredients(recipeMap);
                 playCompletedRecipeAnimation(recipes[i].recipeName);
-                ScoreController.currentScore += recipes[i].GetRecipePoints();
+                int points = recipes[i].GetRecipePoints();
+                displayRecipePoints(points);
+                ScoreController.currentScore += points;
 
                 return recipeMap.Count;
             }
@@ -152,6 +158,22 @@ public class PlayerInventoryData : MonoBehaviour
             default:
                 break;
         }            
+    }
+
+    private void displayRecipePoints(int points)
+    {
+        recipePoints.text = "+ " + points.ToString();
+        StartCoroutine(fadePointsText());
+    }
+
+    private IEnumerator fadePointsText()
+    {
+        recipePoints.color = new Color(recipePoints.color.r, recipePoints.color.g, recipePoints.color.b, 1);
+        while (recipePoints.color.a > 0.0f)
+        {            
+            recipePoints.color = new Color(recipePoints.color.r, recipePoints.color.g, recipePoints.color.b, recipePoints.color.a - (Time.deltaTime / 2));
+            yield return null;
+        }
     }
 
     public Dictionary <string, int> GetCollectedIngredientsCounts()

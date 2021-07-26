@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -29,11 +31,33 @@ public class PlayerController : MonoBehaviour
     const float MAX_JUMP_HEIGHT = 3f;
     const float MAX_JUMP_DISTANCE = 10f;
 
+    // SWIPE THRESHOLD
+    const float MAX_SWIPE_TIME = 0.5f;
+    const float MIN_SWIPE_DIST = 0.01f;
+
     // Input Variables
     public InputAction jumpAction;
     public InputAction slideAction;
     public InputAction moveLeftAction;
     public InputAction moveRightAction;
+
+    public InputAction touchContact;
+    public InputAction touchPosition;
+
+    // Swipe variables
+    private Vector3 touchStartPosition;
+    private float touchStartTime;
+    private Vector3 touchEndPosition;
+    private float touchEndTime;
+
+    // only used for tutorial
+    public enum SwipeAction {Nil, Up, Down, Left, Right};
+    private SwipeAction latestSwipe = SwipeAction.Nil;
+
+    [SerializeField]
+    private Camera worldCamera;
+    [SerializeField]
+    private Text bagWeightText;
 
     // Player Variables
     private Rigidbody _body;
@@ -42,7 +66,7 @@ public class PlayerController : MonoBehaviour
     private float maxSpeed;
     [SerializeField]
     private float currentSpeed;
-    public float gameOverSpeed = 2f;
+    public float gameOverSpeed = 4f;
     private int currentLane = 2;
     private float obstacleSpeedGainRemainder = 0f;
     private bool inMovement = false;
@@ -74,6 +98,13 @@ public class PlayerController : MonoBehaviour
     // Animation Variables
     private Animator anim;
 
+    // Tutorial Variables
+    public static Action StopTutorial;
+    private bool waitForTutorial = false;
+
+    // Audio variables
+    private PlayerAudioController audioController;
+
     void Start()
     {
         maxSpeed = INITIAL_SPEED;
@@ -84,14 +115,25 @@ public class PlayerController : MonoBehaviour
         moveLeftAction.performed += ctx => moveLeft();
         moveRightAction.performed += ctx => moveRight();
 
+        touchContact.started += ctx => StartTouchPrimary(ctx);
+        touchContact.canceled += ctx => EndTouchPrimary(ctx);
+
         _body = gameObject.GetComponent<Rigidbody>();
         _collider = gameObject.GetComponent<BoxCollider>();
         starting_elevation = _body.transform.position.y;
 
         inventory = GameObject.Find("Inventory");
         playerInventoryData = inventory.GetComponent<PlayerInventoryData>();
+        anim = GameObject.Find("Player Model").GetComponent<Animator>();
+        bagWeightText.text = "0";
+        audioController = gameObject.GetComponent<PlayerAudioController>();
+        // TODO: set music audio source ignoreListenerPause to true
+        
+        moveLeftAction.Enable();
+        moveRightAction.Enable();
 
-        anim = gameObject.GetComponent<Animator>();
+        touchContact.Enable();
+        touchPosition.Enable();
     }
 
     void Update()
@@ -103,24 +145,25 @@ public class PlayerController : MonoBehaviour
     {
         if (canPlayerMove())
         {
+            audioController.PlayRunning();
             jumpAction.Enable();
             slideAction.Enable();
-            moveLeftAction.Enable();
-            moveRightAction.Enable();
         }
         else
         {
+            audioController.PauseRunning();
             jumpAction.Disable();
             if (isPlayerGrounded())
             {
                 slideAction.Disable();
             }
-            moveLeftAction.Disable();
-            moveRightAction.Disable();
         }
 
-        updateSpeed();
-        moveBody();
+        if (!waitForTutorial)
+        {
+            updateSpeed();
+            moveBody();
+        }
     }
 
     private void updateSpeed()
@@ -149,6 +192,7 @@ public class PlayerController : MonoBehaviour
                 _collider.center = new Vector3(_collider.center.x, 0f, _collider.center.z);
                 slideTimeCount = 0;
                 isSliding = false;
+                audioController.PlayRunning();
             }
         }
 
@@ -169,9 +213,16 @@ public class PlayerController : MonoBehaviour
     {
         if (currentSpeed <= gameOverSpeed)
         {
-            gameOverState = true;
-            enabled = false;
+            audioController.PlayGameEnd();
+            SetGameOver();
         }
+    }
+
+    public void SetGameOver()
+    {
+        gameOverState = true;
+        enabled = false;
+        DisableAllInput();
     }
 
     private void jump()
@@ -183,7 +234,8 @@ public class PlayerController : MonoBehaviour
             Physics.gravity = Vector3.up * -1 * ((2 * MAX_JUMP_HEIGHT) / Mathf.Pow((time / 2), 2));
             float verticalJumpSpeed = Physics.gravity.y * -1 * (time / 2);
             _body.AddForce(Vector3.up * verticalJumpSpeed, ForceMode.VelocityChange);
-            playPLayerAnimation("Jump");
+            playPlayerAnimation("Jump");
+            audioController.PlayJump();
         }
     }
 
@@ -195,7 +247,8 @@ public class PlayerController : MonoBehaviour
             _collider.size = new Vector3(_collider.size.x, _collider.size.y / 2, _collider.size.z);
             _collider.center = new Vector3(_collider.center.x, -1 * (_collider.size.y / 2), _collider.center.z);
             isSliding = true;
-            playPLayerAnimation("Slide");
+            playPlayerAnimation("Slide");
+            audioController.PlaySlide();
         }
     }
 
@@ -206,7 +259,8 @@ public class PlayerController : MonoBehaviour
             inMovement = true;
             shift = new Vector3(-LANE_LENGTH / (NUMBER_OF_LANES + 1), 0, 0);
             currentLane--;
-            playPLayerAnimation("MoveLeft");
+            playPlayerAnimation("MoveLeft");
+            audioController.PlayLaneSwitch();
         }
     }
 
@@ -217,7 +271,8 @@ public class PlayerController : MonoBehaviour
             inMovement = true;
             shift = new Vector3(LANE_LENGTH / (NUMBER_OF_LANES + 1), 0, 0);
             currentLane++;
-            playPLayerAnimation("MoveRight");
+            playPlayerAnimation("MoveRight");
+            audioController.PlayLaneSwitch();
         }
     }
 
@@ -322,7 +377,8 @@ public class PlayerController : MonoBehaviour
                 obstacleSpeedGainRemainder += (maxSpeed / reduction);
                 StartCoroutine(becomeInvincibleTemporary());
             }
-            playPLayerAnimation("Hit");
+            playPlayerAnimation("Hit");
+            audioController.PlayObstacleHit();
         }
         else
         {
@@ -333,11 +389,13 @@ public class PlayerController : MonoBehaviour
     private void addToExtraWeight(int numberOfIngredient)
     {
         extraWeight += numberOfIngredient * INGREDIENT_WEIGHT;
+        bagWeightText.text = extraWeight.ToString();
     }
 
     private void reduceExtraWeight(int usedIngredientCount)
     {
         extraWeight -= usedIngredientCount * INGREDIENT_WEIGHT;
+        bagWeightText.text = extraWeight.ToString();
     }
 
     private float calculateExtraWeightSpeedDecreaseRatio()
@@ -345,11 +403,31 @@ public class PlayerController : MonoBehaviour
         return (MAX_INVENTORY_INGREDIENT_WEIGHT - extraWeight) / MAX_INVENTORY_INGREDIENT_WEIGHT;
     }
 
-    private void playPLayerAnimation(string animationEventName)
+    private void playPlayerAnimation(string animationEventName)
     {
         if (anim != null)
         {
             anim.SetTrigger(animationEventName);
+        }
+    }
+
+    private void enableInput(UnityEngine.InputSystem.Controls.KeyControl key)
+    {
+        if (key.name == "upArrow")
+        {
+            jumpAction.Enable();
+        }
+        else if (key.name == "downArrow")
+        {
+            slideAction.Enable();
+        }
+        else if (key.name == "leftArrow")
+        {
+            moveLeftAction.Enable();
+        }
+        else if (key.name == "rightArrow")
+        {
+            moveRightAction.Enable();
         }
     }
 
@@ -360,11 +438,13 @@ public class PlayerController : MonoBehaviour
         if (usedIngredientCount > 0) {
             setBoost = true;
             reduceExtraWeight(usedIngredientCount);
-            playPLayerAnimation("Complete");
+            playPlayerAnimation("Complete");
+            audioController.PlayRecipeCompletion();
         } 
         else
         {
-            playPLayerAnimation("Collect");
+            playPlayerAnimation("Collect");
+            audioController.PlayItemCollection();
         }
     }
 
@@ -381,5 +461,91 @@ public class PlayerController : MonoBehaviour
     public List<RecipeController> GetRecipes()
     {
         return playerInventoryData.GetRecipes();
+    }
+
+    public IEnumerator StartTutorial(UnityEngine.InputSystem.Controls.KeyControl key = null, SwipeAction swipe = SwipeAction.Nil)
+    {
+        anim.enabled = false;
+        waitForTutorial = true;
+        if (key != null && swipe != SwipeAction.Nil)
+        {
+            enableInput(key);
+            yield return new WaitUntil(() => (key.isPressed || latestSwipe == swipe));
+        }
+        else
+        {
+            yield return new WaitForSeconds(3f);
+        }
+        waitForTutorial = false;
+        anim.enabled = true;
+
+        if (StopTutorial != null)
+        {
+            StopTutorial.Invoke();
+        }
+    }
+
+    public void DisableAllInput()
+    {
+        jumpAction.Disable();
+        slideAction.Disable();
+        moveLeftAction.Disable();
+        moveRightAction.Disable();
+
+        touchContact.Disable();
+        touchPosition.Disable();
+    }
+
+    public void EnableAllInput()
+    {
+        jumpAction.Enable();
+        slideAction.Enable();
+        moveLeftAction.Enable();
+        moveRightAction.Enable();
+
+        touchContact.Enable();
+        touchPosition.Enable();
+    }
+
+    public void EnableTouchInput()
+    {
+        touchContact.Enable();
+        touchPosition.Enable();
+    }
+
+    private void StartTouchPrimary(InputAction.CallbackContext context) {
+        touchStartPosition = ScreenToWorld(touchPosition.ReadValue<Vector2>());
+        touchStartTime = (float)context.startTime;
+    }
+
+    private void EndTouchPrimary(InputAction.CallbackContext context) {
+        touchEndPosition = ScreenToWorld(touchPosition.ReadValue<Vector2>());
+        touchEndTime = (float)context.time;
+        if ((touchEndTime - touchStartTime) <= MAX_SWIPE_TIME) {
+                float deltaY = touchEndPosition.y - touchStartPosition.y;
+                float deltaX = touchEndPosition.x - touchStartPosition.x;
+                if (Mathf.Abs(deltaY) > MIN_SWIPE_DIST) {                        
+                    if (deltaY > 0 && canPlayerMove()) {
+                        jump();
+                        latestSwipe = SwipeAction.Up;
+                    } else if (canPlayerMove() && isPlayerGrounded()){
+                        slide();
+                        latestSwipe = SwipeAction.Down;
+                    }
+                } else if (Mathf.Abs(deltaX) > MIN_SWIPE_DIST) { 
+                    if (deltaX > 0) {
+                        moveRight();
+                        latestSwipe = SwipeAction.Right;
+                    } else {    
+                        moveLeft();
+                        latestSwipe = SwipeAction.Left;
+                    }
+                }
+        }
+    }
+
+    private Vector3 ScreenToWorld(Vector3 position) {
+        position.z = worldCamera.nearClipPlane;
+        return worldCamera.ScreenToWorldPoint(position);
     }
 }

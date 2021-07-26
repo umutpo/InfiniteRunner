@@ -1,6 +1,15 @@
-Welcome=Welcome!
+Replay=Replay
+Play=Play
+Credits=Credits
+High Score=High Score
+Score=Score
+Recipes=Recipes
 Setting=Settings
+Welcome=Welcome!
 Volume=Volume
 Music=Music
 Language=Language
-Accessibility=Accessibility (Color Blind)
+Menu=MENU
+HUD_INTRO_TUTORIAL_TEXT=See the dishes you are on your way to completing!
+COMPLETE_DISH_TUTORIAL_TEXT=Complete the Burger!
+FINISH_TUTORIAL_TEXT=Now, time to cook!

@@ -16,4 +16,13 @@ public class KitchenController : PlatformController
         if (player.transform.position.z > transform.position.z + transform.localScale.z * KITCHEN_SIZE)
             Remove();
     }
+    
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player") {
+            // Slow down player speed
+            playerScript.SetGameOver();
+        }
+    }
 }

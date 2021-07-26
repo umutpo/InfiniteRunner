@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemController : MonoBehaviour, IPooledObject
-{ 
+{
+    private const float ITEM_REMOVAL_DISTANCE = 5.0f;
+
     [SerializeField]
     protected GameObject player;
     protected PlayerController playerScript;
@@ -20,7 +22,7 @@ public class ItemController : MonoBehaviour, IPooledObject
     }
 
     protected virtual void Update() {
-        if (player.transform.position.z > transform.position.z + transform.localScale.z)
+        if (player.transform.position.z > (transform.position.z + transform.localScale.z + ITEM_REMOVAL_DISTANCE))
             // Remove once out of camera view
             Remove();
     }

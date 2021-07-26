@@ -13,6 +13,7 @@ public class SceneTimeChange : MonoBehaviour
     }
     [SerializeField] private SetToGameState setToGameState;
     [SerializeField] private GameObject pauseMenuCanvas;
+    private AudioListener audioListener;
 
     public void Start()
     {
@@ -26,10 +27,12 @@ public class SceneTimeChange : MonoBehaviour
         {
             case SetToGameState.Pause:
                 Time.timeScale = 0f;
+                AudioListener.pause = true;
                 pauseMenuCanvas.SetActive(true);
                 break;
             case SetToGameState.Continue:
                 Time.timeScale = 1f;
+                AudioListener.pause = false;
                 pauseMenuCanvas.SetActive(false);
                 break;
         }

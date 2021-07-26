@@ -43,4 +43,154 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc3568bc67132f4298fad3977e135f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools: []
+  pools:
+  - tag: Platform
+    prefab: {fileID: 3903629502435455537, guid: eec4cfd37128cc6408b6352b5a3c0417,
+      type: 3}
+    size: 10
+  - tag: ObstacleFirst
+    prefab: {fileID: 726959526056297484, guid: 68d0f36ef4c53c54391ed8db2959ce8c, type: 3}
+    size: 24
+  - tag: ObstacleSecond
+    prefab: {fileID: 8969336365563681170, guid: a5db719db34c1b840ad62bc1c999cc8a,
+      type: 3}
+    size: 24
+  - tag: Flour
+    prefab: {fileID: 5892108617819424963, guid: a26dac4c6845853468df25232470869a,
+      type: 3}
+    size: 24
+  - tag: Tomato
+    prefab: {fileID: 3279188749636475779, guid: 7bda0f1f1c6b92d4bbeffe6a257fd0d7,
+      type: 3}
+    size: 24
+  - tag: Cheese
+    prefab: {fileID: 5892108617819424963, guid: da824293936d24f589e41ef6270b98cf,
+      type: 3}
+    size: 24
+  - tag: Pasta
+    prefab: {fileID: 3279188749636475779, guid: 9647d2faead994748922dc12be6abab8,
+      type: 3}
+    size: 24
+  - tag: Meatball
+    prefab: {fileID: 5892108617819424963, guid: 849fb8a3ad6b248839157e1cc651eba6,
+      type: 3}
+    size: 24
+  - tag: Bun
+    prefab: {fileID: 3279188749636475779, guid: f33f0108f55a44006b2c93873e15f880,
+      type: 3}
+    size: 24
+  - tag: Patty
+    prefab: {fileID: 8209789907354412463, guid: aeac33863f8b0864cb19f9312b5a38b3,
+      type: 3}
+    size: 24
+  - tag: Lettuce
+    prefab: {fileID: 4321147477946885917, guid: e21abd9330dcd02498a2fdd08c85fe2f,
+      type: 3}
+    size: 24
+  - tag: Rice
+    prefab: {fileID: 8002067264798754027, guid: 225bd2c621a82a042a4b10b68bb0d4c6,
+      type: 3}
+    size: 24
+  - tag: Fish
+    prefab: {fileID: 5068549008353670276, guid: 59c04c54cc107d444ba0ca80a054ccf7,
+      type: 3}
+    size: 24
+  - tag: Seaweed
+    prefab: {fileID: 585776506588361965, guid: 3c582c0c23e5ca843b9eee19e19c017d, type: 3}
+    size: 24
+  - tag: Taco Shell
+    prefab: {fileID: 3582588912002461615, guid: 08c8bdc796a85d243a66a84c6ed58ec6,
+      type: 3}
+    size: 24
+  - tag: Apple
+    prefab: {fileID: 2292104775655567498, guid: 8f4a82c21c0456449abc998bd4359347,
+      type: 3}
+    size: 24
+  - tag: Sugar
+    prefab: {fileID: 7811816417803966223, guid: 12b7a69fe76711f459aa051971547bff,
+      type: 3}
+    size: 24
+  - tag: KitchenOne
+    prefab: {fileID: 3095734634805087474, guid: 5a405554e9d70f843a23f70d309a8d99,
+      type: 3}
+    size: 5
+  - tag: KitchenTwo
+    prefab: {fileID: 7310592859132777569, guid: 5c92558d8a02dc749a732f1fff14617f,
+      type: 3}
+    size: 5
+  - tag: KitchenThree
+    prefab: {fileID: 2646625165907916934, guid: 783f5dabcf1089048892e55f8a2e0ea9,
+      type: 3}
+    size: 5
+  - tag: KitchenFour
+    prefab: {fileID: 7379139601721464605, guid: 5559468eb1af5274a8c44c46a8ecf2db,
+      type: 3}
+    size: 5
+  - tag: KitchenFive
+    prefab: {fileID: 2884490694188455908, guid: 63f35fe108ad786498ce0e492004989e,
+      type: 3}
+    size: 5
+  - tag: KitchenSix
+    prefab: {fileID: 6973052403170914109, guid: ccfe1be7ffb2b414195c87118da6a902,
+      type: 3}
+    size: 5
+  - tag: ObstacleThird
+    prefab: {fileID: 6120048610890707107, guid: 720ee438c948c0f4c8ff910c28f9e018,
+      type: 3}
+    size: 24
+  - tag: KitchenSeven
+    prefab: {fileID: 1406908543743965885, guid: efbe54d6a10007744a96f0b009228640,
+      type: 3}
+    size: 5
+  - tag: KitchenEight
+    prefab: {fileID: 2389747248773271923, guid: 3fbf43230e217154784025ee8c835a02,
+      type: 3}
+    size: 24
+  - tag: KitchenNine
+    prefab: {fileID: 6129827341938734885, guid: 1f976e863b8351f418c4f3ec64bd2c04,
+      type: 3}
+    size: 5
+  - tag: KitchenTen
+    prefab: {fileID: 3968747679033657684, guid: 91b9b7b8423e048489de2ea5e0d1caa4,
+      type: 3}
+    size: 5
+  - tag: ObstacleKitchenOne
+    prefab: {fileID: 3095734634805087474, guid: e393cf2e0db6c114488dfbb1da6eeca2,
+      type: 3}
+    size: 5
+  - tag: ObstacleKitchenTwo
+    prefab: {fileID: 2510870447649405984, guid: 4de800574a0135549a9bdb326cb88f94,
+      type: 3}
+    size: 5
+  - tag: ObstacleKitchenThree
+    prefab: {fileID: 2846942107296690344, guid: 92520988e96c59443a7ef97cc15c38b9,
+      type: 3}
+    size: 5
+  - tag: ObstacleKitchenFour
+    prefab: {fileID: 2133738461607919116, guid: d6c1ff5eebf883844a2db59f8a4fb904,
+      type: 3}
+    size: 5
+  - tag: ObstacleKitchenFive
+    prefab: {fileID: 3766491643492912917, guid: e06f9556ca597b3448010da62d26c013,
+      type: 3}
+    size: 5
+  - tag: ObstacleKitchenSix
+    prefab: {fileID: 6973052403170914109, guid: 021facc4fd1fee54780132b556742aff,
+      type: 3}
+    size: 5
+  - tag: ObstacleKitchenSeven
+    prefab: {fileID: 3223465243835200187, guid: 0a25d14cb2f932e48bc1e364b2919003,
+      type: 3}
+    size: 5
+  - tag: ObstacleKitchenEight
+    prefab: {fileID: 6271598691476090975, guid: c61ec092312263944a1bb53137b26e34,
+      type: 3}
+    size: 5
+  - tag: ObstacleKitchenNine
+    prefab: {fileID: 7793196064613110663, guid: 0460f3886d9ab724aa4ef10d581e25f8,
+      type: 3}
+    size: 5
+  - tag: ObstacleKitchenTen
+    prefab: {fileID: 3352794381012799187, guid: c5884479695c5274fb23ba5ca05d0f9c,
+      type: 3}
+    size: 5

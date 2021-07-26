@@ -136,7 +136,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 240, y: 100}
+  m_SizeDelta: {x: 140, y: 600}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &8355566415873178103
 CanvasRenderer:
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -187,8 +187,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fcdbc7fafd5c9e47a8dea5e57fb5ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visibleRecipeCnt: 2
+  visibleRecipeCnt: 3
   recipeUITemplate: {fileID: 4030003054873354777, guid: 18790c4a2882f56418740a7e009acde7,
+    type: 3}
+  stackedRecipeUITemplate: {fileID: 1102486920685736329, guid: b7b872d70e1439349ad5f0b1cff84a93,
     type: 3}
 --- !u!114 &240287780845785748
 MonoBehaviour:
@@ -207,14 +209,14 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildAlignment: 1
+  m_Spacing: -30
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildScaleHeight: 1
 --- !u!1 &8339827939122216602
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,3 +270,4 @@ MonoBehaviour:
   - {fileID: 1260160471595643004, guid: d4a0a2813d6f36a4f9efe33cf5a7fdf1, type: 3}
   - {fileID: 8444639837316010151, guid: 2f9f80774a92b9b41bb91cb5c6f7eccc, type: 3}
   recipeDisplay: {fileID: 0}
+  recipePoints: {fileID: 0}
