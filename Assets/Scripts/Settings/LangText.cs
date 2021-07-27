@@ -20,6 +20,6 @@ public class LangText : MonoBehaviour
 
     public void ChangeText(string text)
     {
-        GetComponent<Text>().text = Regex.Unescape(text);
+        GetComponent<TMPro.TextMeshProUGUI>().text = Regex.Unescape(text);
     }
 }
