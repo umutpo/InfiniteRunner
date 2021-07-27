@@ -26,13 +26,10 @@ public class UILangResolver : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log(scene.name);
         _langResolver.ResolveTexts();
-        Debug.Log(String.Equals(scene.name, "Settings"));
         if (String.Equals(scene.name, "Settings"))
         {
             GameObject dropdownObject = GameObject.Find("Dropdown");
-            Debug.Log("Dropdown object is " + dropdownObject);
             if (dropdownObject == null)
                 Debug.LogError("Object named Dropdown to represent languages dropdown does not exist. Rename to fix this.");
             Dropdown d = dropdownObject.GetComponent<Dropdown>();
@@ -47,6 +44,5 @@ public class UILangResolver : MonoBehaviour
     public void ChangeLanguage(Dropdown d)
     {
         _langResolver.ChangeLanguage(d.options[d.value].text);
-        Debug.Log("Language changed to " + d.options[d.value].text);
     }
 }
