@@ -76,8 +76,12 @@ public class LangResolver : MonoBehaviour
             {
                 langText.ChangeText("");
             }
+            else if (!lang.ContainsKey(currentTextIdentifier)) {
+                Debug.Log(currentTextIdentifier + " does not exist in " + _language);
+            }
             else
             {
+                Debug.Log("text identifier: " + currentTextIdentifier + " in language " + _language + " is " + lang[currentTextIdentifier]);
                 langText.ChangeText(lang[currentTextIdentifier]);
             }
         }
