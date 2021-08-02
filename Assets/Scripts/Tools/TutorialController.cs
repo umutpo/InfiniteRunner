@@ -134,13 +134,13 @@ public class TutorialController : MonoBehaviour
     {
         if (image == ChangeLanesTutorialImage)
         {
-            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 400f);
-            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 200f);
+            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 350f);
+            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 170f);
         } 
         else
         {
-            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 200f);
-            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 400f);
+            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 170f);
+            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 350f);
         }
         _tutorialVisualImage.sprite = image;
         _tutorialVisualImage.color = new Color(255f, 255f, 255f, 255f);
