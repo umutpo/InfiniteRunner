@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class UILangResolver : MonoBehaviour
 {
@@ -21,11 +22,12 @@ public class UILangResolver : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         SceneManager.sceneLoaded += OnSceneLoaded;
+        _langResolver = FindObjectOfType<LangResolver>();
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        FindObjectOfType<LangResolver>().ResolveTexts();
-        if (scene.name == "Settings")
+        _langResolver.ResolveTexts();
+        if (String.Equals(scene.name, "Settings"))
         {
             GameObject dropdownObject = GameObject.Find("Dropdown");
             if (dropdownObject == null)
@@ -39,12 +41,6 @@ public class UILangResolver : MonoBehaviour
             d.value = d.options.FindIndex(option => option.text == PrefsHolder.GetLang());
         }
     }
-
-    void Start()
-    {
-        _langResolver = FindObjectOfType<LangResolver>();
-    }
-
     public void ChangeLanguage(Dropdown d)
     {
         _langResolver.ChangeLanguage(d.options[d.value].text);

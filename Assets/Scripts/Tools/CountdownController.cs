@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CountdownController : MonoBehaviour
 {
-    public Text countdownText = null;
+    public TMPro.TextMeshProUGUI countdownText = null;
 
     public bool isInCountdown = true;
     private float timeRemaining;
