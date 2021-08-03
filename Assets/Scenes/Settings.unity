@@ -1009,7 +1009,7 @@ MonoBehaviour:
     m_Options:
     - m_Text: English
       m_Image: {fileID: 0}
-    - m_Text: French
+    - m_Text: Spanish
       m_Image: {fileID: 0}
     - m_Text: Turkish
       m_Image: {fileID: 0}
