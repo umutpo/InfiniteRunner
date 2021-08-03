@@ -15,9 +15,9 @@ public class TutorialController : MonoBehaviour
     const float FINISHED_TUTORIAL_TRIGGER_POSITION = 120.0f;
     const float END_TUTORIAL_TRIGGER_POSITION = 140.0f;
 
-    const string HUD_INTRO_TUTORIAL_TEXT = "See the dishes you are on your way to completing!";
-    const string COMPLETE_DISH_TUTORIAL_TEXT = "Complete the Burger!";
-    const string FINISH_TUTORIAL_TEXT = "Now, time to cook!";
+    const string HUD_INTRO_TUTORIAL_TEXT = "HUD_INTRO_TUTORIAL_TEXT";
+    const string COMPLETE_DISH_TUTORIAL_TEXT = "COMPLETE_DISH_TUTORIAL_TEXT";
+    const string FINISH_TUTORIAL_TEXT = "FINISH_TUTORIAL_TEXT";
 
     [SerializeField]
     private Sprite JumpTutorialImage;
@@ -33,7 +33,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField]
     private GameObject _tutorialCommand;
     private LangText _tutorialCommandLang;
-    private Text _tutorialCommandText;
+    private TMPro.TextMeshProUGUI _tutorialCommandText;
 
     [SerializeField]
     private GameObject _tutorialVisual;
@@ -65,7 +65,7 @@ public class TutorialController : MonoBehaviour
         if (_tutorialCommand != null)
         {
             _tutorialCommandLang = _tutorialCommand.GetComponent<LangText>();
-            _tutorialCommandText = _tutorialCommand.GetComponent<Text>();
+            _tutorialCommandText = _tutorialCommand.GetComponent<TMPro.TextMeshProUGUI>();
         }
 
         if (_tutorialVisual != null)
@@ -134,13 +134,13 @@ public class TutorialController : MonoBehaviour
     {
         if (image == ChangeLanesTutorialImage)
         {
-            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 400f);
-            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 200f);
+            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 350f);
+            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 170f);
         } 
         else
         {
-            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 200f);
-            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 400f);
+            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 170f);
+            _tutorialVisualImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 350f);
         }
         _tutorialVisualImage.sprite = image;
         _tutorialVisualImage.color = new Color(255f, 255f, 255f, 255f);

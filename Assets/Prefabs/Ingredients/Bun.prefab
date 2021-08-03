@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5537373567197875062, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
   ingredient: Bun
-  inventoryImageColored: {fileID: 21300000, guid: 7b44160d8c5a99a4ab1262a8fd92b03f,
+  inventoryImageColored: {fileID: 21300000, guid: 39037470bc8fe5d46aa5007008b7a1e5,
     type: 3}
-  inventoryImageGreyed: {fileID: 21300000, guid: ad4de1884c4c4a3418bdddfd541903c4,
+  inventoryImageGreyed: {fileID: 21300000, guid: 92a65e77896679d4e97df598600f3b07,
     type: 3}

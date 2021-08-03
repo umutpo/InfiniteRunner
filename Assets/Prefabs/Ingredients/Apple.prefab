@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   ingredient: Apple
-  inventoryImageColored: {fileID: 21300000, guid: ba294b6692a2a964f8d2fe2e30889dbd,
+  inventoryImageColored: {fileID: 21300000, guid: ae91702c5297514488b52db224b3125c,
     type: 3}
-  inventoryImageGreyed: {fileID: 21300000, guid: 03cdfd02a27d03342acbb5459b11f8c0,
+  inventoryImageGreyed: {fileID: 21300000, guid: 5f6ad1719443eb449826a4de29f97d3a,
     type: 3}
