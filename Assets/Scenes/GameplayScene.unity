@@ -3385,6 +3385,11 @@ PrefabInstance:
       propertyPath: bagWeightText
       value: 
       objectReference: {fileID: 1003121394}
+    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: gameOverSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5537373567197875067, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
       propertyPath: m_RootOrder
@@ -3439,6 +3444,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962875321982871203, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: criticVisibleSpeedDifference
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962875321982871203, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: criticVisibleMinimumDistanceDifference
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7449998654075112408, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}

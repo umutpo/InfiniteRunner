@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   ingredient: Lettuce
-  inventoryImageColored: {fileID: 21300000, guid: 8327852f270c0bd43bb1a8b40bbcf7d4,
+  inventoryImageColored: {fileID: 21300000, guid: 9ca8cd4bf60e4774a88c884ea2051bea,
     type: 3}
-  inventoryImageGreyed: {fileID: 21300000, guid: d714f4a292243d34d895b5ebaddbc25d,
+  inventoryImageGreyed: {fileID: 21300000, guid: ba8680efc9869714692cad4efc4043e0,
     type: 3}

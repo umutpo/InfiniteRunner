@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5537373567197875062, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
   ingredient: Tomato
-  inventoryImageColored: {fileID: 21300000, guid: 89d0bf87c2d0ade419254a15732d7234,
+  inventoryImageColored: {fileID: 21300000, guid: a56de4db31f2c4648a1bca08fea85705,
     type: 3}
-  inventoryImageGreyed: {fileID: 21300000, guid: 561fc0d67894258468a39e3838cad141,
+  inventoryImageGreyed: {fileID: 21300000, guid: 0fc2e2370c8ba16418e0c6bfdeb49f7c,
     type: 3}

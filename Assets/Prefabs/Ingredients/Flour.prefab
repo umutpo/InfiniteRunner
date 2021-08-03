@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5537373567197875062, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
   ingredient: Flour
-  inventoryImageColored: {fileID: 21300000, guid: df47f53f4f4d82f4dbe45726ea595fab,
+  inventoryImageColored: {fileID: 21300000, guid: d673ee63a5ce24f4f9867cd0dc2b0e35,
     type: 3}
-  inventoryImageGreyed: {fileID: 21300000, guid: a723318e082edb644a0cdf54afe3498b,
+  inventoryImageGreyed: {fileID: 21300000, guid: 75a7186bdb6e72143921be415faa8298,
     type: 3}

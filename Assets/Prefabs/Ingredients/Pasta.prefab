@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5537373567197875062, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
   ingredient: Pasta
-  inventoryImageColored: {fileID: 21300000, guid: 671241162fb1471448dd561c3d436ff3,
+  inventoryImageColored: {fileID: 21300000, guid: 407fd5fddb958e24285af84656e785e2,
     type: 3}
-  inventoryImageGreyed: {fileID: 21300000, guid: 3dd9037b7158e2945abded0bd3aa44bc,
+  inventoryImageGreyed: {fileID: 21300000, guid: 5b4f8c5d8942a11459c52cdc2b89b101,
     type: 3}
