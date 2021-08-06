@@ -25,7 +25,7 @@ public class SceneSwitcher : MonoBehaviour
     public void Awake() {
         Button thisButton = GetComponent<Button>();
        thisButton.onClick.AddListener(() => {
-        StartCoroutine(loadScene());
+            StartCoroutine(loadScene());
        });
     }
 
