@@ -15,7 +15,8 @@ public class SceneSwitcher : MonoBehaviour
         GameplayScene,
         CreditsScene,
         TutorialScene,
-        RecipeScene
+        RecipeScene,
+        ComicScene
     };
 
     [SerializeField] 

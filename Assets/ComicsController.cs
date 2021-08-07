@@ -29,8 +29,8 @@ public class ComicsController : MonoBehaviour
 
     public void Awake()
     {
-        Button thisButton = this.GetComponentInChildren<Button>();
-        backgroundImage = this.GetComponentInChildren<Image>();
+        Button thisButton = this.GetComponent<Button>();
+        backgroundImage = this.transform.parent.GetComponentInChildren<Image>();
 
         thisButton.onClick.AddListener(() => {
             Debug.Log("Clicked button!");

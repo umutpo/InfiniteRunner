@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: 1740610645}
   - component: {fileID: 1740610644}
   - component: {fileID: 1740610643}
+  - component: {fileID: 1740610642}
   m_Layer: 5
   m_Name: SkipButton
   m_TagString: Untagged
@@ -503,6 +504,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1740610642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740610640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cbeb6c82bfc6f942be9d766e1befbd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenTransition: {fileID: 548790848}
+  destinationScene: 2
+  openingComics:
+  - {fileID: 21300000, guid: 032858a77fda6a24ca144a3ce4ef1c6a, type: 3}
+  - {fileID: 21300000, guid: 90ef91395b59bd94e902faa1b05ce867, type: 3}
+  - {fileID: 21300000, guid: 5e049ace10b1be54191a20e4e2d887fc, type: 3}
+  - {fileID: 21300000, guid: 3eed5e797e357aa4e95619039ee9de52, type: 3}
 --- !u!114 &1740610643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,7 +615,6 @@ GameObject:
   - component: {fileID: 1775109820}
   - component: {fileID: 1775109819}
   - component: {fileID: 1775109818}
-  - component: {fileID: 1775109822}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -684,22 +703,3 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1775109822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1775109817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cbeb6c82bfc6f942be9d766e1befbd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  screenTransition: {fileID: 548790848}
-  destinationScene: 2
-  openingComics:
-  - {fileID: 21300000, guid: 032858a77fda6a24ca144a3ce4ef1c6a, type: 3}
-  - {fileID: 21300000, guid: 90ef91395b59bd94e902faa1b05ce867, type: 3}
-  - {fileID: 21300000, guid: 5e049ace10b1be54191a20e4e2d887fc, type: 3}
-  - {fileID: 21300000, guid: 3eed5e797e357aa4e95619039ee9de52, type: 3}
