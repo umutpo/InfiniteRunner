@@ -11,13 +11,17 @@ public class CriticController : MonoBehaviour
 
     private Rigidbody _body;
     private PlayerController playerController;
+    private PlayerAudioController audioController;
     private Animator animator;
+
+    private bool criticApproaching = false;
 
     void Start()
     {
         _body = gameObject.GetComponent<Rigidbody>();
         playerController = this.GetComponentInParent<PlayerController>();
         animator = gameObject.GetComponent<Animator>();
+        audioController = GameObject.FindObjectOfType<PlayerAudioController>();
     }
 
     void Update()
@@ -27,7 +31,14 @@ public class CriticController : MonoBehaviour
             Vector3 parentPosition = this.transform.parent.position;
 
             float gameOverSpeedRemaining = playerController.GetCurrentSpeed() - playerController.gameOverSpeed;
-            if (gameOverSpeedRemaining <= criticVisibleSpeedDifference)
+
+            if (!criticApproaching && gameOverSpeedRemaining <= criticVisibleSpeedDifference)
+            {
+                audioController.PlayCriticApproaching();
+            }
+            criticApproaching = gameOverSpeedRemaining <= criticVisibleSpeedDifference;
+
+            if (criticApproaching)
             {
                 float distanceBetween = (gameOverSpeedRemaining / 2);
                 if (distanceBetween <= criticVisibleMinimumDistanceDifference)

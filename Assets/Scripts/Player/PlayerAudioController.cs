@@ -8,12 +8,13 @@ public class PlayerAudioController : MonoBehaviour
     [SerializeField] AudioMixer masterMixer;
 
     [SerializeField] private AudioSource gameStart;
-    [SerializeField] private AudioSource obstacleHit;
-    [SerializeField] private AudioSource recipeCompletion;
+    [SerializeField] private List<AudioSource> obstacleHit;
+    [SerializeField] private List<AudioSource> recipeCompletion;
+    [SerializeField] private List<AudioSource> criticApproaching;
     [SerializeField] private AudioSource jump;
     [SerializeField] private AudioSource slide;
     [SerializeField] private AudioSource laneSwitch;
-    [SerializeField] private AudioSource gameEnd;
+    [SerializeField] private List<AudioSource> gameEnd;
     [SerializeField] private AudioSource running;
     [SerializeField] private AudioSource itemCollection;
 
@@ -27,13 +28,28 @@ public class PlayerAudioController : MonoBehaviour
     public void PlayObstacleHit()
     {
         if (obstacleHit != null)
-            obstacleHit.Play();
+        {
+            int sfx = Random.Range(0, obstacleHit.Count);
+            obstacleHit[sfx].Play();
+        }
     }
 
     public void PlayRecipeCompletion()
     {
         if (recipeCompletion != null)
-            recipeCompletion.Play();
+        {
+            int sfx = Random.Range(0, recipeCompletion.Count);
+            recipeCompletion[sfx].Play();
+        }
+    }
+
+    public void PlayCriticApproaching()
+    {
+        if (criticApproaching != null)
+        {
+            int sfx = Random.Range(0, criticApproaching.Count);
+            criticApproaching[sfx].Play();
+        }
     }
 
     public void PlayJump()
@@ -57,7 +73,10 @@ public class PlayerAudioController : MonoBehaviour
     public void PlayGameEnd()
     {
         if (gameEnd != null)
-            gameEnd.Play();
+        {
+            int sfx = Random.Range(0, gameEnd.Count);
+            gameEnd[sfx].Play();
+        }
     }
 
     public void PlayRunning()
