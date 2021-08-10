@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class ComicsController : MonoBehaviour
 {
+    private const string FIRST_TIME_PLAYING_KEY = "FirstTimePlaying";
+
     private enum SceneType
     {
         MainMenu,
@@ -79,7 +81,7 @@ public class ComicsController : MonoBehaviour
         Time.timeScale = 1; // reset the time scale every time a new scene is loaded so the gameplay animations wont freeze
         screenTransition.SetTrigger("start");
         yield return new WaitForSecondsRealtime(1f);
-        if (destinationScene.ToString() == "GameplayScene")
+        if (isFirstTimePlaying())
         {
             SceneManager.LoadScene("TutorialScene");
         }
@@ -88,5 +90,16 @@ public class ComicsController : MonoBehaviour
             SceneManager.LoadScene(destinationScene.ToString());
         }
         yield return false;
+    }
+
+    private bool isFirstTimePlaying()
+    {
+        bool isFirstTime = !PlayerPrefs.HasKey(FIRST_TIME_PLAYING_KEY);
+        if (isFirstTime)
+        {
+            PlayerPrefs.SetInt(FIRST_TIME_PLAYING_KEY, 1);
+        }
+
+        return isFirstTime;
     }
 }
