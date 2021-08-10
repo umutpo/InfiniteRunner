@@ -25,6 +25,8 @@ public class ComicsController : MonoBehaviour
     public List<Sprite> openingComics;
 
     private int currentOpeningComicIndex = 1;
+    private float timer = 0f;
+    private float automaticSkipTime = 2f;
     private Image backgroundImage = null;
     private Button thisButton = null;
 
@@ -34,19 +36,34 @@ public class ComicsController : MonoBehaviour
         backgroundImage = this.GetComponentInChildren<Image>();
 
         thisButton.onClick.AddListener(() => {
-            if (currentOpeningComicIndex < 4)
-            {
-                StartCoroutine(skipComic());
-            }
-            else
-            {
-                StartCoroutine(loadScene());
-            }
+            selectComicRoutine();
         });
+    }
+
+    public void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer > automaticSkipTime)
+        {
+            selectComicRoutine();
+        }
+    }
+
+    private void selectComicRoutine()
+    {
+        if (currentOpeningComicIndex < 4)
+        {
+            StartCoroutine(skipComic());
+        }
+        else
+        {
+            StartCoroutine(loadScene());
+        }
     }
 
     private IEnumerator skipComic()
     {
+        timer = 0;
         currentOpeningComicIndex++;
         backgroundImage.sprite = openingComics[currentOpeningComicIndex - 1];
         if (currentOpeningComicIndex >= openingComics.Count)
@@ -58,6 +75,7 @@ public class ComicsController : MonoBehaviour
 
     private IEnumerator loadScene()
     {
+        timer = 0;
         Time.timeScale = 1; // reset the time scale every time a new scene is loaded so the gameplay animations wont freeze
         screenTransition.SetTrigger("start");
         yield return new WaitForSecondsRealtime(1f);
