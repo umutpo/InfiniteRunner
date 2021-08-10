@@ -31,6 +31,7 @@ public class SceneSwitcher : MonoBehaviour
 
     private IEnumerator loadScene()
     {
+        AudioListener.pause = false; // reset mute state every time when switching to a new scene
         Time.timeScale = 1; // reset the time scale every time a new scene is loaded so the gameplay animations wont freeze
         screenTransition.SetTrigger("start");
         yield return new WaitForSecondsRealtime(1f);
