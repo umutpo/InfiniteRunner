@@ -26,44 +26,34 @@ public class ComicsController : MonoBehaviour
 
     private int currentOpeningComicIndex = 1;
     private Image backgroundImage = null;
+    private Button thisButton = null;
 
     public void Awake()
     {
-        Button thisButton = this.GetComponent<Button>();
-        backgroundImage = this.transform.parent.GetComponentInChildren<Image>();
+        thisButton = this.GetComponent<Button>();
+        backgroundImage = this.GetComponentInChildren<Image>();
 
         thisButton.onClick.AddListener(() => {
-            Debug.Log("Clicked button!");
-            StartCoroutine(playComicsDecision());
+            if (currentOpeningComicIndex < 4)
+            {
+                StartCoroutine(skipComic());
+            }
+            else
+            {
+                StartCoroutine(loadScene());
+            }
         });
-    }
-
-    private IEnumerator playComicsDecision()
-    {
-        Debug.Log("Came here");
-        if (currentOpeningComicIndex < 4)
-        {
-            Debug.Log("Chose skipComic");
-            skipComic();
-        }
-        else
-        {
-            Debug.Log("Chose loadScene");
-            loadScene();
-        }
-
-        yield return false;
     }
 
     private IEnumerator skipComic()
     {
-        screenTransition.SetTrigger("start");
-        if (backgroundImage != null)
+        currentOpeningComicIndex++;
+        backgroundImage.sprite = openingComics[currentOpeningComicIndex - 1];
+        if (currentOpeningComicIndex >= openingComics.Count)
         {
-            currentOpeningComicIndex++;
-            backgroundImage.sprite = openingComics[currentOpeningComicIndex - 1];
+            thisButton.transition = Selectable.Transition.None;
         }
-        yield return new WaitForSecondsRealtime(1f);
+        yield return false;
     }
 
     private IEnumerator loadScene()
