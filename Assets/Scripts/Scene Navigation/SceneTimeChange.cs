@@ -50,7 +50,6 @@ public class SceneTimeChange : MonoBehaviour
                 break;
             case SetToGameState.Continue:
                 CountdownController countDownController = countDownText.GetComponent<CountdownController>();
-                AudioListener.pause = false;
                 pauseMenuCanvas.SetActive(false);
                 countDownController.StartCoroutine(Countdown(countDownLength, countDownController));
                 break;
@@ -90,7 +89,8 @@ public class SceneTimeChange : MonoBehaviour
                 counter--;
             }
             countdownText.text = "";
-            Time.timeScale = 1f;
+        AudioListener.pause = false;
+        Time.timeScale = 1f;
     }
 
 }
