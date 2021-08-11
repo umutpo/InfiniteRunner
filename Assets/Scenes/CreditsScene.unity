@@ -173,7 +173,6 @@ GameObject:
   - component: {fileID: 308397398}
   - component: {fileID: 308397400}
   - component: {fileID: 308397399}
-  - component: {fileID: 308397401}
   m_Layer: 5
   m_Name: YiChen Zhang
   m_TagString: Untagged
@@ -241,21 +240,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 308397397}
   m_CullTransparentMesh: 0
---- !u!114 &308397401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308397397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!1 &690372611
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +334,6 @@ GameObject:
   - component: {fileID: 1002262363}
   - component: {fileID: 1002262365}
   - component: {fileID: 1002262364}
-  - component: {fileID: 1002262366}
   m_Layer: 5
   m_Name: Andrew Ting
   m_TagString: Untagged
@@ -418,21 +401,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002262362}
   m_CullTransparentMesh: 0
---- !u!114 &1002262366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002262362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!1 &1018711501
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +486,6 @@ GameObject:
   - component: {fileID: 1113517231}
   - component: {fileID: 1113517233}
   - component: {fileID: 1113517232}
-  - component: {fileID: 1113517234}
   m_Layer: 5
   m_Name: Eva Belen Ruiz
   m_TagString: Untagged
@@ -586,21 +553,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113517230}
   m_CullTransparentMesh: 0
---- !u!114 &1113517234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113517230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!1 &1291295488
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +564,6 @@ GameObject:
   - component: {fileID: 1291295489}
   - component: {fileID: 1291295491}
   - component: {fileID: 1291295490}
-  - component: {fileID: 1291295492}
   m_Layer: 5
   m_Name: Amy Liu
   m_TagString: Untagged
@@ -680,21 +631,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291295488}
   m_CullTransparentMesh: 0
---- !u!114 &1291295492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1291295488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!1 &1365024045
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,7 +1108,6 @@ GameObject:
   - component: {fileID: 1907764218}
   - component: {fileID: 1907764220}
   - component: {fileID: 1907764219}
-  - component: {fileID: 1907764221}
   m_Layer: 5
   m_Name: Hannah Zaitlin
   m_TagString: Untagged
@@ -1240,21 +1175,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907764217}
   m_CullTransparentMesh: 0
---- !u!114 &1907764221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907764217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!1 &2053899758
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,7 +1271,6 @@ GameObject:
   - component: {fileID: 2125265100}
   - component: {fileID: 2125265102}
   - component: {fileID: 2125265101}
-  - component: {fileID: 2125265103}
   m_Layer: 5
   m_Name: Umut Polat
   m_TagString: Untagged
@@ -1419,18 +1338,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125265099}
   m_CullTransparentMesh: 0
---- !u!114 &2125265103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125265099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
