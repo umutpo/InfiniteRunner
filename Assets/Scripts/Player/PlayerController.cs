@@ -530,7 +530,7 @@ public class PlayerController : MonoBehaviour
                     if (deltaY > 0 && canPlayerMove()) {
                         jump();
                         latestSwipe = SwipeAction.Up;
-                    } else if (canPlayerMove() && isPlayerGrounded()){
+                    } else {
                         slide();
                         latestSwipe = SwipeAction.Down;
                     }
