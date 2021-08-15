@@ -19,7 +19,6 @@ public class SceneTimeChange : MonoBehaviour
     }
     [SerializeField] private SetToGameState setToGameState;
     [SerializeField] private GameObject pauseMenuCanvas;
-    private AudioListener audioListener;
 
     public GameObject canvasToViewDuringPause;
     public GameObject countDownText;

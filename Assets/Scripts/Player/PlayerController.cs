@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
     // Tutorial Variables
     public static Action StopTutorial;
     private bool waitForTutorial = false;
+    private AudioListener audioListener;
 
     // Audio variables
     private PlayerAudioController audioController;
@@ -467,6 +468,7 @@ public class PlayerController : MonoBehaviour
     {
         anim.enabled = false;
         waitForTutorial = true;
+        AudioListener.pause = true;
         if (key != null && swipe != SwipeAction.Nil)
         {
             enableInput(key);
@@ -478,6 +480,7 @@ public class PlayerController : MonoBehaviour
         }
         waitForTutorial = false;
         anim.enabled = true;
+        AudioListener.pause = false;
 
         if (StopTutorial != null)
         {
