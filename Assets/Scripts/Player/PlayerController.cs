@@ -524,7 +524,9 @@ public class PlayerController : MonoBehaviour
         if ((touchEndTime - touchStartTime) <= MAX_SWIPE_TIME) {
                 float deltaY = touchEndPosition.y - touchStartPosition.y;
                 float deltaX = touchEndPosition.x - touchStartPosition.x;
-                if (Mathf.Abs(deltaY) > MIN_SWIPE_DIST) {                        
+                float magY = Mathf.Abs(deltaY);
+                float magX = Mathf.Abs(deltaX);
+                if (magY > MIN_SWIPE_DIST && magY >= magX) {                        
                     if (deltaY > 0 && canPlayerMove()) {
                         jump();
                         latestSwipe = SwipeAction.Up;
@@ -532,7 +534,7 @@ public class PlayerController : MonoBehaviour
                         slide();
                         latestSwipe = SwipeAction.Down;
                     }
-                } else if (Mathf.Abs(deltaX) > MIN_SWIPE_DIST) { 
+                } else if (magX > MIN_SWIPE_DIST && magX > magY) { 
                     if (deltaX > 0) {
                         moveRight();
                         latestSwipe = SwipeAction.Right;
