@@ -47,13 +47,14 @@ public class ComicsController : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > automaticSkipTime)
         {
+            Debug.Log("Update change");
             selectComicRoutine();
         }
     }
 
     private void selectComicRoutine()
     {
-        if (currentOpeningComicIndex < 4)
+        if (currentOpeningComicIndex < openingComics.Count)
         {
             StartCoroutine(skipComic());
         }
@@ -61,6 +62,9 @@ public class ComicsController : MonoBehaviour
         {
             StartCoroutine(loadScene());
         }
+    }
+    public void completelySkipComic() {
+        StartCoroutine(loadScene());
     }
 
     private IEnumerator skipComic()
