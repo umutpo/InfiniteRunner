@@ -14,7 +14,6 @@ public class PlayerAudioController : MonoBehaviour
     [SerializeField] private AudioSource jump;
     [SerializeField] private AudioSource slide;
     [SerializeField] private AudioSource laneSwitch;
-    [SerializeField] private List<AudioSource> gameEnd;
     [SerializeField] private AudioSource running;
     [SerializeField] private AudioSource itemCollection;
 
@@ -68,15 +67,6 @@ public class PlayerAudioController : MonoBehaviour
     {
         if (laneSwitch != null)
             laneSwitch.Play();
-    }
-
-    public void PlayGameEnd()
-    {
-        if (gameEnd != null)
-        {
-            int sfx = Random.Range(0, gameEnd.Count);
-            gameEnd[sfx].Play();
-        }
     }
 
     public void PlayRunning()
