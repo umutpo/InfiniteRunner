@@ -27,7 +27,6 @@ public class SceneSwitcher : MonoBehaviour
             StartCoroutine(loadScene());
        });
     }
-
     private IEnumerator loadScene()
     {
         AudioListener.pause = false; // reset mute state every time when switching to a new scene
