@@ -214,7 +214,6 @@ public class PlayerController : MonoBehaviour
     {
         if (currentSpeed <= gameOverSpeed)
         {
-            audioController.PlayGameEnd();
             SetGameOver();
         }
     }
