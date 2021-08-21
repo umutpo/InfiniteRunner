@@ -47,7 +47,6 @@ public class ComicsController : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > automaticSkipTime)
         {
-            Debug.Log("Update change");
             selectComicRoutine();
         }
     }
