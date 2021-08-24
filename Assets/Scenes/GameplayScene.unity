@@ -954,6 +954,7 @@ MonoBehaviour:
   pauseMenuCanvas: {fileID: 648944963}
   canvasToViewDuringPause: {fileID: 174500140}
   countDownText: {fileID: 0}
+  countDownController: {fileID: 0}
 --- !u!114 &234325125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1528,6 +1529,7 @@ MonoBehaviour:
   pauseMenuCanvas: {fileID: 648944963}
   canvasToViewDuringPause: {fileID: 1731356911}
   countDownText: {fileID: 0}
+  countDownController: {fileID: 0}
 --- !u!114 &433831070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1708,6 +1710,7 @@ MonoBehaviour:
   pauseMenuCanvas: {fileID: 648944963}
   canvasToViewDuringPause: {fileID: 1731356911}
   countDownText: {fileID: 0}
+  countDownController: {fileID: 0}
 --- !u!222 &442191497
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2455,6 +2458,7 @@ MonoBehaviour:
   pauseMenuCanvas: {fileID: 648944963}
   canvasToViewDuringPause: {fileID: 1731356911}
   countDownText: {fileID: 1339071485}
+  countDownController: {fileID: 1339071489}
 --- !u!114 &603475194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3325,6 +3329,7 @@ MonoBehaviour:
   pauseMenuCanvas: {fileID: 648944963}
   canvasToViewDuringPause: {fileID: 174500140}
   countDownText: {fileID: 0}
+  countDownController: {fileID: 0}
 --- !u!114 &836028493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5255,6 +5260,7 @@ MonoBehaviour:
   pauseMenuCanvas: {fileID: 648944963}
   canvasToViewDuringPause: {fileID: 1731356911}
   countDownText: {fileID: 0}
+  countDownController: {fileID: 0}
 --- !u!1 &1438366006
 GameObject:
   m_ObjectHideFlags: 0
@@ -6162,6 +6168,7 @@ MonoBehaviour:
   pauseMenuCanvas: {fileID: 648944963}
   canvasToViewDuringPause: {fileID: 1731356911}
   countDownText: {fileID: 0}
+  countDownController: {fileID: 1339071489}
 --- !u!114 &1744605646
 MonoBehaviour:
   m_ObjectHideFlags: 0
