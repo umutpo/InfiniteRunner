@@ -16,6 +16,14 @@ public class PlayerAudioController : MonoBehaviour
     [SerializeField] private AudioSource laneSwitch;
     [SerializeField] private AudioSource running;
     [SerializeField] private AudioSource itemCollection;
+    [SerializeField] private PlayerController playerController;
+
+    private float currentSpeed;
+
+    private void Awake() {
+        playerController = GetComponent<PlayerController>();
+    }
+
 
     // Audio played on awake instead
     // public void PlayGameStart()
@@ -72,7 +80,10 @@ public class PlayerAudioController : MonoBehaviour
     public void PlayRunning()
     {
         if (running != null && !running.isPlaying)
+        {
+            running.pitch = 0.03f * currentSpeed + 0.8f;
             running.Play();
+        }
     }
 
     public void PauseRunning()
@@ -85,5 +96,10 @@ public class PlayerAudioController : MonoBehaviour
     {
         if (itemCollection != null)
             itemCollection.Play();
+    }
+
+    private void Update()
+    {
+        currentSpeed = playerController.GetCurrentSpeed();
     }
 }
