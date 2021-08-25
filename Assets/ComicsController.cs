@@ -25,17 +25,21 @@ public class ComicsController : MonoBehaviour
 
     [SerializeField]
     public List<Sprite> openingComics;
+    [SerializeField]
+    public List<string> openingComicsSubtitles;
 
     private int currentOpeningComicIndex = 1;
     private float timer = 0f;
     private float automaticSkipTime = 2f;
     private Image backgroundImage = null;
+    private LangText subtitles = null;
     private Button thisButton = null;
 
     public void Awake()
     {
         thisButton = this.GetComponent<Button>();
         backgroundImage = this.GetComponentInChildren<Image>();
+        subtitles = this.GetComponentInChildren<LangText>();
 
         thisButton.onClick.AddListener(() => {
             selectComicRoutine();
@@ -71,6 +75,7 @@ public class ComicsController : MonoBehaviour
         timer = 0;
         currentOpeningComicIndex++;
         backgroundImage.sprite = openingComics[currentOpeningComicIndex - 1];
+        subtitles.SetTextIdentifier(openingComicsSubtitles[currentOpeningComicIndex - 1]);
         if (currentOpeningComicIndex >= openingComics.Count)
         {
             thisButton.transition = Selectable.Transition.None;
