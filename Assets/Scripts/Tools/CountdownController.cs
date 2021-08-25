@@ -6,8 +6,6 @@ public class CountdownController : MonoBehaviour
     public TMPro.TextMeshProUGUI countdownText = null;
 
     public bool isInCountdown = true;
-    private float timeRemaining = 4;
-    private bool startingCountdown = true;
 
     private void Start() {
         StartCountdown();

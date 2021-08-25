@@ -22,8 +22,6 @@ public class SceneTimeChange : MonoBehaviour
     public GameObject countDownText;
     public CountdownController countDownController;
 
-    private int countDownLength = 3;
-
     public void Start()
     {
         Button thisButton = GetComponent<Button>();
