@@ -1,40 +1,42 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CountdownController : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI countdownText = null;
 
     public bool isInCountdown = true;
-    private float timeRemaining;
+    private float timeRemaining = 4;
+    private bool startingCountdown = true;
 
     private void Start() {
-        isInCountdown = true;
-        timeRemaining = 4;
+        StartCountdown();
     }
 
-
-    // Update is called once per frame
-    void Update()
+    public void StartCountdown()
     {
-        if (isInCountdown)
-        {                
-            if (timeRemaining > 0)
+        StopAllCoroutines();
+        StartCoroutine(Countdown());
+    }
+
+    IEnumerator Countdown()
+    {
+        int counter = 3;
+        while (counter >= 0)
+        {
+            if (counter == 0)
             {
-                timeRemaining -= Time.deltaTime;
-                if (timeRemaining > 3)  countdownText.text = "3";
-                else if (timeRemaining > 2) countdownText.text = "2";
-                else if (timeRemaining > 1) countdownText.text = "1";
-                else countdownText.text = "Start!";
+                countdownText.text = "Start!";
             }
             else
             {
-                countdownText.text = "";
-                isInCountdown = false;
+                countdownText.text = counter.ToString();
             }
+            yield return new WaitForSecondsRealtime(1);
+            counter--;
         }
-        
+        countdownText.text = "";
+        AudioListener.pause = false;
+        Time.timeScale = 1f;
     }
 }

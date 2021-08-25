@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
@@ -22,6 +20,7 @@ public class SceneTimeChange : MonoBehaviour
 
     public GameObject canvasToViewDuringPause;
     public GameObject countDownText;
+    public CountdownController countDownController;
 
     private int countDownLength = 3;
 
@@ -46,11 +45,11 @@ public class SceneTimeChange : MonoBehaviour
                 Time.timeScale = 0f;
                 AudioListener.pause = true;
                 pauseMenuCanvas.SetActive(true);
+                countDownController.StopAllCoroutines();
                 break;
             case SetToGameState.Continue:
-                CountdownController countDownController = countDownText.GetComponent<CountdownController>();
                 pauseMenuCanvas.SetActive(false);
-                countDownController.StartCoroutine(Countdown(countDownLength, countDownController));
+                countDownController.StartCountdown();
                 break;
         }
     }
@@ -68,28 +67,6 @@ public class SceneTimeChange : MonoBehaviour
                 pauseMenuCanvas.SetActive(true);
                 break;
         }
-    }
-
-    IEnumerator Countdown(int seconds, CountdownController countdownController)
-    {
-        TMPro.TextMeshProUGUI countdownText = countdownController.countdownText;
-            int counter = seconds;
-            while (counter >= 0)
-            {
-                if (counter == 0)
-                {
-                    countdownText.text = "Start!";
-                }
-                else
-                {
-                    countdownText.text = counter.ToString();
-                }
-                yield return new WaitForSecondsRealtime(1);
-                counter--;
-            }
-            countdownText.text = "";
-        AudioListener.pause = false;
-        Time.timeScale = 1f;
     }
 
 }
