@@ -64,7 +64,7 @@ public class ItemGenerator : MonoBehaviour
         lastDeltaTime = Time.time;
     }
 
-    protected void Update()
+    protected void FixedUpdate()
     {
 
         if (Time.time - lastDeltaTime >= deltaDurationInSeconds)
@@ -83,8 +83,13 @@ public class ItemGenerator : MonoBehaviour
                 
                 int itemsPlaced = 0;
                 int openLanes = 3;
-                for (int i = 0; i < 2; i++) {
-                    if (kitchen.GetObstacleEnd(i) > lastGenerateSpot) openLanes--;
+                if (kitchen.GetObstacleEnd(0) > lastGenerateSpot)
+                {
+                    openLanes--;
+                }
+                if (kitchen.GetObstacleEnd(1) > lastGenerateSpot)
+                {
+                    openLanes--;
                 }
 
                 for (int i = startLane; i < startLane + itemCntInRow; i++)

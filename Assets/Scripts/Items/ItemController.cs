@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour, IPooledObject
 {
-    private const float ITEM_REMOVAL_DISTANCE = 5.0f;
+    private const float ITEM_REMOVAL_DISTANCE = 10.0f;
 
     [SerializeField]
     protected GameObject player;

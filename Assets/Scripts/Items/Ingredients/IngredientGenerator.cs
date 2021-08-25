@@ -22,15 +22,10 @@ public class IngredientGenerator : MonoBehaviour
     protected void Start()
     {
         playerController = player.GetComponent<PlayerController>();
-        // TODO:
-        // Initialize rng variables
     }
 
     protected void Update()
     {
-        // TODO:
-        // Update rng variables based on player stats
-
     }
 
     public string GetIngredient() {

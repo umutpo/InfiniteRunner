@@ -235,6 +235,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
+      propertyPath: pools.Array.data[0].size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
       propertyPath: pools.Array.data[38].tag
       value: ObstacleKitchenEleven
       objectReference: {fileID: 0}
@@ -4621,6 +4626,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 356856036}
+    - target: {fileID: 8802311876998588525, guid: 6a5a731a45ec5854d858e9778c2739d8,
+        type: 3}
+      propertyPath: maximumPlatformCount
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a5a731a45ec5854d858e9778c2739d8, type: 3}
 --- !u!1 &1319917690 stripped
@@ -6892,6 +6902,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 356856036}
+    - target: {fileID: 581340714027735788, guid: b7bb969bddd6ca949ae245d1203c8ca6,
+        type: 3}
+      propertyPath: maximumKitchenCount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 581340714027735789, guid: b7bb969bddd6ca949ae245d1203c8ca6,
         type: 3}
       propertyPath: m_Name
