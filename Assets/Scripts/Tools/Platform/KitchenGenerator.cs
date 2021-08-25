@@ -8,7 +8,7 @@ public class KitchenGenerator : MonoBehaviour
 
     private int kitchenCount;
     [SerializeField]
-    private int maximumKitchenCount = 8;
+    private int maximumKitchenCount = 20;
     
     private GameObject kitchen;
     [SerializeField]

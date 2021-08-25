@@ -2365,10 +2365,6 @@ MonoBehaviour:
   jump: {fileID: 307138956072799595}
   slide: {fileID: 6598607088987477921}
   laneSwitch: {fileID: 3491034470129659576}
-  gameEnd:
-  - {fileID: 2144109372}
-  - {fileID: 1021385465}
-  - {fileID: 1634823358}
   running: {fileID: 5922049866199051543}
   itemCollection: {fileID: 3682894496894551980}
 --- !u!95 &356856038
@@ -3135,7 +3131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   criticVisibleMinimumDistanceDifference: 1
-  criticVisibleSpeedDifference: 3
+  criticVisibleSpeedDifference: 5
 --- !u!1001 &6983129398865325107
 PrefabInstance:
   m_ObjectHideFlags: 0

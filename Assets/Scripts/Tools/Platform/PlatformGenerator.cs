@@ -6,11 +6,11 @@ public class PlatformGenerator : MonoBehaviour
 {
     private int platformCount;
     [SerializeField]
-    private int maximumPlatformCount = 8;
+    private int maximumPlatformCount = 15;
     
     private GameObject platform;
     [SerializeField]
-    private float spawnDistance = 200;
+    private float spawnDistance = 300;
     private PlatformController platformComponent;
     private Vector3 platPosition;
 
