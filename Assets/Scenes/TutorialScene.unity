@@ -1277,6 +1277,7 @@ MonoBehaviour:
   pauseMenuCanvas: {fileID: 399091172}
   canvasToViewDuringPause: {fileID: 0}
   countDownText: {fileID: 0}
+  countDownController: {fileID: 0}
 --- !u!114 &318327646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,6 +1485,7 @@ MonoBehaviour:
   pauseMenuCanvas: {fileID: 0}
   canvasToViewDuringPause: {fileID: 0}
   countDownText: {fileID: 0}
+  countDownController: {fileID: 0}
 --- !u!114 &433831070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2896,6 +2898,7 @@ MonoBehaviour:
   pauseMenuCanvas: {fileID: 399091172}
   canvasToViewDuringPause: {fileID: 0}
   countDownText: {fileID: 0}
+  countDownController: {fileID: 0}
 --- !u!114 &1038708798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4563,7 +4566,7 @@ PrefabInstance:
     - target: {fileID: 3458213501767277586, guid: 2933264f2e17342db99c973557052d2e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3458213501767277587, guid: 2933264f2e17342db99c973557052d2e,
         type: 3}
