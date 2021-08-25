@@ -10,6 +10,7 @@ Volume=Ses
 Music=Müzik
 Language=Dil
 Menu=MENÜ
+INGREDIENT_WEIGH_DOWN_TEXT=Malzeme toplamak seni ağırlaştırıyor! Sadece ihtiyacın olanları al!
 HUD_INTRO_TUTORIAL_TEXT=Tamamlamakta oldugun yemekleri takip et!
 COMPLETE_DISH_TUTORIAL_TEXT=Hamburgeri tamamla!
 FINISH_TUTORIAL_TEXT=Yemek yapma zamanı!

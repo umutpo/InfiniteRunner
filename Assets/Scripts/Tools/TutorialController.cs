@@ -8,13 +8,15 @@ public class TutorialController : MonoBehaviour
 {
     const float JUMP_TUTORIAL_TRIGGER_POSITION = 25.0f;
     const float SLIDE_TUTORIAL_TRIGGER_POSITION = 50.0f;
-    const float CHANGE_LANES_TUTORIAL_TRIGGER_POSITION = 75.0f;
+    const float CHANGE_LANES_TUTORIAL_TRIGGER_POSITION = 68.0f;
+    const float INGREDIENT_WEIGH_DOWN_TEXT_TRIGGER_POSITION = 72.5f;
     const float HUD_INTRO_TEXT_TRIGGER_POSITION = 80.0f;
     const float COMPLETE_DISH_TRIGGER_POSITION = 82.0f;
     const float END_COMPLETE_DISH_TRIGGER_POSITION = 99.9f;
     const float FINISHED_TUTORIAL_TRIGGER_POSITION = 120.0f;
     const float END_TUTORIAL_TRIGGER_POSITION = 140.0f;
 
+    const string INGREDIENT_WEIGH_DOWN_TEXT = "INGREDIENT_WEIGH_DOWN_TEXT";
     const string HUD_INTRO_TUTORIAL_TEXT = "HUD_INTRO_TUTORIAL_TEXT";
     const string COMPLETE_DISH_TUTORIAL_TEXT = "COMPLETE_DISH_TUTORIAL_TEXT";
     const string FINISH_TUTORIAL_TEXT = "FINISH_TUTORIAL_TEXT";
@@ -33,7 +35,6 @@ public class TutorialController : MonoBehaviour
     [SerializeField]
     private GameObject _tutorialCommand;
     private LangText _tutorialCommandLang;
-    private TMPro.TextMeshProUGUI _tutorialCommandText;
 
     [SerializeField]
     private GameObject _tutorialVisual;
@@ -44,6 +45,7 @@ public class TutorialController : MonoBehaviour
     bool jumpFlag = true;
     bool slideFlag = true;
     bool changeLanesFlag = true;
+    bool ingredientWeighDownFlag = true;
     bool hudIntroFlag = true;
     bool completeDishFlag = true;
     bool endCompleteDishFlag = true;
@@ -65,7 +67,6 @@ public class TutorialController : MonoBehaviour
         if (_tutorialCommand != null)
         {
             _tutorialCommandLang = _tutorialCommand.GetComponent<LangText>();
-            _tutorialCommandText = _tutorialCommand.GetComponent<TMPro.TextMeshProUGUI>();
         }
 
         if (_tutorialVisual != null)
@@ -95,6 +96,12 @@ public class TutorialController : MonoBehaviour
             changeLanesFlag = false;
             StartImageDisplay(ChangeLanesTutorialImage);
             StartCoroutine(_playerController.StartTutorial(Keyboard.current.rightArrowKey, PlayerController.SwipeAction.Right));
+        }
+        else if (ingredientWeighDownFlag && currentPlayerPositionZ >= INGREDIENT_WEIGH_DOWN_TEXT_TRIGGER_POSITION)
+        {
+            ingredientWeighDownFlag = false;
+            StartTextDisplay(INGREDIENT_WEIGH_DOWN_TEXT);
+            StartCoroutine(_playerController.StartTutorial());
         }
         else if (hudIntroFlag && currentPlayerPositionZ >= HUD_INTRO_TEXT_TRIGGER_POSITION)
         {
