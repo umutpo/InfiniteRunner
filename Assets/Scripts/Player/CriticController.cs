@@ -7,7 +7,7 @@ public class CriticController : MonoBehaviour
     [SerializeField]
     private float criticVisibleMinimumDistanceDifference = 1.0f;
     [SerializeField]
-    private float criticVisibleSpeedDifference = 5.0f;
+    private float criticVisibleSpeedDifference = 3.0f;
 
     private Rigidbody _body;
     private PlayerController playerController;
@@ -30,7 +30,7 @@ public class CriticController : MonoBehaviour
         {
             Vector3 parentPosition = this.transform.parent.position;
 
-            float gameOverSpeedRemaining = playerController.GetCurrentSpeed() - playerController.gameOverSpeed;
+            float gameOverSpeedRemaining = playerController.GetCurrentSpeed() - playerController.GetGameOverSpeed();
 
             if (!criticApproaching && gameOverSpeedRemaining <= criticVisibleSpeedDifference)
             {

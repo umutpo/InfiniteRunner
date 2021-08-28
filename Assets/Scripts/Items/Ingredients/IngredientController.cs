@@ -6,7 +6,7 @@ public class IngredientController : ItemController
     [SerializeField]
     public string ingredient;
 
-    private float speedReduction = 7f;  // ratio of speed reduced
+    private float speedReduction = 10f;  // ratio of speed reduced
     private float rotationDegree = 90f; // degrees per second
 
     [SerializeField]

@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     const float DISH_SPEED_GAIN_TIME = 3f;
     const float BOOST_DEACCEL_TIME = 0.5f;
 
-    const float INITIAL_SPEED = 10f;
+    const float INITIAL_SPEED = 12f;
     const float PERMANENT_SPEED_GAIN = 1f;
     const float OBSTACLE_SPEED_GAIN = 1f;
     public const float INGREDIENT_SPEED_GAIN = 1f;
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
     private float maxSpeed;
     [SerializeField]
     private float currentSpeed;
-    public float gameOverSpeed = 4f;
+    public float gameOverSpeedRatio = .3f;
     private int currentLane = 2;
     private float obstacleSpeedGainRemainder = 0f;
     private bool inMovement = false;
@@ -167,6 +167,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public float GetGameOverSpeed() {
+        return gameOverSpeedRatio * maxSpeed;
+    }
+
     private void updateSpeed()
     {
         if (speedReduction != 0f)
@@ -212,7 +216,7 @@ public class PlayerController : MonoBehaviour
 
     private void checkGameOver()
     {
-        if (currentSpeed <= gameOverSpeed)
+        if (currentSpeed <= gameOverSpeedRatio * maxSpeed)
         {
             SetGameOver();
         }
