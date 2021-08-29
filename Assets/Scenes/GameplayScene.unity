@@ -3017,8 +3017,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 769885130}
-  - component: {fileID: 769885131}
   - component: {fileID: 769885132}
+  - component: {fileID: 769885131}
   m_Layer: 0
   m_Name: pie
   m_TagString: Untagged
@@ -3086,7 +3086,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769885129}
-  m_Mesh: {fileID: 1749788427702966484, guid: 017a9f10d59c5a84e82e89c8826f54d9, type: 3}
+  m_Mesh: {fileID: 1749788427702966484, guid: 9f1c562fb16da02478c9359145896541, type: 3}
 --- !u!224 &779788637
 RectTransform:
   m_ObjectHideFlags: 0
