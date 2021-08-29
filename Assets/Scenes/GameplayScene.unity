@@ -7068,6 +7068,21 @@ PrefabInstance:
       propertyPath: itemDensity
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: capItemDensity
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: deltaItemDensity
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: deltaDurationInSeconds
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3353a00a13fa93e48980be9b0f2edfe4, type: 3}
 --- !u!1001 &5537373567377914770
@@ -7169,6 +7184,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Volume
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962875321982871203, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: criticVisibleSpeedDifference
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6962875321982871203, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: criticVisibleMinimumDistanceDifference
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4eaea86d4f33324fa75387c319d2243, type: 3}
