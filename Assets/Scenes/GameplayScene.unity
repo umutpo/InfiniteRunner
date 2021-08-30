@@ -236,7 +236,7 @@ PrefabInstance:
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
       propertyPath: pools.Array.data[0].size
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
@@ -270,33 +270,133 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
+      propertyPath: pools.Array.data[17].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[18].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[19].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[20].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[21].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[22].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[24].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[25].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[26].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[27].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[28].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[29].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[30].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[31].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[32].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[33].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[34].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[35].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[36].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[37].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
       propertyPath: pools.Array.data[38].size
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
       propertyPath: pools.Array.data[39].size
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
       propertyPath: pools.Array.data[40].size
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
       propertyPath: pools.Array.data[41].size
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
       propertyPath: pools.Array.data[42].size
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
       propertyPath: pools.Array.data[43].size
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
@@ -6869,7 +6969,7 @@ PrefabInstance:
     - target: {fileID: 581340714027735788, guid: b7bb969bddd6ca949ae245d1203c8ca6,
         type: 3}
       propertyPath: maximumKitchenCount
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 581340714027735789, guid: b7bb969bddd6ca949ae245d1203c8ca6,
         type: 3}
