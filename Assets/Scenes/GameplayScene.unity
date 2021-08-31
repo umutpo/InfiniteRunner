@@ -231,7 +231,7 @@ PrefabInstance:
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
       propertyPath: pools.Array.size
-      value: 44
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
@@ -270,6 +270,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
+      propertyPath: pools.Array.data[44].tag
+      value: ObstacleKitchenSeventeen
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[45].tag
+      value: ObstacleKitchenEighteen
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
       propertyPath: pools.Array.data[38].size
       value: 5
       objectReference: {fileID: 0}
@@ -296,6 +306,16 @@ PrefabInstance:
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
       propertyPath: pools.Array.data[43].size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[44].size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[45].size
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
@@ -345,6 +365,18 @@ PrefabInstance:
       propertyPath: pools.Array.data[43].prefab
       value: 
       objectReference: {fileID: 7002565132504062259, guid: 0582a1e2c5080d74b9985bb1e166ae10,
+        type: 3}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[44].prefab
+      value: 
+      objectReference: {fileID: 2606551920842164645, guid: c62789568ff02e240b19555ef1c51d43,
+        type: 3}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[45].prefab
+      value: 
+      objectReference: {fileID: 4620135057137412820, guid: 4a08e2c8c40c6914b8410b190e7ef576,
         type: 3}
     - target: {fileID: 5764857384114019303, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
@@ -3464,7 +3496,6 @@ GameObject:
   - component: {fileID: 857812377}
   - component: {fileID: 857812376}
   - component: {fileID: 857812375}
-  - component: {fileID: 857812378}
   m_Layer: 0
   m_Name: Silouhette
   m_TagString: Untagged
@@ -3533,21 +3564,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
---- !u!114 &857812378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857812374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85a5f98b56947e84881684155349133f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  silouhetteElevation: 5
-  silouhetteDistance: 60
-  target: {fileID: 356856037}
 --- !u!1 &859598899
 GameObject:
   m_ObjectHideFlags: 0
@@ -7115,7 +7131,7 @@ PrefabInstance:
     - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: itemDensity
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}

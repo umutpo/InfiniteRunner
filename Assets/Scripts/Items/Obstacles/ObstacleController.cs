@@ -17,7 +17,6 @@ public class ObstacleController : ItemController
             }
             else {
                 playerScript.SlowDown(speedReduction);
-                Remove();
             }
         }
     }

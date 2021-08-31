@@ -37,6 +37,8 @@ public struct Pool
     public static readonly string OBSTACLEKIT14 = "ObstacleKitchenFourteen";
     public static readonly string OBSTACLEKIT15 = "ObstacleKitchenFifteen";
     public static readonly string OBSTACLEKIT16 = "ObstacleKitchenSixteen";
+    public static readonly string OBSTACLEKIT17 = "ObstacleKitchenSeventeen";
+    public static readonly string OBSTACLEKIT18 = "ObstacleKitchenEighteen";
     // Obstacles
     public static readonly string OBSTACLE1 = "ObstacleFirst";
     public static readonly string OBSTACLE2 = "ObstacleSecond";
