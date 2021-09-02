@@ -1173,8 +1173,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.554962, y: 6, z: 1.0000002}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.554962, y: 5.7945323, z: 1.0000002}
+  m_Center: {x: 0, y: -4.2079062, z: 0}
 --- !u!114 &3395642109846315616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1314,7 +1314,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 27b0fb362e774d941a48058018930d10,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: 11.33
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 27b0fb362e774d941a48058018930d10,
         type: 3}
@@ -1356,6 +1356,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5754084199372789682, guid: 27b0fb362e774d941a48058018930d10,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 497073834996947888, guid: 0f59ed82795460f439564e8f6117c9a3,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 27b0fb362e774d941a48058018930d10,
         type: 3}
       propertyPath: m_Name

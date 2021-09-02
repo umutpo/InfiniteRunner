@@ -31,7 +31,7 @@ public class PlatformGenerator : MonoBehaviour
     protected void Update()
     {
         float spawnRange = platPosition.z - spawnDistance;
-        if (player.transform.position.z > spawnRange && platformCount < maximumPlatformCount)
+        while (player.transform.position.z > spawnRange && platformCount < maximumPlatformCount)
         {
             // Set position of platform
             platform = ObjectPooler.Instance.SpawnFromPool(Pool.PLATFORM, platPosition, Quaternion.identity);
@@ -44,6 +44,7 @@ public class PlatformGenerator : MonoBehaviour
             platformComponent.onRemoveItem += RemoveOne;
 
             platformCount++;
+            spawnRange = platPosition.z - spawnDistance;
         }
     }
 

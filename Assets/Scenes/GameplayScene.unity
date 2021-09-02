@@ -231,7 +231,7 @@ PrefabInstance:
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
       propertyPath: pools.Array.size
-      value: 44
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
@@ -267,6 +267,16 @@ PrefabInstance:
         type: 3}
       propertyPath: pools.Array.data[43].tag
       value: ObstacleKitchenSixteen
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[44].tag
+      value: ObstacleKitchenSeventeen
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[45].tag
+      value: ObstacleKitchenEighteen
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
@@ -400,6 +410,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
+      propertyPath: pools.Array.data[44].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[45].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
       propertyPath: pools.Array.data[13].prefab
       value: 
       objectReference: {fileID: 5373127624944606486, guid: 195f246f3a52e054985b644d833b135c,
@@ -445,6 +465,18 @@ PrefabInstance:
       propertyPath: pools.Array.data[43].prefab
       value: 
       objectReference: {fileID: 7002565132504062259, guid: 0582a1e2c5080d74b9985bb1e166ae10,
+        type: 3}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[44].prefab
+      value: 
+      objectReference: {fileID: 2606551920842164645, guid: c62789568ff02e240b19555ef1c51d43,
+        type: 3}
+    - target: {fileID: 1442996959462370431, guid: 83b45c4d9aaf6b04ca902db231c04662,
+        type: 3}
+      propertyPath: pools.Array.data[45].prefab
+      value: 
+      objectReference: {fileID: 4620135057137412820, guid: 4a08e2c8c40c6914b8410b190e7ef576,
         type: 3}
     - target: {fileID: 5764857384114019303, guid: 83b45c4d9aaf6b04ca902db231c04662,
         type: 3}
