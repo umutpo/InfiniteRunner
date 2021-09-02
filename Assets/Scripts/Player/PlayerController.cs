@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     const int LANE_LENGTH = 12;
 
     const float LANE_CHANGE_TIME = 0.05f;
-    const float SLIDE_TIME = 2.0f;
+    const float SLIDE_TIME = 1.0f;
     const float PERMANENT_SPEED_GAIN_TIME = 60f;
     const float OBSTACLE_LOST_SPEED_GAIN_TIME = 3f;
     const float DISH_SPEED_GAIN_TIME = 3f;
