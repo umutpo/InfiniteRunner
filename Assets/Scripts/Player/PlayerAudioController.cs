@@ -7,7 +7,6 @@ public class PlayerAudioController : MonoBehaviour
 {
     [SerializeField] AudioMixer masterMixer;
 
-    [SerializeField] private AudioSource gameStart;
     [SerializeField] private List<AudioSource> obstacleHit;
     [SerializeField] private List<AudioSource> recipeCompletion;
     [SerializeField] private List<AudioSource> criticApproaching;
@@ -23,14 +22,6 @@ public class PlayerAudioController : MonoBehaviour
     private void Awake() {
         playerController = GetComponent<PlayerController>();
     }
-
-
-    // Audio played on awake instead
-    // public void PlayGameStart()
-    // {
-    //     if (gameStart != null)
-    //     gameStart.Play();
-    // }
 
     public void PlayObstacleHit()
     {
