@@ -1,5 +1,6 @@
 Replay=またゲームをする
 Play=開始
+Continue=続く
 Credits=クレジット
 High Score=ベストスコア
 Score=スコア

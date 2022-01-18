@@ -1,5 +1,6 @@
 Replay=Replay
 Play=Play
+Continue=Continue
 Credits=Credits
 High Score=High Score
 Score=Score

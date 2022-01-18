@@ -1,5 +1,6 @@
 Replay=Ulitin ang laro
 Play=Laro
+Continue=Ituloy
 Credits=Kredito
 High Score=Pinakamahusay no laro
 Score=Iskor
