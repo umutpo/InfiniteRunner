@@ -1,5 +1,6 @@
 ﻿Replay=Yeniden Oyna
 Play=Oyna
+Continue=Devam Et
 Credits=Katkıda Bulunanlar
 High Score=Yüksek Skor
 Score=Skor

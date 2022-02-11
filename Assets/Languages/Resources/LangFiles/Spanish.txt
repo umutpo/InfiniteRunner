@@ -1,5 +1,6 @@
 Replay=Volver a Jugar
 Play=Jugar
+Continue=Seguir
 Credits=Créditos
 High Score=Puntuación Máxima
 Score=Resultado
