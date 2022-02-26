@@ -8,6 +8,7 @@ public class CountdownController : MonoBehaviour
     public bool isInCountdown = true;
 
     [SerializeField] private AudioSource countdownSound;
+    [SerializeField] private LangText text;
 
     private void Start() {
         StartCountdown();
@@ -28,10 +29,11 @@ public class CountdownController : MonoBehaviour
         {
             if (counter == 0)
             {
-                countdownText.text = "Start!";
+                text.SetTextIdentifier("Start");
             }
             else
             {
+                text.SetTextIdentifier("");
                 countdownText.text = counter.ToString();
             }
             yield return new WaitForSecondsRealtime(1);
