@@ -67,6 +67,8 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _OutlineBrightIntensity: 0.17
+    - _OutlineBrightnessIntensity: 0.171
     - _OutlineWidth: 0.56
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
@@ -81,4 +83,5 @@ Material:
     - _Outline: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineDirection: {r: 1, g: 1.64, b: 0.89, a: 1}
     - _OutlineLimits: {r: 0, g: -0.5, b: -0.5, a: 1}
-    - _ShadowTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _ShadowColor: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
+    - _ShadowTint: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
