@@ -7,6 +7,8 @@ public class CountdownController : MonoBehaviour
 
     public bool isInCountdown = true;
 
+    [SerializeField] private AudioSource countdownSound;
+
     private void Start() {
         StartCountdown();
     }
@@ -20,6 +22,8 @@ public class CountdownController : MonoBehaviour
     IEnumerator Countdown()
     {
         int counter = 3;
+        AudioListener.pause = false;
+        countdownSound.Play();
         while (counter >= 0)
         {
             if (counter == 0)
@@ -34,7 +38,6 @@ public class CountdownController : MonoBehaviour
             counter--;
         }
         countdownText.text = "";
-        AudioListener.pause = false;
         Time.timeScale = 1f;
     }
 }
