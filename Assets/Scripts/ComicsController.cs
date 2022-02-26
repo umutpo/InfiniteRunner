@@ -38,8 +38,13 @@ public class ComicsController : MonoBehaviour
     public void Awake()
     {
         thisButton = this.GetComponent<Button>();
-        backgroundImage = this.GetComponentInChildren<Image>();
-        subtitles = this.GetComponentInChildren<LangText>();
+        GameObject comic = GameObject.Find("Comic");
+        if (!comic)
+        {
+            Debug.LogError("Object named Comic does not exist in the scene. Ensure that this exists and it contains both the subtitles and comic image background as a child");
+        }
+        backgroundImage = comic.GetComponentInChildren<Image>();
+        subtitles = comic.GetComponentInChildren<LangText>();
 
         thisButton.onClick.AddListener(() => {
             selectComicRoutine();
