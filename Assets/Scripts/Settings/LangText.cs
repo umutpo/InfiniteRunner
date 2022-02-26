@@ -12,6 +12,10 @@ public class LangText : MonoBehaviour
         return textIdentifier;
     }
 
+    public string GetLanguage() {
+        return FindObjectOfType<LangResolver>().GetLanguage();
+    }
+
     public void SetTextIdentifier(string newText)
     {
         textIdentifier = newText;

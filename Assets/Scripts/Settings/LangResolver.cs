@@ -89,4 +89,8 @@ public class LangResolver : MonoBehaviour
         ResolveTexts();
         PrefsHolder.SaveLang(_language);
     }
+
+    public string GetLanguage() {
+        return _language;
+    }
 }
