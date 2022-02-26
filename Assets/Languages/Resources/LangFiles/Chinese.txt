@@ -1,5 +1,6 @@
 ﻿Replay=重玩
 Play=开始
+Continue=继续
 Credits=制作人员
 High Score=最高分
 Score=分数

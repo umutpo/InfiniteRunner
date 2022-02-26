@@ -9,10 +9,11 @@
 		[HDR] _Emission ("Emission", color) = (0 ,0 ,0 , 1)
 
         [Header(Lighting Parameters)]
-		_ShadowTint ("Shadow Color", Color) = (0.5, 0.5, 0.5, 1)
-		_Outline ("Outline Color", Color) = (1, 1, 1, 1)
-		_OutlineWidth ("Outline Width", Float) = 0.1
-		_OutlineLimits ("Outline Direction", Vector) = (0, -0.5, -0.5, 1)
+		_ShadowColor("Shadow Color", Color) = (0.66, 0.66, 0.66, 1)
+		_Outline("Outline Color", Color) = (1, 1, 1, 1)
+		_OutlineWidth("Outline Width", Float) = 0.1
+		_OutlineLimits("Outline Direction", Vector) = (0, -0.5, -0.5, 1)
+		_OutlineBrightIntensity("Outline Intensity", Range(0,1)) = 0.17
 	}
 	SubShader {
 		//the material is completely non-transparent and is rendered at the same time as the other opaque geometry
@@ -31,10 +32,11 @@
 		float _Curvature;
 		half3 _Emission;
 
-        float3 _ShadowTint;
+        float3 _ShadowColor;
 		float3 _Outline;
 		float _OutlineWidth;
 		float3 _OutlineLimits;
+		float _OutlineBrightIntensity;
 
 		//our lighting function. Will be called once per light
 		float4 LightingStepped(SurfaceOutput s, float3 lightDir, half3 viewDir, float shadowAttenuation){
@@ -55,12 +57,12 @@
         #endif
             lightIntensity = lightIntensity * shadow;
 
-            //calculate shadow color and mix light and shadow based on the light. Then taint it based on the light color
-            float3 shadowColor = s.Albedo * _ShadowTint;
+            //calculate shadow color and mix light and shadow based on the light. Then tint it based on the light color
+            float3 shadowColor = s.Albedo * _ShadowColor;
             float4 color;
 			float towardsView = dot(s.Normal, normalize(viewDir));
-			if (towardsView < _OutlineWidth && s.Normal.x > _OutlineLimits.x && s.Normal.y > _OutlineLimits.y && s.Normal.z > _OutlineLimits.z) 
-				color.rgb = _Outline;
+			if (towardsView < _OutlineWidth && s.Normal.x > _OutlineLimits.x && s.Normal.y > _OutlineLimits.y && s.Normal.z > _OutlineLimits.z)
+				color.rgb = lerp(s.Albedo, _Outline, _OutlineBrightIntensity) ;
             else 
 				color.rgb = lerp(shadowColor, s.Albedo, lightIntensity) * _LightColor0.rgb;
             color.a = s.Alpha;

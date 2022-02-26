@@ -2299,7 +2299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play
+  m_text: Continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3adea19f75e632d49b9d2b5e535e11b8, type: 2}
   m_sharedMaterial: {fileID: 7408844142292486222, guid: 3adea19f75e632d49b9d2b5e535e11b8,
@@ -2412,7 +2412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c622b679fb8ca745aade720b8de804c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textIdentifier: Play
+  textIdentifier: Continue
 --- !u!1 &574651792
 GameObject:
   m_ObjectHideFlags: 0
@@ -3048,11 +3048,11 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
+    m_Type: 2
+    m_Resolution: 1
     m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
+    m_Strength: 0.2
+    m_Bias: 1.303
     m_NormalBias: 0.4
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
@@ -3081,7 +3081,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -3098,13 +3098,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.16773118, y: -0.19826685, z: 0.16636565, w: 0.95125127}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.3407186, y: -0.08189965, z: 0.029809028, w: 0.9361168}
+  m_LocalPosition: {x: 0.1, y: -0.43, z: 8.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 36430228}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 40, y: -10, z: 0}
 --- !u!1 &743960319
 GameObject:
   m_ObjectHideFlags: 0
@@ -4132,7 +4132,7 @@ PrefabInstance:
     - target: {fileID: 3458213501767277586, guid: 2933264f2e17342db99c973557052d2e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3458213503728990608, guid: 2933264f2e17342db99c973557052d2e,
         type: 3}
@@ -7276,6 +7276,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Volume
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6210672541333294100, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747773208368210802, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6962875321982871203, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
