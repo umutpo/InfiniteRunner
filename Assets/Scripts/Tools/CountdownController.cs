@@ -7,6 +7,9 @@ public class CountdownController : MonoBehaviour
 
     public bool isInCountdown = true;
 
+    [SerializeField] private AudioSource countdownSound;
+    [SerializeField] private LangText text;
+
     private void Start() {
         StartCountdown();
     }
@@ -20,21 +23,23 @@ public class CountdownController : MonoBehaviour
     IEnumerator Countdown()
     {
         int counter = 3;
+        AudioListener.pause = false;
+        countdownSound.Play();
         while (counter >= 0)
         {
             if (counter == 0)
             {
-                countdownText.text = "Start!";
+                text.SetTextIdentifier("Start");
             }
             else
             {
+                text.SetTextIdentifier("");
                 countdownText.text = counter.ToString();
             }
             yield return new WaitForSecondsRealtime(1);
             counter--;
         }
         countdownText.text = "";
-        AudioListener.pause = false;
         Time.timeScale = 1f;
     }
 }

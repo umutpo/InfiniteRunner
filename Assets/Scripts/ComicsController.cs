@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ComicsController : MonoBehaviour
 {
@@ -28,11 +29,17 @@ public class ComicsController : MonoBehaviour
     [SerializeField]
     public List<string> openingComicsSubtitles;
 
+    [SerializeField]
+    public TMP_FontAsset defaultFont;
+    [SerializeField]
+    public TMP_FontAsset turkishFont;
+
     private int currentOpeningComicIndex = 1;
     private float timer = 0f;
     private float automaticSkipTime = 2f;
     private Image backgroundImage = null;
     private LangText subtitles = null;
+    private TextMeshProUGUI textBox = null;
     private Button thisButton = null;
 
     public void Awake()
@@ -45,6 +52,17 @@ public class ComicsController : MonoBehaviour
         }
         backgroundImage = comic.GetComponentInChildren<Image>();
         subtitles = comic.GetComponentInChildren<LangText>();
+        textBox = comic.GetComponentInChildren<TextMeshProUGUI>();
+
+        string language = subtitles.GetLanguage();
+        if (language == "Turkish")
+        {
+            textBox.font = turkishFont;
+            textBox.fontStyle = FontStyles.Bold;
+        } else {
+            textBox.font = defaultFont;
+            textBox.fontStyle = FontStyles.Normal;
+        }
 
         thisButton.onClick.AddListener(() => {
             selectComicRoutine();
