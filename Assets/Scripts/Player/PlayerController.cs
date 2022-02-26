@@ -144,6 +144,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        anim.speed = (float)Math.Sqrt(currentSpeed / INITIAL_SPEED);
         if (canPlayerMove())
         {
             audioController.PlayRunning();
