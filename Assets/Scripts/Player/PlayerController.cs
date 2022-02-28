@@ -66,6 +66,8 @@ public class PlayerController : MonoBehaviour
     private float maxSpeed;
     [SerializeField]
     private float currentSpeed;
+    [SerializeField]
+    [Range(0,180)] private float leftRightSwipeAngleSize;
     public float gameOverSpeedRatio = .3f;
     private int currentLane = 2;
     private float obstacleSpeedGainRemainder = 0f;
@@ -533,7 +535,8 @@ public class PlayerController : MonoBehaviour
                 float deltaX = touchEndPosition.x - touchStartPosition.x;
                 float magY = Mathf.Abs(deltaY);
                 float magX = Mathf.Abs(deltaX);
-                if (magY > MIN_SWIPE_DIST && magY >= magX) {                        
+                bool isVerticalSwipe = magX == 0 ? true : (Mathf.Atan(magY / magX) * 180 / Mathf.PI > leftRightSwipeAngleSize / 2);
+                if (magY > MIN_SWIPE_DIST && isVerticalSwipe) {                        
                     if (deltaY > 0 && canPlayerMove()) {
                         jump();
                         latestSwipe = SwipeAction.Up;
@@ -541,7 +544,7 @@ public class PlayerController : MonoBehaviour
                         slide();
                         latestSwipe = SwipeAction.Down;
                     }
-                } else if (magX > MIN_SWIPE_DIST && magX > magY) { 
+                } else if (magX > MIN_SWIPE_DIST && !isVerticalSwipe) { 
                     if (deltaX > 0) {
                         moveRight();
                         latestSwipe = SwipeAction.Right;
