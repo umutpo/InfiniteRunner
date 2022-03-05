@@ -7359,22 +7359,67 @@ PrefabInstance:
     - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: itemDensity
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: capItemDensity
-      value: 40
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: deltaItemDensity
-      value: -2
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: capDoubleItemRowWeight
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: capSingleItemRowWeight
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: capTripleItemRowWeight
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: deltaDurationInSeconds
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: deltaDoubleItemRowWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: deltaSingleItemRowWeight
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: deltaTripleItemRowWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: ingredientVsObstacleBias
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: capIngredientVsObstacleBias
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
+        type: 3}
+      propertyPath: deltaIngredientVsObstacleBias
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3353a00a13fa93e48980be9b0f2edfe4, type: 3}
