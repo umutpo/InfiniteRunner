@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using TMPro;
 
 public class TutorialController : MonoBehaviour
 {
@@ -40,6 +41,13 @@ public class TutorialController : MonoBehaviour
     private GameObject _tutorialVisual;
     private Image _tutorialVisualImage;
 
+    [SerializeField]
+    private TextMeshProUGUI textBox = null;
+    [SerializeField]
+    public TMP_FontAsset defaultFont;
+    [SerializeField]
+    public TMP_FontAsset turkishFont;
+
     public Animator screenTransition;
 
     bool jumpFlag = true;
@@ -72,7 +80,22 @@ public class TutorialController : MonoBehaviour
         if (_tutorialVisual != null)
         {
             _tutorialVisualImage = _tutorialVisual.GetComponent<Image>();
-        } 
+        }
+
+        if (textBox != null)
+        {
+            string language = _tutorialCommandLang.GetLanguage();
+            if (language == "Turkish")
+            {
+                textBox.font = turkishFont;
+                textBox.fontStyle = FontStyles.Bold;
+            }
+            else
+            {
+                textBox.font = defaultFont;
+                textBox.fontStyle = FontStyles.Normal;
+            }
+        }
     }
 
     void Update()
