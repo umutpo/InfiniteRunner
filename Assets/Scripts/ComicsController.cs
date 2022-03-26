@@ -36,7 +36,7 @@ public class ComicsController : MonoBehaviour
 
     private int currentOpeningComicIndex = 1;
     private float timer = 0f;
-    private float automaticSkipTime = 2f;
+    private float automaticSkipTime = 4f;
     private Image backgroundImage = null;
     private LangText subtitles = null;
     private TextMeshProUGUI textBox = null;
