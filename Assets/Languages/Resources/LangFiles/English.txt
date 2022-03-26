@@ -12,6 +12,7 @@ Music=Music
 Language=Language
 Menu=MENU
 INGREDIENT_WEIGH_DOWN_TEXT=Collecting ingredients make you heavier! Only get what you need!
+TUTORIAL_INTRO_TEXT=Tutorial Start!
 HUD_INTRO_TUTORIAL_TEXT=See the dishes you are on your way to completing!
 COMPLETE_DISH_TUTORIAL_TEXT=Complete the Burger!
 FINISH_TUTORIAL_TEXT=Now, time to cook!

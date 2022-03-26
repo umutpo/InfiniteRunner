@@ -14,6 +14,7 @@ Menu=MENÜ
 INGREDIENT_WEIGH_DOWN_TEXT=Malzeme toplamak seni ağırlaştırıyor! Sadece ihtiyacın olanları al!
 HUD_INTRO_TUTORIAL_TEXT=Tamamlamakta oldugun yemekleri takip et!
 COMPLETE_DISH_TUTORIAL_TEXT=Hamburgeri tamamla!
+TUTORIAL_INTRO_TEXT=öğretici başlangıç!
 FINISH_TUTORIAL_TEXT=Yemek yapma zamanı!
 COMIC_SUBTITLE_1=Bir zamanlar...
 COMIC_SUBTITLE_2=Sıradan bir şef yemek yapıyordu...

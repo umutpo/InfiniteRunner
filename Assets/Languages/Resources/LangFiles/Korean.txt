@@ -12,6 +12,7 @@ Music=음악
 Language=언어
 Menu=게임 메뉴
 INGREDIENT_WEIGH_DOWN_TEXT=재료를 얻을때 마다 더 느려져요! 꼭 필요한 재료만 얻으세요!
+TUTORIAL_INTRO_TEXT=튜토리얼 시작!
 HUD_INTRO_TUTORIAL_TEXT=남은 요리를 확인하세요!
 COMPLETE_DISH_TUTORIAL_TEXT=버거를 완성하세요!
 FINISH_TUTORIAL_TEXT=이제 요리할 시간이에요!
