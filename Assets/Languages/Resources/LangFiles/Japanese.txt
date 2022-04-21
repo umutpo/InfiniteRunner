@@ -20,3 +20,6 @@ COMIC_SUBTITLE_2=普通の料理人は料理をしている。。。
 COMIC_SUBTITLE_3=野生の料理評論家が現れるまで。。。
 COMIC_SUBTITLE_4=走れ！
 Start=始める！
+Paused=一時停止
+Quit=止める
+Back=戻る

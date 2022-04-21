@@ -20,3 +20,6 @@ COMIC_SUBTITLE_2=Sıradan bir şef yemek yapıyordu...
 COMIC_SUBTITLE_3=Ta ki vahşi bir eleştirmen gelene kadar...
 COMIC_SUBTITLE_4=Koş!
 Start=Hadi!
+Paused=Duraklat
+Quit=çıkış yapmak
+Back=dönmek

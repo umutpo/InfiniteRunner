@@ -20,3 +20,6 @@ COMIC_SUBTITLE_2=Un chef ordinario estaba cocinando ...
 COMIC_SUBTITLE_3=Hasta que aparece un crítico salvaje ...
 COMIC_SUBTITLE_4=¡Corre!
 Start=¡Comienzo!
+Paused=Pausa
+Quit=Dejar
+Back=Regresa
