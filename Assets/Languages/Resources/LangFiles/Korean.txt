@@ -20,3 +20,6 @@ COMIC_SUBTITLE_2=평범한 요리사가 음식을 만들고 있었어요...
 COMIC_SUBTITLE_3=바로 그때 요리사의 음식을 비판하는 자가 나타났어요...
 COMIC_SUBTITLE_4=달려요!
 Start=시작!
+Paused=정지시키다
+Quit=그만두다
+Back=돌아가다

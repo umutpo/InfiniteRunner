@@ -20,3 +20,6 @@ COMIC_SUBTITLE_2=有一个厨师正在烹饪...
 COMIC_SUBTITLE_3=直到一个傲慢的美食评论家突然出现...
 COMIC_SUBTITLE_4=开始！
 Start=开始!
+Paused=暂停
+Quit=辞职
+Back=回去

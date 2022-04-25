@@ -20,3 +20,6 @@ COMIC_SUBTITLE_2=An ordinary chef was cooking...
 COMIC_SUBTITLE_3=Until a wild critic appears...
 COMIC_SUBTITLE_4=Run!
 Start=Start!
+Paused=PAUSED
+Quit=Quit
+Back=Back
