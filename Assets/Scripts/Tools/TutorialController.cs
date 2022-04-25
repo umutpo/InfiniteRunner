@@ -17,6 +17,7 @@ public class TutorialController : MonoBehaviour
     const float FINISHED_TUTORIAL_TRIGGER_POSITION = 120.0f;
     const float END_TUTORIAL_TRIGGER_POSITION = 140.0f;
 
+    const string TUTORIAL_INTRO_TEXT = "TUTORIAL_INTRO_TEXT";
     const string INGREDIENT_WEIGH_DOWN_TEXT = "INGREDIENT_WEIGH_DOWN_TEXT";
     const string HUD_INTRO_TUTORIAL_TEXT = "HUD_INTRO_TUTORIAL_TEXT";
     const string COMPLETE_DISH_TUTORIAL_TEXT = "COMPLETE_DISH_TUTORIAL_TEXT";
@@ -58,6 +59,7 @@ public class TutorialController : MonoBehaviour
     bool completeDishFlag = true;
     bool endCompleteDishFlag = true;
     bool finishedTutorialFlag = true;
+    bool helloFlag = true;
 
     void Start()
     {
@@ -101,7 +103,13 @@ public class TutorialController : MonoBehaviour
     void Update()
     {
         float currentPlayerPositionZ = _player.transform.position.z;
-        if (jumpFlag && currentPlayerPositionZ >= JUMP_TUTORIAL_TRIGGER_POSITION)
+        if (helloFlag)
+        {
+            helloFlag = false;
+            StartTextDisplay(TUTORIAL_INTRO_TEXT);
+            StartCoroutine(_playerController.StartTutorial());
+        }
+        else if (jumpFlag && currentPlayerPositionZ >= JUMP_TUTORIAL_TRIGGER_POSITION)
         {
             jumpFlag = false;
             StartImageDisplay(JumpTutorialImage);
