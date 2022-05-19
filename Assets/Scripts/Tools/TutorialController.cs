@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using TMPro;
 
 public class TutorialController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class TutorialController : MonoBehaviour
     const float FINISHED_TUTORIAL_TRIGGER_POSITION = 120.0f;
     const float END_TUTORIAL_TRIGGER_POSITION = 140.0f;
 
+    const string TUTORIAL_INTRO_TEXT = "TUTORIAL_INTRO_TEXT";
     const string INGREDIENT_WEIGH_DOWN_TEXT = "INGREDIENT_WEIGH_DOWN_TEXT";
     const string HUD_INTRO_TUTORIAL_TEXT = "HUD_INTRO_TUTORIAL_TEXT";
     const string COMPLETE_DISH_TUTORIAL_TEXT = "COMPLETE_DISH_TUTORIAL_TEXT";
@@ -40,6 +42,13 @@ public class TutorialController : MonoBehaviour
     private GameObject _tutorialVisual;
     private Image _tutorialVisualImage;
 
+    [SerializeField]
+    private TextMeshProUGUI textBox = null;
+    [SerializeField]
+    public TMP_FontAsset defaultFont;
+    [SerializeField]
+    public TMP_FontAsset turkishFont;
+
     public Animator screenTransition;
 
     bool jumpFlag = true;
@@ -50,6 +59,7 @@ public class TutorialController : MonoBehaviour
     bool completeDishFlag = true;
     bool endCompleteDishFlag = true;
     bool finishedTutorialFlag = true;
+    bool helloFlag = true;
 
     void Start()
     {
@@ -72,13 +82,34 @@ public class TutorialController : MonoBehaviour
         if (_tutorialVisual != null)
         {
             _tutorialVisualImage = _tutorialVisual.GetComponent<Image>();
-        } 
+        }
+
+        if (textBox != null)
+        {
+            string language = _tutorialCommandLang.GetLanguage();
+            if (language == "Turkish")
+            {
+                textBox.font = turkishFont;
+                textBox.fontStyle = FontStyles.Bold;
+            }
+            else
+            {
+                textBox.font = defaultFont;
+                textBox.fontStyle = FontStyles.Normal;
+            }
+        }
     }
 
     void Update()
     {
         float currentPlayerPositionZ = _player.transform.position.z;
-        if (jumpFlag && currentPlayerPositionZ >= JUMP_TUTORIAL_TRIGGER_POSITION)
+        if (helloFlag)
+        {
+            helloFlag = false;
+            StartTextDisplay(TUTORIAL_INTRO_TEXT);
+            StartCoroutine(_playerController.StartTutorial());
+        }
+        else if (jumpFlag && currentPlayerPositionZ >= JUMP_TUTORIAL_TRIGGER_POSITION)
         {
             jumpFlag = false;
             StartImageDisplay(JumpTutorialImage);
