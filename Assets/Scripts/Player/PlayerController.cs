@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     const float MAX_INVENTORY_INGREDIENT_WEIGHT = 10f;
     
     const float MAX_JUMP_HEIGHT = 3f;
-    const float MAX_JUMP_DISTANCE = 10f;
+    const float MAX_JUMP_DISTANCE = 15f;
 
     // SWIPE THRESHOLD
     const float MAX_SWIPE_TIME = 0.5f;
