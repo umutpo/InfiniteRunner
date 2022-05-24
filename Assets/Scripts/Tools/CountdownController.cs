@@ -1,21 +1,22 @@
 ﻿using System.Collections;
 using UnityEngine;
+using System;
 
 public class CountdownController : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI countdownText = null;
-
-    public bool isInCountdown = true;
+    public Action<bool> isInPauseCountdown;
 
     [SerializeField] private AudioSource countdownSound;
     [SerializeField] private LangText text;
 
     private void Start() {
-        StartCountdown();
+        StartCoroutine(Countdown());
     }
 
     public void StartCountdown()
     {
+        isInPauseCountdown.Invoke(true);
         StopAllCoroutines();
         StartCoroutine(Countdown());
     }
@@ -39,6 +40,7 @@ public class CountdownController : MonoBehaviour
             yield return new WaitForSecondsRealtime(1);
             counter--;
         }
+        isInPauseCountdown.Invoke(false);
         countdownText.text = "";
         Time.timeScale = 1f;
     }

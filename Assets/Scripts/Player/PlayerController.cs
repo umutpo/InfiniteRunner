@@ -105,6 +105,7 @@ public class PlayerController : MonoBehaviour
 
     // Audio variables
     private PlayerAudioController audioController;
+    private CountdownController countdownController;
 
     void Start()
     {
@@ -128,8 +129,9 @@ public class PlayerController : MonoBehaviour
         anim = GameObject.Find("Player Model").GetComponent<Animator>();
         bagWeightText.text = "0";
         audioController = gameObject.GetComponent<PlayerAudioController>();
+        countdownController = FindObjectOfType<CountdownController>();
         // TODO: set music audio source ignoreListenerPause to true
-        
+        countdownController.isInPauseCountdown += (isPaused) => noMovementDuringPauseCountdown(isPaused);
         moveLeftAction.Enable();
         moveRightAction.Enable();
 
@@ -147,7 +149,8 @@ public class PlayerController : MonoBehaviour
         anim.speed = (float)Math.Sqrt(currentSpeed / INITIAL_SPEED);
         if (canPlayerMove())
         {
-            audioController.PlayRunning();
+            if (!isSliding)
+                audioController.PlayRunning();
             jumpAction.Enable();
             slideAction.Enable();
         }
@@ -215,6 +218,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void noMovementDuringPauseCountdown(bool isInPauseCountdown) {
+        if (isInPauseCountdown) {
+            audioController.PauseRunning();
+            DisableAllInput();
+        }
+        else {
+            EnableAllInput();
+        }
+    }
+
     private void checkGameOver()
     {
         if (currentSpeed <= gameOverSpeedRatio * maxSpeed)
@@ -253,6 +266,7 @@ public class PlayerController : MonoBehaviour
             _collider.center = new Vector3(_collider.center.x, -1 * (_collider.size.y / 2), _collider.center.z);
             isSliding = true;
             playPlayerAnimation("Slide");
+            audioController.PauseRunning();
             audioController.PlaySlide();
         }
     }
