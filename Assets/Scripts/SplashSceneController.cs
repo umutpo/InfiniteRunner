@@ -26,11 +26,6 @@ public class SplashSceneController : MonoBehaviour
     private float timer = 0f;
     private float automaticSkipTime = 2f;
 
-    public void Awake()
-    {
-
-    }
-
     public void Update()
     {
         timer += Time.deltaTime;
