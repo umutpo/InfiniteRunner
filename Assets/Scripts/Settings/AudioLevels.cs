@@ -11,7 +11,10 @@ public class AudioLevels : MonoBehaviour
     [SerializeField] Slider sfxSlider;
 
     private void Awake() {
-        ReadVolumes();
+        if (musicSlider != null && sfxSlider != null)
+        {
+            ReadVolumes();
+        }
     }
 
     public void SetMusicLevel(float musicLvl) { 

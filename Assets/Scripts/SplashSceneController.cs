@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class SplashSceneController : MonoBehaviour
 {
+    private const string FIRST_TIME_PLAYING_KEY = "FirstTimePlaying";
+
     private enum SceneType
     {
         MainMenu,
@@ -24,11 +26,6 @@ public class SplashSceneController : MonoBehaviour
     private float timer = 0f;
     private float automaticSkipTime = 2f;
 
-    public void Awake()
-    {
-
-    }
-
     public void Update()
     {
         timer += Time.deltaTime;
@@ -44,7 +41,25 @@ public class SplashSceneController : MonoBehaviour
         Time.timeScale = 1; // reset the time scale every time a new scene is loaded so the gameplay animations wont freeze
         screenTransition.SetTrigger("start");
         yield return new WaitForSecondsRealtime(1f);
-        SceneManager.LoadScene(destinationScene.ToString());
+        if (isFirstTimePlaying())
+        {
+            SceneManager.LoadScene("LanguageSelectionScene");
+        }
+        else
+        {
+            SceneManager.LoadScene(destinationScene.ToString());
+        }
         yield return false;
+    }
+
+    private bool isFirstTimePlaying()
+    {
+        bool isFirstTime = !PlayerPrefs.HasKey(FIRST_TIME_PLAYING_KEY);
+        if (isFirstTime)
+        {
+            PlayerPrefs.SetInt(FIRST_TIME_PLAYING_KEY, 1);
+        }
+
+        return isFirstTime;
     }
 }

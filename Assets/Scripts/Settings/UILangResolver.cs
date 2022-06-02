@@ -27,7 +27,7 @@ public class UILangResolver : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         _langResolver.ResolveTexts();
-        if (String.Equals(scene.name, "Settings"))
+        if (String.Equals(scene.name, "Settings") || String.Equals(scene.name, "LanguageSelectionScene"))
         {
             GameObject dropdownObject = GameObject.Find("Dropdown");
             if (dropdownObject == null)
