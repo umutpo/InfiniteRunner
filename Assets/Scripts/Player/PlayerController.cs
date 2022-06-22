@@ -119,10 +119,10 @@ public class PlayerController : MonoBehaviour
         maxSpeed = INITIAL_SPEED;
         currentSpeed = INITIAL_SPEED;
 
-        jumpAction.performed += ctx => jump();
-        slideAction.performed += ctx => slide();
-        moveLeftAction.performed += ctx => moveLeft();
-        moveRightAction.performed += ctx => moveRight();
+        jumpAction.performed += ctx => { if (ctx.ReadValue<float>() == 1) jump(); };
+        slideAction.performed += ctx => { if (ctx.ReadValue<float>() == 1) slide(); };
+        moveLeftAction.performed += ctx => { if (ctx.ReadValue<float>() == 1) moveLeft(); };
+        moveRightAction.performed += ctx => { if (ctx.ReadValue<float>() == 1) moveRight(); };
 
         touchContact.started += ctx => StartTouchPrimary(ctx);
         touchContact.canceled += ctx => EndTouchPrimary(ctx);
