@@ -107,6 +107,13 @@ public class PlayerController : MonoBehaviour
     private PlayerAudioController audioController;
     private CountdownController countdownController;
 
+    //Shader Swapping
+    private Renderer chefRenderer;
+    [SerializeField] private Shader chefGoldShader;
+    [SerializeField] private Shader chefRedShader;
+    [SerializeField] private Shader chefNormalShader;
+
+
     void Start()
     {
         maxSpeed = INITIAL_SPEED;
@@ -127,6 +134,7 @@ public class PlayerController : MonoBehaviour
         inventory = GameObject.Find("Inventory");
         playerInventoryData = inventory.GetComponent<PlayerInventoryData>();
         anim = GameObject.Find("Player Model").GetComponent<Animator>();
+        chefRenderer = GameObject.Find("chef").GetComponent<Renderer>();
         bagWeightText.text = "0";
         audioController = gameObject.GetComponent<PlayerAudioController>();
         countdownController = FindObjectOfType<CountdownController>();
@@ -321,6 +329,7 @@ public class PlayerController : MonoBehaviour
     {
         isInvincible = true;
         currentSpeed += speedGain;
+        chefRenderer.material.shader = chefGoldShader;
         // Consider changing this time for another variable
         for (float i = 0; i < DISH_SPEED_GAIN_TIME; i += Time.deltaTime)
         {
@@ -335,7 +344,7 @@ public class PlayerController : MonoBehaviour
             remaining -= deaccel;
             yield return new WaitForSeconds(Time.deltaTime);
         }
-
+        chefRenderer.material.shader = chefNormalShader;
         currentSpeed -= remaining;
         isInvincible = false;
     }
@@ -363,11 +372,13 @@ public class PlayerController : MonoBehaviour
     private IEnumerator becomeInvincibleTemporary()
     {
         isInvincible = true;
+        chefRenderer.material.shader = chefRedShader;
         for (float i = 0; i < invincibilityDuration; i += Time.deltaTime)
         {
             // TODO: Can add visual cues for invincibility
             yield return new WaitForSeconds(Time.deltaTime);
         }
+        chefRenderer.material.shader = chefNormalShader;
         isInvincible = false;
     }
 
