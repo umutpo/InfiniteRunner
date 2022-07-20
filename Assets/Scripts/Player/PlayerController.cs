@@ -138,6 +138,15 @@ public class PlayerController : MonoBehaviour
         bagWeightText.text = "0";
         audioController = gameObject.GetComponent<PlayerAudioController>();
         countdownController = FindObjectOfType<CountdownController>();
+
+        // preloads shaders so there is no hiccup on first use
+        var collection = Resources.Load<ShaderVariantCollection>("ShaderCache");
+        if (collection != null)
+        {
+            collection.WarmUp();
+            Resources.UnloadAsset(collection);
+        }
+
         // TODO: set music audio source ignoreListenerPause to true
         countdownController.isInPauseCountdown += (isPaused) => noMovementDuringPauseCountdown(isPaused);
         moveLeftAction.Enable();

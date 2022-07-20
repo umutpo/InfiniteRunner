@@ -5404,7 +5404,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownText: {fileID: 1339071487}
-  isInCountdown: 1
   countdownSound: {fileID: 684201602}
   text: {fileID: 1339071490}
 --- !u!114 &1339071490
@@ -8337,6 +8336,21 @@ PrefabInstance:
       propertyPath: bagWeightText
       value: 
       objectReference: {fileID: 1003121394}
+    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: chefRedShader
+      value: 
+      objectReference: {fileID: 4800000, guid: 978548f08e0381f47a3a3eafbb8394cc, type: 3}
+    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: chefGoldShader
+      value: 
+      objectReference: {fileID: 4800000, guid: b92bfdc4f9688f547af826927c8d3736, type: 3}
+    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: chefNormalShader
+      value: 
+      objectReference: {fileID: 4800000, guid: fab34114f9d307247a2bf3435805750a, type: 3}
     - target: {fileID: 5537373567197875067, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
       propertyPath: m_RootOrder

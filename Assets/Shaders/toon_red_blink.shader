@@ -4,7 +4,7 @@
 	Properties{
 		[Header(Base Parameters)]
 		_Color("Tint", Color) = (0, 0, 0, 1)
-		_BlinkColor("BlinkColor", Color) = (0, 0, 0, 1)
+		_BlinkColor("BlinkColor", Color) = (1, 0, 0, 1)
 		_MainTex("Texture", 2D) = "white" {}
 		_Curvature("Curvature", Float) = 0.001
 		[HDR] _Emission("Emission", color) = (0 ,0 ,0 , 1)
@@ -69,7 +69,7 @@
 					color.rgb = lerp(shadowColor, s.Albedo, lightIntensity) * _LightColor0.rgb;
 				color.a = s.Alpha;
 				float timeOscillationProgress = cos(_Time.y * 8) * 0.3 + 0.3;
-				color.rgb = float3(color.r + (_BlinkColor.r - color.r) * timeOscillationProgress, color.g + (_BlinkColor.g - color.g) * timeOscillationProgress, color.b + (_BlinkColor.b - color.b) * timeOscillationProgress);
+				color.rgb = float3(color.r + (1 - color.r) * timeOscillationProgress, color.g + (0.5 - color.g) * timeOscillationProgress, color.b + (0.5 - color.b) * timeOscillationProgress);
 				return color;
 			}
 
