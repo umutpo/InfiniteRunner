@@ -98,7 +98,8 @@
 			void surf(Input i, inout SurfaceOutput o) {
 				//sample and tint albedo texture
 				fixed4 col = tex2D(_MainTex, i.uv_MainTex);
-				col *= float4(1, 0.97, 0.31, 1); // hard code golden tint; attributes are a PITA
+				float4 goldTint = float4(0.49, 0.459, 0, 0.1);
+				col = col + goldTint; // hard code golden tint; attributes are a PITA
 				o.Albedo = col.rgb;
 
 				o.Emission = _Emission;

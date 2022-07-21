@@ -68,7 +68,7 @@
 				else
 					color.rgb = lerp(shadowColor, s.Albedo, lightIntensity) * _LightColor0.rgb;
 				color.a = s.Alpha;
-				float timeOscillationProgress = cos(_Time.y * 8) * 0.3 + 0.3;
+				float timeOscillationProgress = cos(_Time.y * 11) * 0.3 + 0.3;
 				color.rgb = float3(color.r + (1 - color.r) * timeOscillationProgress, color.g + (0.5 - color.g) * timeOscillationProgress, color.b + (0.5 - color.b) * timeOscillationProgress);
 				return color;
 			}
