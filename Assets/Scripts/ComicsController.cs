@@ -7,7 +7,7 @@ using TMPro;
 
 public class ComicsController : MonoBehaviour
 {
-    private const string FIRST_TIME_PLAYING_KEY = "FirstTimePlaying";
+    private const string FIRST_TIME_PLAYING_TUTORIAL_KEY = "FirstTimePlayingTutorial";
 
     private enum SceneType
     {
@@ -125,10 +125,10 @@ public class ComicsController : MonoBehaviour
 
     private bool isFirstTimePlaying()
     {
-        bool isFirstTime = !PlayerPrefs.HasKey(FIRST_TIME_PLAYING_KEY);
+        bool isFirstTime = !PlayerPrefs.HasKey(FIRST_TIME_PLAYING_TUTORIAL_KEY);
         if (isFirstTime)
         {
-            PlayerPrefs.SetInt(FIRST_TIME_PLAYING_KEY, 1);
+            PlayerPrefs.SetInt(FIRST_TIME_PLAYING_TUTORIAL_KEY, 1);
         }
 
         return isFirstTime;

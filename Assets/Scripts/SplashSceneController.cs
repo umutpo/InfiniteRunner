@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SplashSceneController : MonoBehaviour
 {
-    private const string FIRST_TIME_PLAYING_KEY = "FirstTimePlaying";
+    private const string FIRST_TIME_PLAYING_LANGUAGE_SELECTION_KEY = "FirstTimePlayingLanguageSelection";
 
     private enum SceneType
     {
@@ -54,10 +54,10 @@ public class SplashSceneController : MonoBehaviour
 
     private bool isFirstTimePlaying()
     {
-        bool isFirstTime = !PlayerPrefs.HasKey(FIRST_TIME_PLAYING_KEY);
+        bool isFirstTime = !PlayerPrefs.HasKey(FIRST_TIME_PLAYING_LANGUAGE_SELECTION_KEY);
         if (isFirstTime)
         {
-            PlayerPrefs.SetInt(FIRST_TIME_PLAYING_KEY, 1);
+            PlayerPrefs.SetInt(FIRST_TIME_PLAYING_LANGUAGE_SELECTION_KEY, 1);
         }
 
         return isFirstTime;
