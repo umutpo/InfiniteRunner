@@ -1789,6 +1789,7 @@ GameObject:
   - component: {fileID: 1459852310}
   - component: {fileID: 1459852309}
   - component: {fileID: 1459852308}
+  - component: {fileID: 1459852312}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1830,7 +1831,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 640, y: 960}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1878,6 +1879,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1459852312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459852307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113fcf431ed3cb04c8b9c7c4e96b7a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1468331076
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,7 +2035,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1684424171}
-  - component: {fileID: 1684424174}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -2053,14 +2065,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1684424174
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1684424170}
-  m_CullTransparentMesh: 0
 --- !u!1 &1865864938
 GameObject:
   m_ObjectHideFlags: 0
