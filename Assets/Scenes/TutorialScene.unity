@@ -4328,6 +4328,21 @@ PrefabInstance:
       propertyPath: bagWeightText
       value: 
       objectReference: {fileID: 698198875}
+    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: chefRedShader
+      value: 
+      objectReference: {fileID: 4800000, guid: 6ce3f37f7f9ac844ca42e06acaf12fa4, type: 3}
+    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: chefGoldShader
+      value: 
+      objectReference: {fileID: 4800000, guid: c66565e9c50f8a244954bc0e3e257eb9, type: 3}
+    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: chefNormalShader
+      value: 
+      objectReference: {fileID: 4800000, guid: fab34114f9d307247a2bf3435805750a, type: 3}
     - target: {fileID: 5537373567197875067, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
       propertyPath: m_RootOrder
