@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     const float DISH_SPEED_GAIN_TIME = 3f;
     const float BOOST_DEACCEL_TIME = 0.5f;
 
-    const float INITIAL_SPEED = 12f;
-    const float PERMANENT_SPEED_GAIN = 1f;
+    const float INITIAL_SPEED = 15f;
+    const float PERMANENT_SPEED_GAIN = 1.5f;
     const float OBSTACLE_SPEED_GAIN = 1f;
     public const float INGREDIENT_SPEED_GAIN = 1f;
     const float DISH_SPEED_BOOST = 1f;
@@ -114,6 +114,7 @@ public class PlayerController : MonoBehaviour
 
     // Audio variables
     private PlayerAudioController audioController;
+    [SerializeField]
     private CountdownController countdownController;
 
     //Shader Swapping
@@ -141,6 +142,7 @@ public class PlayerController : MonoBehaviour
         _collider = gameObject.GetComponent<BoxCollider>();
         starting_elevation = _body.transform.position.y;
 
+        // TODO: GameObject.Find calls are expensive, replace them when possible
         inventory = GameObject.Find("Inventory");
         playerInventoryData = inventory.GetComponent<PlayerInventoryData>();
         anim = GameObject.Find("Player Model").GetComponent<Animator>();
@@ -148,7 +150,6 @@ public class PlayerController : MonoBehaviour
         sackRenderer = GameObject.Find("sack").GetComponent<Renderer>();
         bagWeightText.text = "0";
         audioController = gameObject.GetComponent<PlayerAudioController>();
-        countdownController = FindObjectOfType<CountdownController>();
 
         // preloads shaders so there is no hiccup on first use
         var collection = Resources.Load<ShaderVariantCollection>("ShaderCache");
@@ -158,16 +159,14 @@ public class PlayerController : MonoBehaviour
             Resources.UnloadAsset(collection);
         }
 
+        EnableAllInput();
 
         // TODO: set music audio source ignoreListenerPause to true
         if (countdownController != null)
         {
             countdownController.isInPauseCountdown += (isPaused) => noMovementDuringPauseCountdown(isPaused);
-        }
-        moveLeftAction.Enable();
-        moveRightAction.Enable();
-
-        EnableAllTouchInput();
+            countdownController.StartCountdown();
+        }   
     }
 
     void Update()

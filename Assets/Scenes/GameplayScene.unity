@@ -5406,6 +5406,8 @@ MonoBehaviour:
   countdownText: {fileID: 1339071487}
   countdownSound: {fileID: 684201602}
   text: {fileID: 1339071490}
+  defaultFont: {fileID: 11400000, guid: 3adea19f75e632d49b9d2b5e535e11b8, type: 2}
+  turkishFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
 --- !u!114 &1339071490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8237,7 +8239,7 @@ PrefabInstance:
     - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: itemDensity
-      value: 10
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
@@ -8287,7 +8289,7 @@ PrefabInstance:
     - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
       propertyPath: ingredientVsObstacleBias
-      value: 90
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 4756254010319538037, guid: 3353a00a13fa93e48980be9b0f2edfe4,
         type: 3}
@@ -8356,6 +8358,11 @@ PrefabInstance:
       propertyPath: chefNormalShader
       value: 
       objectReference: {fileID: 4800000, guid: fab34114f9d307247a2bf3435805750a, type: 3}
+    - target: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: countdownController
+      value: 
+      objectReference: {fileID: 1339071489}
     - target: {fileID: 5537373567197875067, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
       propertyPath: m_RootOrder

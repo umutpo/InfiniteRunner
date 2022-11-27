@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class CountdownController : MonoBehaviour
 {
@@ -10,8 +11,23 @@ public class CountdownController : MonoBehaviour
     [SerializeField] private AudioSource countdownSound;
     [SerializeField] private LangText text;
 
+    [SerializeField]
+    public TMP_FontAsset defaultFont;
+    [SerializeField]
+    public TMP_FontAsset turkishFont;
+
     private void Start() {
-        StartCoroutine(Countdown());
+        string language = text.GetLanguage();
+        if (language == "Turkish")
+        {
+            countdownText.font = turkishFont;
+            countdownText.fontStyle = FontStyles.Bold;
+        }
+        else
+        {
+            countdownText.font = defaultFont;
+            countdownText.fontStyle = FontStyles.Normal;
+        }
     }
 
     public void StartCountdown()
