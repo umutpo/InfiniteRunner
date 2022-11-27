@@ -54,7 +54,9 @@ public class ItemGenerator : MonoBehaviour
 
     private float lastDeltaTime = 0;
     private float lastGenerateSpot;
-
+    private int maxNoIngredientsLane = 4; // if we get over this number of lanes without an ingredient, just force one to be generated
+    private bool currentLaneHasIngredient = false;
+    private int currentNoIngredientsLaneNumber = 0;
     protected void Start()
     {
         ingredient = gameObject.GetComponent<IngredientGenerator>();
@@ -75,7 +77,8 @@ public class ItemGenerator : MonoBehaviour
 
         if (player.transform.position.z + spawnDistanceUnit * generateAheadDistance >= lastGenerateSpot)
         {
-            if (Random.Range(0, 100) < itemDensity)
+            currentLaneHasIngredient = false;
+            if (Random.Range(0, 100) < itemDensity || currentNoIngredientsLaneNumber == maxNoIngredientsLane)
             {
                 int rowRng = Random.Range(0, singleItemRowWeight + doubleItemRowWeight + tripleItemRowWeight);
                 int startLane = Random.Range(0, 3);
@@ -111,8 +114,17 @@ public class ItemGenerator : MonoBehaviour
                 }
                 if (itemsPlaced == openLanes)
                     lastGenerateSpot += spawnDistanceUnit; // give player time after a row full of obstacles and items by making next row blank
+                Debug.Log("Lane has ingredient: " + currentLaneHasIngredient);
             }
-
+            // conditionals to handle a force ingredient generation when none are generated in the last *maxNoIngredientsLane* lanes
+            if (!currentLaneHasIngredient)
+            {
+                currentNoIngredientsLaneNumber++;
+            }
+            else
+            {
+                currentNoIngredientsLaneNumber = 0;
+            }
             lastGenerateSpot += spawnDistanceUnit;
         }
     }
@@ -137,8 +149,12 @@ public class ItemGenerator : MonoBehaviour
         // Determine what type of item: Ingredient or obstacle
         int itemTypeRng = Random.Range(0, 100);
         // Return item name
-        if (itemTypeRng < ingredientVsObstacleBias) 
+        if (itemTypeRng < ingredientVsObstacleBias || currentNoIngredientsLaneNumber == maxNoIngredientsLane)
+        {
+            Debug.Log("Ingredient generated here");
+            currentLaneHasIngredient = true;
             return ingredient.GetIngredient();
+        }
         else
             return obstacle.GetObstacle();
         
