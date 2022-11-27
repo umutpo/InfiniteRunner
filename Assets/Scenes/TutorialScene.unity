@@ -825,7 +825,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -300}
-  m_SizeDelta: {x: 300, y: 50}
+  m_SizeDelta: {x: 275, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &223738703
 MonoBehaviour:
@@ -4308,6 +4308,11 @@ PrefabInstance:
       propertyPath: screenTransition
       value: 
       objectReference: {fileID: 1828410583}
+    - target: {fileID: 5176793319131568371, guid: f4eaea86d4f33324fa75387c319d2243,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1604537210}
     - target: {fileID: 5537373567197875062, guid: f4eaea86d4f33324fa75387c319d2243,
         type: 3}
       propertyPath: m_Name
@@ -4436,6 +4441,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1604537210 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5537373567197875063, guid: f4eaea86d4f33324fa75387c319d2243,
+    type: 3}
+  m_PrefabInstance: {fileID: 1604537204}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604537206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d6490159a1c754c8774f11ab024883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1706477557
 GameObject:
   m_ObjectHideFlags: 0

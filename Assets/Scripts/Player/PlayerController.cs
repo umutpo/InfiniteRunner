@@ -7,6 +7,14 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
+    public enum TOUCH_INPUT_TYPE
+    {
+        JUMP,
+        SLIDE,
+        MOVE_LEFT,
+        MOVE_RIGHT,
+    }
+
     const int NUMBER_OF_LANES = 3;
     const int LANE_LENGTH = 12;
 
@@ -43,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
     public InputAction touchContact;
     public InputAction touchPosition;
+    public List<TOUCH_INPUT_TYPE> allowedTouchInputs;
 
     // Swipe variables
     private Vector3 touchStartPosition;
@@ -126,6 +135,7 @@ public class PlayerController : MonoBehaviour
 
         touchContact.started += ctx => StartTouchPrimary(ctx);
         touchContact.canceled += ctx => EndTouchPrimary(ctx);
+        allowedTouchInputs = new List<TOUCH_INPUT_TYPE>();
 
         _body = gameObject.GetComponent<Rigidbody>();
         _collider = gameObject.GetComponent<BoxCollider>();
@@ -150,12 +160,14 @@ public class PlayerController : MonoBehaviour
 
 
         // TODO: set music audio source ignoreListenerPause to true
-        countdownController.isInPauseCountdown += (isPaused) => noMovementDuringPauseCountdown(isPaused);
+        if (countdownController != null)
+        {
+            countdownController.isInPauseCountdown += (isPaused) => noMovementDuringPauseCountdown(isPaused);
+        }
         moveLeftAction.Enable();
         moveRightAction.Enable();
 
-        touchContact.Enable();
-        touchPosition.Enable();
+        EnableAllTouchInput();
     }
 
     void Update()
@@ -461,18 +473,22 @@ public class PlayerController : MonoBehaviour
         if (key.name == "upArrow")
         {
             jumpAction.Enable();
+            EnableTouchInput(TOUCH_INPUT_TYPE.JUMP);
         }
         else if (key.name == "downArrow")
         {
             slideAction.Enable();
+            EnableTouchInput(TOUCH_INPUT_TYPE.SLIDE);
         }
         else if (key.name == "leftArrow")
         {
             moveLeftAction.Enable();
+            EnableTouchInput(TOUCH_INPUT_TYPE.MOVE_LEFT);
         }
         else if (key.name == "rightArrow")
         {
             moveRightAction.Enable();
+            EnableTouchInput(TOUCH_INPUT_TYPE.MOVE_RIGHT);
         }
     }
 
@@ -539,8 +555,7 @@ public class PlayerController : MonoBehaviour
         moveLeftAction.Disable();
         moveRightAction.Disable();
 
-        touchContact.Disable();
-        touchPosition.Disable();
+        DisableAllTouchInput();
     }
 
     public void EnableAllInput()
@@ -550,14 +565,41 @@ public class PlayerController : MonoBehaviour
         moveLeftAction.Enable();
         moveRightAction.Enable();
 
-        touchContact.Enable();
-        touchPosition.Enable();
+        EnableAllTouchInput();
     }
 
-    public void EnableTouchInput()
+    public void EnableAllTouchInput()
     {
         touchContact.Enable();
         touchPosition.Enable();
+
+        foreach (TOUCH_INPUT_TYPE input in Enum.GetValues(typeof(TOUCH_INPUT_TYPE))) {
+            allowedTouchInputs.Add(input);
+        }
+    }
+
+    public void DisableAllTouchInput()
+    {
+        touchContact.Disable();
+        touchPosition.Disable();
+
+        allowedTouchInputs.Clear();
+    }
+
+    public void EnableTouchInput(TOUCH_INPUT_TYPE input)
+    {
+        if (!touchContact.enabled && !touchPosition.enabled)
+        {
+            touchContact.Enable();
+            touchPosition.Enable();
+        }
+
+        allowedTouchInputs.Add(input);
+    }
+
+    public bool CanUseTouchInput(TOUCH_INPUT_TYPE input)
+    {
+        return allowedTouchInputs.Contains(input);
     }
 
     private void StartTouchPrimary(InputAction.CallbackContext context) {
@@ -573,19 +615,19 @@ public class PlayerController : MonoBehaviour
                 float deltaX = touchEndPosition.x - touchStartPosition.x;
                 float magY = Mathf.Abs(deltaY);
                 float magX = Mathf.Abs(deltaX);
-                if (magY > MIN_SWIPE_DIST && magY >= magX) {                        
-                    if (deltaY > 0 && canPlayerMove()) {
-                        jump();
-                        latestSwipe = SwipeAction.Up;
-                    } else {
+                if (magY > MIN_SWIPE_DIST && magY >= magX) {
+                if (deltaY > 0 && canPlayerMove() && CanUseTouchInput(TOUCH_INPUT_TYPE.JUMP)) {
+                    jump();
+                    latestSwipe = SwipeAction.Up;
+                } else if (CanUseTouchInput(TOUCH_INPUT_TYPE.SLIDE)) {
                         slide();
                         latestSwipe = SwipeAction.Down;
                     }
-                } else if (magX > MIN_SWIPE_DIST && magX > magY) { 
+                } else if (magX > MIN_SWIPE_DIST && magX > magY && CanUseTouchInput(TOUCH_INPUT_TYPE.MOVE_RIGHT)) { 
                     if (deltaX > 0) {
                         moveRight();
                         latestSwipe = SwipeAction.Right;
-                    } else {    
+                    } else if (CanUseTouchInput(TOUCH_INPUT_TYPE.MOVE_LEFT)) {    
                         moveLeft();
                         latestSwipe = SwipeAction.Left;
                     }

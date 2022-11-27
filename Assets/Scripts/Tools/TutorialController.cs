@@ -70,8 +70,6 @@ public class TutorialController : MonoBehaviour
         if (_player != null)
         {
             _playerController = _player.GetComponent<PlayerController>();
-            _playerController.DisableAllInput();
-            _playerController.EnableTouchInput();
         }
 
         if (_tutorialCommand != null)
@@ -107,6 +105,7 @@ public class TutorialController : MonoBehaviour
         {
             helloFlag = false;
             StartTextDisplay(TUTORIAL_INTRO_TEXT);
+            _playerController.DisableAllInput();
             StartCoroutine(_playerController.StartTutorial());
         }
         else if (jumpFlag && currentPlayerPositionZ >= JUMP_TUTORIAL_TRIGGER_POSITION)
@@ -117,7 +116,6 @@ public class TutorialController : MonoBehaviour
         }
         else if (slideFlag && currentPlayerPositionZ >= SLIDE_TUTORIAL_TRIGGER_POSITION)
         {
-            // TODO: ADD AN OBJECT TO SLIDE UNDER ON UNITY!!!
             slideFlag = false;
             StartImageDisplay(SlideTutorialImage);
             StartCoroutine(_playerController.StartTutorial(Keyboard.current.downArrowKey, PlayerController.SwipeAction.Down));
